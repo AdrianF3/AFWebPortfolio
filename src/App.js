@@ -9,8 +9,6 @@ function App() {
           {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}
           <HeaderWelcome />
 
-
-
         {/* About Me */}
         <section>
           <div>
