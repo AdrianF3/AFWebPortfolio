@@ -1,43 +1,58 @@
 import React from 'react'
+import EctorGrowSVGLogo from '../images/etgLogoWhiteBG.svg'
 
 export default function EctorGrowExplainer() {
   return (
     <section className=''>
-  <div class="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:h-screen lg:grid-cols-2">
-      <div class="relative z-10 lg:py-16">
-        <div class="relative h-64 sm:h-80 lg:h-full">
+  <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 lg:h-screen lg:grid-cols-2">
+      <div className="relative z-10 lg:py-16">
+        <div className="relative">
           <img
-            alt="House"
-            src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-            class="absolute inset-0 h-full w-full object-cover"
+            alt="Ector Grow Logo"
+            src={EctorGrowSVGLogo}
+            className="h-auto max-w-xl object-cover"
           />
         </div>
       </div>
 
-      <div class="relative flex items-center bg-gray-100">
+      <div className="relative flex items-center bg-gray-100">
         <span
-          class="hidden lg:absolute lg:inset-y-0 lg:-left-16 lg:block lg:w-16 lg:bg-gray-100"
+          className="hidden lg:absolute lg:inset-y-0 lg:-left-16 lg:block lg:w-16 lg:bg-gray-100"
         ></span>
 
-        <div class="p-8 sm:p-16 lg:p-24">
-          <h2 class="text-2xl font-bold sm:text-3xl">
-            Ector Grow - my main project and what I use to learn, test and implement
-            everything I am learning. 
+        <div className="p-8 sm:p-16 lg:p-24">
+          <h2 className="text-2xl font-bold sm:text-3xl">
+            EctorGrow.com
           </h2>
 
-          <p class="mt-4 text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid,
-            molestiae! Quidem est esse numquam odio deleniti, beatae, magni
-            dolores provident quaerat totam eos, aperiam architecto eius quis
-            quibusdam fugiat dicta.
+          <p className="mt-4 text-gray-600">
+            This started as a peronsal project to see if I could create a helpful tool for myself, this is still where I learn, practice and implement 
+            whatever I am currently learning.
           </p>
 
+          <p className="mt-4 text-gray-600">
+            I know the content of this website is not for everyone, but I still want to show off some of what I have done... so I made a dummy account anyone can use
+            to see first hand what users can do with their own account. This dummy account is also loaded with pictures of cute dogs (instead of cannabis)... who doesn't 
+            like looking at a cute dogs?
+          </p>
+
+          <div className='flex flex-col'>
+            <p className="mt-4 text-gray-600 block">
+              DEMO ACCOUNT INFO
+              <span className='block py-2'>Email Address:</span> test@test.com
+              <span className='block py-2'>Password:</span> 123456
+            </p>
+          </div>
+
+
+
+
           <a
-            href="#"
-            class="mt-8 inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
+            href="http://EctorGrow.com/"
+            className="mt-8 inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
           >
-            Get in Touch
+            Take A Look
           </a>
         </div>
       </div>

@@ -14,10 +14,10 @@ export default function ContactSection() {
   >
     <div class="max-w-xl text-center sm:text-left">
       <h1 class="text-3xl font-extrabold sm:text-5xl">
-        Let us find your
+        Get In Touch
 
         <strong class="block font-extrabold text-rose-700">
-          Forever Home.
+          
         </strong>
       </h1>
 
@@ -28,14 +28,14 @@ export default function ContactSection() {
 
       <div class="mt-8 flex flex-wrap gap-4 text-center">
         <a
-          href="#"
+          href="http://AFWebDev.com"
           class="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
         >
           Get Started
         </a>
 
         <a
-          href="#"
+          href="http://AFWebDev.com"
           class="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
         >
           Learn More

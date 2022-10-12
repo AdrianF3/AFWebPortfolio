@@ -1,9 +1,12 @@
 import './App.css';
-import HeaderWelcome from './components/HeaderWelcome';
-import PortfolioDescriptions from './components/PortfolioDescriptions';
-import EctorGrowExplainer from './components/EctorGrowExplainer'
-import ContactSection from './components/ContactSection';
-import Skills from './components/Skills';
+import HeaderWelcome from './Components/HeaderWelcome';
+import PortfolioDescriptions from './Components/PortfolioDescriptions';
+import EctorGrowExplainer from './Components/EctorGrowExplainer'
+import ContactSection from './Components/ContactSection';
+import Skills from './Components/Skills';
+
+
+
 
 function App() {
   return (
@@ -11,6 +14,7 @@ function App() {
       <container>
         {/* Header / Welcome Area */}
           {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}
+          {/* <HeaderWelcome /> */}
           <HeaderWelcome />
           <Skills />
         {/* Skills Brief Description of expereince */}
