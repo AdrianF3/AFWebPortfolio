@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function HeaderWelcome() {
   return (
-    <section className='h-40 bg-emerald-800 text-center text-white'>
+    <section className='h-80 bg-emerald-800 text-center text-white'>
           <div className='flex flex-row justify-evenly'>
             {/* row section one, name and summary */}
             <div className='flex flex-col w-full'>

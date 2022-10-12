@@ -1,5 +1,9 @@
 import './App.css';
-import HeaderWelcome from './Components/HeaderWelcome';
+import HeaderWelcome from './components/HeaderWelcome';
+import PortfolioDescriptions from './components/PortfolioDescriptions';
+import EctorGrowExplainer from './components/EctorGrowExplainer'
+import ContactSection from './components/ContactSection';
+import Skills from './components/Skills';
 
 function App() {
   return (
@@ -8,27 +12,15 @@ function App() {
         {/* Header / Welcome Area */}
           {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}
           <HeaderWelcome />
-
-        {/* About Me */}
-        <section>
-          <div>
-            <p></p>
-          </div>
-        </section>      
+          <Skills />
+        {/* Skills Brief Description of expereince */}
+        
         {/* Developer Experience & Projects */}
-          {/* Full Projects followed by mini projects/components to use on page only */}
-        <section>
-          <div>
-            <p></p>
-          </div>
-        </section>
+          <PortfolioDescriptions />
+          <EctorGrowExplainer />
         {/* Updated Resume & Cover & contact info */}
           {/* Simple section, easy to download from */}
-        <section>
-          <div>
-            <p></p>
-          </div>
-        </section>
+          <ContactSection />        
 
 
 
