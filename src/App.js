@@ -4,6 +4,7 @@ import PortfolioDescriptions from './Components/PortfolioDescriptions';
 import EctorGrowExplainer from './Components/EctorGrowExplainer'
 import ContactSection from './Components/ContactSection';
 import Skills from './Components/Skills';
+import Header from './Components/Header';
 
 
 
@@ -15,8 +16,9 @@ function App() {
         {/* Header / Welcome Area */}
           {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}
           {/* <HeaderWelcome /> */}
-          <HeaderWelcome />
-          <Skills />
+          {/* <HeaderWelcome /> */}
+          <Header />
+          {/* <Skills /> */}
         {/* Skills Brief Description of expereince */}
         
         {/* Developer Experience & Projects */}
