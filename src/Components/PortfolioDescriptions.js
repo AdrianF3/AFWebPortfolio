@@ -76,21 +76,6 @@ export default function PortfolioDescriptions() {
         </div>
       </div>
 
-      <div class="flex items-start">
-        <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
-          <i className='material-icons'>feed</i>
-        </span>
-
-        <div class="ml-4">
-          <h2 class="text-lg font-bold">Multi Step Form</h2>
-
-          <p class="mt-1 text-sm text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            cumque tempore est ab possimus quisquam reiciendis tempora animi!
-            Quaerat, saepe?
-          </p>
-        </div>
-      </div>
 
       <div class="flex items-start">
         <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
@@ -99,6 +84,22 @@ export default function PortfolioDescriptions() {
 
         <div class="ml-4">
           <h2 class="text-lg font-bold">YouTube Reaction Controller</h2>
+
+          <p class="mt-1 text-sm text-gray-300">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
+            cumque tempore est ab possimus quisquam reiciendis tempora animi!
+            Quaerat, saepe?
+          </p>
+        </div>
+      </div>
+      
+      <div class="flex items-start">
+        <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+          <i className='material-icons'>feed</i>
+        </span>
+
+        <div class="ml-4">
+          <h2 class="text-lg font-bold">Multi Step Form</h2>
 
           <p class="mt-1 text-sm text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
