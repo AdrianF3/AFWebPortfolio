@@ -25,7 +25,7 @@ export default function PortfolioDescriptions() {
           <h2 class="text-lg font-bold">Ector Grow</h2>
 
           <p class="mt-1 text-sm text-gray-300">
-            This website is a live project I use to learn, practice and implement new concepts, practices or features.
+            This website is currently a <span className='italic'>live</span> project I use to learn, practice and implement new concepts, practices & features. More Info below...
           </p>
         </div>
       </div>
@@ -55,7 +55,7 @@ export default function PortfolioDescriptions() {
           <h2 class="text-lg font-bold">This Portfolio Website </h2>
 
           <p class="mt-1 text-sm text-gray-300">
-            I wanted to include a few examples on this website of some smaller portfolio projects I've worked on.
+            I wanted to include a few examples on this website of some smaller portfolio projects I've created.
           </p>
         </div>
       </div>
@@ -92,7 +92,7 @@ export default function PortfolioDescriptions() {
           </p>
         </div>
       </div>
-      
+
       <div class="flex items-start">
         <span class="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <i className='material-icons'>feed</i>
