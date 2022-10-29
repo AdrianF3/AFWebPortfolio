@@ -9,7 +9,7 @@ export default function NavigationBar() {
     <nav class="container p-6 mx-auto lg:flex lg:justify-between lg:items-center">
         <div class="flex items-center justify-between">
             <div>
-                <a class="text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">Adrian Fregoso</a>
+                <NavLink className='text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300' to='/'>Adrian Fregoso</NavLink>                
             </div>
 
             {/* <!-- Mobile menu button --> */}
@@ -32,13 +32,10 @@ export default function NavigationBar() {
         <div class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white shadow-md lg:shadow-none dark:bg-gray-900 lg:mt-0 lg:p-0 lg:top-0 lg:bg-transparent lg:dark:bg-transparent lg:relative lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
             <div class="flex flex-col space-y-4 lg:mt-0 lg:flex-row lg:space-y-0 text-white gap-4">
                 <NavLink to='/'><p className=''>Home</p></NavLink>
-                <NavLink to='/weather'><p className=''>Weather Project</p></NavLink>
-                
+                <NavLink to='/weather'><p className=''>Weather Project</p></NavLink>                
                 <NavLink to='ytcontroller'><p>YouTube Controller</p></NavLink>
                 <NavLink to=''><p>Ector Grow</p></NavLink>
-                <NavLink to=''><p>Get In Touch</p></NavLink>
-                {/* <a class="text-gray-700 lg:mx-6 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Ector Grow</a> */}
-                {/* <a class="text-gray-700 lg:mx-6 dark:text-gray-200 dark:hover:text-blue-400 hover:text-blue-500" href="#">Get In Touch</a> */}
+                <NavLink to=''><p>Get In Touch</p></NavLink>                
             </div>
             
         </div>

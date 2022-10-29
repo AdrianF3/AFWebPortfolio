@@ -15,11 +15,12 @@ export default function Header() {
     
 
     <div class="container px-6 py-16 mx-auto text-center">
-        <div class="max-w-lg mx-auto">
-            <h1 class="text-3xl font-bold text-gray-800 dark:text-white md:text-4xl">A portfolio, cause thats probably the best way to get a job in 2022 right?</h1>
+        <div class="max-w-2xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white md:text-4xl">Software Developer</h1>
 
-            <p class="mt-6 text-gray-500 dark:text-gray-300">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero similique obcaecati illum mollitia.
+            <p class="mt-6 text-gray-500 dark:text-gray-300 italic">
+            Focused on building great experiences &amp; tools for the internet. Currently splitting focus between devloping my side project, Ector Grow &amp; continuing to learn 
+            &amp; implement more advanced concepts, patterns &amp; practices. 
             </p>
             
         </div>
@@ -27,6 +28,7 @@ export default function Header() {
 
         {/* section for svg logos */}
         <div class="max-w-screen-xl mx-auto mt-20">
+            {/* First Row */}
             <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5 text-white justify-evenly">
                 <div className=''>
                     <img className='object-cover object-center h-28 m-auto' src={reactSVG} alt='React' />
@@ -49,7 +51,43 @@ export default function Header() {
                     <img className='object-cover object-center h-28 m-auto' src={githubSVG} alt='React' />
                     <p>GitHub</p>
                 </div>                                                            
-            </div>
+            </div>            
+            {/* Second Row */}
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-5 lg:grid-cols-4 text-white justify-evenly pt-4">
+                <div className=''>
+                    <img className='object-cover object-center h-10 m-auto' src={reactSVG} alt='React' />
+                    <p>HTML 5</p>
+                    
+                </div>
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={tailwindSVG} alt='React' />
+                    <p>CSS 3</p>
+                </div>
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={firebaseSVG} alt='React' />
+                    <p>SQL</p>
+                </div>
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={jsSVG} alt='React' />
+                    <p>JSON</p>
+                </div>
+                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <p>Bootstrap</p>
+                </div>                                                            
+                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <p>PHP</p>
+                </div>                                                            
+                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <p>WordPress</p>
+                </div>                                                            
+                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <p>Google Analytics</p>
+                </div>                                                            
+            </div>            
         </div>
     </div>
 </section>
