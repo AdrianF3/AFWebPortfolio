@@ -71,19 +71,19 @@ export default function Header() {
                     <img className='object-cover object-center h-10 m-auto' src={jsSVG} alt='React' />
                     <p>JSON</p>
                 </div>
-                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                <div>
                     <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
                     <p>Bootstrap</p>
                 </div>                                                            
-                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                <div>
                     <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
                     <p>PHP</p>
                 </div>                                                            
-                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                <div>
                     <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
                     <p>WordPress</p>
                 </div>                                                            
-                <div className='col-span-2 md:col-span-1 lg:col-span-1'>
+                <div>
                     <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
                     <p>Google Analytics</p>
                 </div>                                                            
