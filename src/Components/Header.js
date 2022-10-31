@@ -4,6 +4,14 @@ import jsSVG from '../images/js.svg'
 import githubSVG from '../images/github.svg'
 import tailwindSVG from '../images/tailwindcss.svg'
 import firebaseSVG from '../images/firebase.svg'
+import gaSVG from '../images/googleAnalytics.svg'
+import wordpressSVG from '../images/wordpress.svg'
+import phpSVG from '../images/php.svg'
+import bootstrapSVG from '../images/bootstrap.svg'
+import jsonSVG from '../images/json.svg'
+import cssSVG from '../images/css.svg'
+import htmlSVG from '../images/html.svg'
+
 
 
 export default function Header() {
@@ -53,39 +61,35 @@ export default function Header() {
                 </div>                                                            
             </div>            
             {/* Second Row */}
-            <div class="grid grid-cols-2 gap-8 md:grid-cols-5 lg:grid-cols-4 text-white justify-evenly pt-4">
+            <div class="grid grid-cols-2 gap-8 md:grid-cols-5 lg:grid-cols-4 text-white justify-evenly pt-8">
                 <div className=''>
-                    <img className='object-cover object-center h-10 m-auto' src={reactSVG} alt='React' />
+                    <img className='object-cover object-center h-10 m-auto' src={htmlSVG} alt='React' />
                     <p>HTML 5</p>
                     
                 </div>
                 <div>
-                    <img className='object-cover object-center h-10 m-auto' src={tailwindSVG} alt='React' />
+                    <img className='object-cover object-center h-10 m-auto' src={cssSVG} alt='React' />
                     <p>CSS 3</p>
-                </div>
+                </div>                
                 <div>
-                    <img className='object-cover object-center h-10 m-auto' src={firebaseSVG} alt='React' />
-                    <p>SQL</p>
-                </div>
-                <div>
-                    <img className='object-cover object-center h-10 m-auto' src={jsSVG} alt='React' />
+                    <img className='object-cover object-center h-10 m-auto' src={jsonSVG} alt='React' />
                     <p>JSON</p>
                 </div>
                 <div>
-                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <img className='object-cover object-center h-10 m-auto' src={gaSVG} alt='React' />
+                    <p>Google Analytics</p>
+                </div>                                                            
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={bootstrapSVG} alt='React' />
                     <p>Bootstrap</p>
                 </div>                                                            
                 <div>
-                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <img className='object-cover object-center h-10 m-auto' src={phpSVG} alt='React' />
                     <p>PHP</p>
                 </div>                                                            
                 <div>
-                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
+                    <img className='object-cover object-center h-10 m-auto' src={wordpressSVG} alt='React' />
                     <p>WordPress</p>
-                </div>                                                            
-                <div>
-                    <img className='object-cover object-center h-10 m-auto' src={githubSVG} alt='React' />
-                    <p>Google Analytics</p>
                 </div>                                                            
             </div>            
         </div>
