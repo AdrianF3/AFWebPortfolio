@@ -6,7 +6,7 @@ export default function ETGExplainer() {
   return (
     <section className="text-gray-600 body-font border-4 border-green-300 m-2 rounded-xl bg-green-300/20">
         <div className="container px-5 py-24 mx-auto flex flex-row justify-evenly m-2">
-            <div className='w-3/12'>                
+            <div className='w-3/12 my-auto drop-shadow-2xl'>                
                 <img
                     className='' 
                     src={etgMini} 
@@ -28,15 +28,10 @@ export default function ETGExplainer() {
                     </p>
                         
                 </div>
-                <div className="flex justify-evenly md:mt-4 mt-6">
-                    <button className="flex text-white bg-indigo-500 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">
+                <div className="flex justify-evenly py-4">
+                    <button className="text-white bg-emerald-500 p-1  focus:outline-none hover:bg-emerald-600 rounded-xl">
                         Visit Ector Grow
-                    </button>
-                    {/* <a className="text-indigo-500 inline-flex items-center ml-4">Learn More
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
-                    </a> */}
+                    </button>                    
                     <div className='border-2 border-emerald-800 p-2 rounded-xl'>
                         <p className='flex justify-center underline underline-offset-2'>Demo Account Info</p> 
                         <p><span className='font-bold'>Email:</span> email@email.com</p>
