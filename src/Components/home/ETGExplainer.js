@@ -1,5 +1,5 @@
 import React from 'react'
-import etgMini from '../images/etgLogoWhiteBG.svg'
+import etgMini from '../../images/etgLogoWhiteBG.svg'
 
 
 export default function ETGExplainer() {
@@ -14,7 +14,7 @@ export default function ETGExplainer() {
                 />
             </div>
             <div className='w-8/12'>
-                <h2 className="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">EctorGrow.com</h2>
+                {/* <h2 className="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">EctorGrow.com</h2> */}
                 <div>
                     <p className="leading-relaxed py-2 text-base">
                         This website started as a side project for my personal use, which turned into a project I began working on for my portfolio as a web developer and is now a small, but expanding, community of personal cannabis growers.

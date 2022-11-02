@@ -1,9 +1,9 @@
 import React from 'react'
-import etgMini from '../images/etgMini.png'
+import etgMini from '../../images/etgMini.png'
 
 export default function PortfolioDescriptions() {
   return (
-    <section class="bg-gray-900 text-white">
+    <section class="flex justify-center pb-8 rounded-b-2xl bg-cyan-900 text-white">
   <div class="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div class="max-w-xl">
       <h2 class="text-3xl font-bold sm:text-4xl">Personal &amp; Portfolio Projects</h2>

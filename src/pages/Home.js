@@ -1,9 +1,10 @@
 import React from 'react'
 import ContactSection from '../Components/ContactSection'
-import ETGExplainer from '../Components/ETGExplainer'
-import Header from '../Components/Header'
+import ETGExplainer from '../Components/home/ETGExplainer'
+import Header from '../Components/home/Header'
+import PreviousEmployers from '../Components/home/PreviousEmployers'
 import NavigationBar from '../Components/NavigationBar'
-import PortfolioDescriptions from '../Components/PortfolioDescriptions'
+import PortfolioDescriptions from '../Components/home/PortfolioDescriptions'
 
 export default function Home() {
   return (
@@ -14,9 +15,9 @@ export default function Home() {
           <Header />             
         {/* Skills Brief Description of expereince */}        
         {/* Developer Experience & Projects */}
-          <PortfolioDescriptions />          
-          {/* <EctorGrowExplainer /> */}
+          <PortfolioDescriptions />                    
           <ETGExplainer />
+          <PreviousEmployers />
         {/* Updated Resume & Cover & contact info */}
           {/* Simple section, easy to download from */}
           <ContactSection />                  
