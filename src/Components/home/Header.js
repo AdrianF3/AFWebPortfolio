@@ -34,28 +34,31 @@ export default function Header() {
         
 
         {/* section for svg logos */}
-        <div className="max-w-screen-xl mx-auto mt-20">
+        <div className="max-w-screen-xl mx-auto mt-20 border-2 border-white/90 p-4 rounded-xl">
+            <div className='absolute -mt-14 -ml-8 bg-white rounded-xl drop-shadow-xl'>
+                <h2 className='text-2xl font-bold sm:text-3xl text-cyan-800 p-2'>Primary Tech Stack</h2>
+            </div>
             {/* First Row */}
             <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5 text-white justify-evenly">
                 <div className=''>
-                    <img className='object-cover object-center h-28 m-auto' src={reactSVG} alt='React' />
+                    <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={reactSVG} alt='React' />
                     <p>React</p>
                     
                 </div>
                 <div>
-                    <img className='object-cover object-center h-28 m-auto' src={tailwindSVG} alt='React' />
+                    <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={tailwindSVG} alt='React' />
                     <p>Tailwind CSS</p>
                 </div>
                 <div>
-                    <img className='object-cover object-center h-28 m-auto' src={firebaseSVG} alt='React' />
+                    <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={firebaseSVG} alt='React' />
                     <p>Firebase</p>
                 </div>
                 <div>
-                    <img className='object-cover object-center h-28 m-auto' src={jsSVG} alt='React' />
+                    <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={jsSVG} alt='React' />
                     <p>JavaScript</p>
                 </div>
                 <div className='col-span-2 md:col-span-1 lg:col-span-1'>
-                    <img className='object-cover object-center h-28 m-auto' src={githubSVG} alt='React' />
+                    <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={githubSVG} alt='React' />
                     <p>GitHub</p>
                 </div>                                                            
             </div>            

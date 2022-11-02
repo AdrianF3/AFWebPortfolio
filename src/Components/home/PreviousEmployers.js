@@ -1,33 +1,36 @@
 import React from 'react'
+import appleSVG from '../../images/apple.svg'
+import disneylandSVG from '../../images/disneyland.svg'
+import stratosphereSVG from '../../images/stratosphere.png'
+
+
 
 export default function PreviousEmployers() {
   return (
   <section class="text-gray-600 body-font bg-cyan-900 rounded-xl mx-4">
-    <div class="container px-5 py-24 mx-auto">
-      <h2 className='text-white text-xl tracking-wide'>
-        Previous Employers
-      </h2>
+    <div class="container px-5 py-20 mx-auto">
+      <div className='mb-8'>
+        <h2 className='text-white text-3xl font-bold sm:text-4xl tracking-wide'>
+          Previous Employers
+        </h2>
+      </div>
       <div class="flex flex-wrap -m-4">
 
         <div class="p-4 md:w-1/3">
           <div class="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/720x400" alt="blog"/>
+            <img class="lg:h-48 md:h-36 w-auto object-contain m-auto" src={disneylandSVG} alt="Disneyland Resort Logo"/>
             <div class="p-6">
               <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Attractions Operator, Trainer &amp; Lead</h2>
               <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Disneyland Resort</h1>
               <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
               <div class="flex items-center flex-wrap ">
-                <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
+                Anaheim, CA
                 <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-                  2006
+                  2006 
+                  <i className='material-icons'>navigate_next</i>
+                  2011
                 </span>
                 <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                  2011
                 </span>
               </div>
             </div>
@@ -36,24 +39,18 @@ export default function PreviousEmployers() {
 
         <div class="p-4 md:w-1/3">
           <div class="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/721x401" alt="blog"/>
+            <img class="lg:h-48 md:h-36 w-auto object-contain m-auto" src={stratosphereSVG} alt="blog"/>
             <div class="p-6">
               <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Tower Supervisor</h2>
               <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Stratosphere Hotel, Casino &amp; Tower</h1>
               <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
               <div class="flex items-center flex-wrap">
-                <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
+                Las Vegas, NV
                 <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                   2011
-                </span>
-                <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                  <i className='material-icons'>navigate_next</i>
                   2014
-                </span>
+                </span>                
               </div>
             </div>
           </div>
@@ -61,24 +58,18 @@ export default function PreviousEmployers() {
 
         <div class="p-4 md:w-1/3">
           <div class="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-full object-cover object-center" src="https://dummyimage.com/722x402" alt="blog"/>
+            <img class="lg:h-48 md:h-36 w-auto object-contain m-auto" src={appleSVG} alt="blog"/>
             <div class="p-6">
               <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Operations Specalist</h2>
               <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Apple (retail)</h1>
               <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
               <div class="flex items-center flex-wrap ">
-                <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0">Learn More
-                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </a>
+                Lone Tree, CO
                 <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                   2014
-                </span>
-                <span class="text-gray-400 inline-flex items-center leading-none text-sm">
-                  Present
-                </span>
+                  <i className='material-icons'>navigate_next</i>
+                Present
+                </span>                
               </div>
             </div>
           </div>
