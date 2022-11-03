@@ -30,7 +30,7 @@ export default function PortfolioDescriptions() {
         </div>
       </div>
 
-      <div className="flex items-start">
+      {/* <div className="flex items-start">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <i className='material-icons'>groups_2</i>          
         </span>
@@ -58,7 +58,7 @@ export default function PortfolioDescriptions() {
             I wanted to include a few examples on this website of some smaller portfolio projects I've created.
           </p>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex items-start">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
