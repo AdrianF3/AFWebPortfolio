@@ -18,16 +18,20 @@ export default function ETGExplainer() {
                 {/* <h2 className="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">EctorGrow.com</h2> */}
                 <div>
                     <p className="leading-relaxed py-2 text-base">
-                        This website started as a side project for my personal use, which turned into a project I began working on for my portfolio as a web developer and is now a small, but expanding, community of personal, at home cannabis growers. 
-                        This project gave me the experince of needing to consider all aspects of designing, developing and deploying a project.
+                        This website started as a side project for my personal use, which turned into a project I worked on for my portfolio and is now a small, but growing community of personal, at home cannabis growers. 
+                        This project has given me the experince of needing to consider all aspects of designing, developing and deploying a project, managaing the front-end, back-end, user experience, data management &amp; security.
                     </p>
                     <p className="leading-relaxed py-2 text-base">
-                        With the tech stack above, I've used Firebase Authentication for user account management, Firestore to save data for user accounts, plant data, support requests &amp; social comments with other users.
-                        Firebase Storage to save user uploaded images, including profile thumbnails and images of the plants they grow. Users also have the ability to track their plants through several phases of growth, while documenting 
-                        their results with imagees, custom notes &amp; the ability to comment & interact with another users plants in addition to getting helpful information amd the ability to customize nutrient schedules for their plants. 
+                        With the tech stack above, I've used <span className='font-bold text-wide'>Firebase Authentication</span> for user account management, <span className='font-bold text-wide'>Firestore</span> to save data for user accounts, plant data, support requests &amp; social comments with other users.
+                        <span className='font-bold text-wide'>Firebase Storage</span> to save user uploaded images, including profile thumbnails and images of the plants they grow. 
+                        
                     </p>
                     <p>
-                        I do realize that not everyone is comfortable with cannabis, which is why I created a demo account that anyone can log in to wihtout seeing anything related to cannabis, but
+                        Users also have the ability to track their plants through several phases of growth, while documenting 
+                        their results with imagees, custom notes &amp; the ability to comment & interact with another users plants in addition to getting helpful information amd the ability to customize nutrient schedules for their plants. 
+                    </p>
+                    <p className="leading-relaxed py-2 text-base">
+                        I realize that not everyone is comfortable with cannabis, which is why I created a demo account that anyone can log in to wihtout seeing anything related to cannabis, but
                         instead will be pictures of cute dogs, mostly my Corgi. 
                     </p>
                         
