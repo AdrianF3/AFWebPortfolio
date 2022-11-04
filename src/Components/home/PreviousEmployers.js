@@ -7,46 +7,46 @@ import stratosphereSVG from '../../images/stratosphere.png'
 
 export default function PreviousEmployers() {
   return (
-  <section class="text-gray-600 body-font bg-cyan-900 rounded-xl mx-4">
-    <div class="container px-5 py-20 mx-auto">
+  <section className="text-gray-600 body-font bg-cyan-900 rounded-xl mx-4">
+    <div className="container px-5 py-20 mx-auto">
       <div className='mb-8'>
         <h2 className='text-white text-3xl font-bold sm:text-4xl tracking-wide'>
           Previous Employers
         </h2>
       </div>
-      <div class="flex flex-wrap -m-4">
+      <div className="flex flex-wrap -m-4">
 
-        <div class="p-4 md:w-1/3">
-          <div class="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-auto object-contain m-auto" src={disneylandSVG} alt="Disneyland Resort Logo"/>
-            <div class="p-6">
-              <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Attractions Operator, Trainer &amp; Lead</h2>
-              <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Disneyland Resort</h1>
-              <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-              <div class="flex items-center flex-wrap ">
+        <div className="p-4 md:w-1/3">
+          <div className="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+            <img className="lg:h-48 md:h-36 w-auto object-contain m-auto" src={disneylandSVG} alt="Disneyland Resort Logo"/>
+            <div className="p-6">
+              <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Attractions Operator, Trainer &amp; Lead</h2>
+              <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Disneyland Resort</h1>
+              <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+              <div className="flex items-center flex-wrap ">
                 Anaheim, CA
-                <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                   2006 
                   <i className='material-icons'>navigate_next</i>
                   2011
                 </span>
-                <span class="text-gray-400 inline-flex items-center leading-none text-sm">
+                <span className="text-gray-400 inline-flex items-center leading-none text-sm">
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="p-4 md:w-1/3">
-          <div class="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-auto object-contain m-auto" src={stratosphereSVG} alt="blog"/>
-            <div class="p-6">
-              <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Tower Supervisor</h2>
-              <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Stratosphere Hotel, Casino &amp; Tower</h1>
-              <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-              <div class="flex items-center flex-wrap">
+        <div className="p-4 md:w-1/3">
+          <div className="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+            <img className="lg:h-48 md:h-36 w-auto object-contain m-auto" src={stratosphereSVG} alt="blog"/>
+            <div className="p-6">
+              <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Tower Supervisor</h2>
+              <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Stratosphere Hotel, Casino &amp; Tower</h1>
+              <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+              <div className="flex items-center flex-wrap">
                 Las Vegas, NV
-                <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                   2011
                   <i className='material-icons'>navigate_next</i>
                   2014
@@ -56,16 +56,16 @@ export default function PreviousEmployers() {
           </div>
         </div>
 
-        <div class="p-4 md:w-1/3">
-          <div class="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img class="lg:h-48 md:h-36 w-auto object-contain m-auto p-5" src={appleSVG} alt="blog"/>
-            <div class="p-6">
-              <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Operations Specalist</h2>
-              <h1 class="title-font text-lg font-medium text-gray-900 mb-3">Apple (retail)</h1>
-              <p class="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
-              <div class="flex items-center flex-wrap ">
+        <div className="p-4 md:w-1/3">
+          <div className="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+            <img className="lg:h-48 md:h-36 w-auto object-contain m-auto p-5" src={appleSVG} alt="blog"/>
+            <div className="p-6">
+              <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Operations Specalist</h2>
+              <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Apple (retail)</h1>
+              <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+              <div className="flex items-center flex-wrap ">
                 Lone Tree, CO
-                <span class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
                   2014
                   <i className='material-icons'>navigate_next</i>
                 Present

@@ -1,7 +1,10 @@
 import React from 'react'
+import HeaderNavigation from '../Components/HeaderNavigation'
 
 export default function RoommateForm() {
-  return (
+  return (<>
+    <HeaderNavigation/>
     <div>RoommateForm</div>
+    </>
   )
 }

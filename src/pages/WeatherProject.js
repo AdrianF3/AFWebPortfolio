@@ -1,10 +1,10 @@
 import React from 'react'
-import NavigationBar from '../Components/NavigationBar'
+import HeaderNavigation from '../Components/HeaderNavigation'
 
 
 export default function WeatherProject() {
   return (<>
-    <NavigationBar/>
+    <HeaderNavigation/>
     <div>Weather Project</div>
   </>)
 }

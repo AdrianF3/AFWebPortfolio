@@ -3,15 +3,17 @@ import ContactSection from '../Components/ContactSection'
 import ETGExplainer from '../Components/home/ETGExplainer'
 import Header from '../Components/home/Header'
 import PreviousEmployers from '../Components/home/PreviousEmployers'
-import NavigationBar from '../Components/NavigationBar'
+import HeaderNavigation from '../Components/HeaderNavigation'
 import PortfolioDescriptions from '../Components/home/PortfolioDescriptions'
+
+
 
 export default function Home() {
   return (
-    <container>
+    <section>
         {/* Header / Welcome Area */}
-          {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}          
-          <NavigationBar />
+          {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}                    
+          <HeaderNavigation />
           <Header />             
         {/* Skills Brief Description of expereince */}        
         {/* Developer Experience & Projects */}
@@ -24,6 +26,6 @@ export default function Home() {
 
 
 
-      </container>
+      </section>
   )
 }

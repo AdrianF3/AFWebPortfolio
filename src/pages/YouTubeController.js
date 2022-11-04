@@ -1,10 +1,11 @@
 import React from 'react'
-import NavigationBar from '../Components/NavigationBar'
+import HeaderNavigation from '../Components/HeaderNavigation'
+
 
 export default function YouTubeController() {
   return (
     <>
-    <NavigationBar/>
+    <HeaderNavigation/>
     <div>YT Controller</div>
     
     
