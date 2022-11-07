@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home';
 import WeatherProject from './pages/WeatherProject';
 import YouTubeController from './pages/YouTubeController'
-import RoommateForm from './pages/RoommateForm';
+import BillSplit from './pages/BillSplit';
 
 
 
@@ -14,7 +14,7 @@ function App() {
         <Route path='/' element={<Home />}  />
         <Route path='weather' element={<WeatherProject />}  />
         <Route path='ytcontroller' element={<YouTubeController />}  />      
-        <Route path='multiform' element={<RoommateForm />}  />      
+        <Route path='billsplit' element={<BillSplit />}  />      
 
       </Routes>      
     </div>

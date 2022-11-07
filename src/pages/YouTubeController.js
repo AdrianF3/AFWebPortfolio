@@ -1,13 +1,17 @@
 import React from 'react'
-import HeaderNavigation from '../Components/HeaderNavigation'
+import ContactSection from '../components/ContactSection'
+import HeaderNavigation from '../components/HeaderNavigation'
 
 
 export default function YouTubeController() {
   return (
     <>
     <HeaderNavigation/>
-    <div>YT Controller</div>
-    
+    <section>
+      <div>YT Controller</div>
+
+    </section>
+    <ContactSection/>
     
     </>)
 }

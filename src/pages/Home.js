@@ -1,10 +1,10 @@
 import React from 'react'
-import ContactSection from '../Components/ContactSection'
-import ETGExplainer from '../Components/home/ETGExplainer'
-import Header from '../Components/home/Header'
-import PreviousEmployers from '../Components/home/PreviousEmployers'
-import HeaderNavigation from '../Components/HeaderNavigation'
-import PortfolioDescriptions from '../Components/home/PortfolioDescriptions'
+import ContactSection from '../components/ContactSection'
+import ETGExplainer from '../components/home/ETGExplainer'
+import Header from '../components/home/Header'
+import PreviousEmployers from '../components/home/PreviousEmployers'
+import HeaderNavigation from '../components/HeaderNavigation'
+import PortfolioDescriptions from '../components/home/PortfolioDescriptions'
 
 
 

@@ -1,10 +1,15 @@
 import React from 'react'
-import HeaderNavigation from '../Components/HeaderNavigation'
+import ContactSection from '../components/ContactSection'
+import HeaderNavigation from '../components/HeaderNavigation'
 
 
 export default function WeatherProject() {
   return (<>
     <HeaderNavigation/>
-    <div>Weather Project</div>
+    <section>
+      <div>Weather Project</div>
+
+    </section>
+    <ContactSection/>
   </>)
 }

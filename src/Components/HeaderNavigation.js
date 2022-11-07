@@ -31,7 +31,10 @@ export default function HeaderNavigation() {
                             <NavLink to='/weather'>
                                 <p className=''>Weather Project</p>
                             </NavLink>
-                            <NavLink to='ytcontroller'>
+                            <NavLink to='/billsplit'>
+                                <p className=''>Bill Splitter</p>
+                            </NavLink>
+                            <NavLink to='/ytcontroller'>
                                 <p>YouTube Controller</p>
                             </NavLink>
                             <NavLink to=''>
@@ -54,6 +57,9 @@ export default function HeaderNavigation() {
             <p className='font-bold uppercase border-b-2 border-white'>Portfolio Projects</p>
             <NavLink to='/weather'>
                 <p className=''>Weather Project</p>
+            </NavLink>
+            <NavLink to='/billsplit'>
+                <p className=''>Bill Splitter</p>
             </NavLink>
             <NavLink to='ytcontroller'>
                 <p>YouTube Controller</p>
