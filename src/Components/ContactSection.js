@@ -41,6 +41,18 @@ export default function ContactSection() {
                 </div>
 
             </div>
+            {/* lower footer tags */}
+            <div className='flex flex-row w-8/12 mx-auto justify-center py-4'>
+                <p>Adrian Fregoso | 2022 | V1 | 
+                    <a 
+                        className='font-medium ml-1'
+                        href='https://github.com/AdrianF3/AFWebPortfolio' 
+                        target='_blank' 
+                        rel='noreferrer'> 
+                    GitHub Repository for this website</a>
+                </p>                                
+
+            </div>
 
         </section>
 

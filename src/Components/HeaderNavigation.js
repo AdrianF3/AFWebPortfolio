@@ -61,7 +61,7 @@ export default function HeaderNavigation() {
             <NavLink to='/billsplit'>
                 <p className=''>Bill Splitter</p>
             </NavLink>
-            <NavLink to='ytcontroller'>
+            <NavLink to='/ytcontroller'>
                 <p>YouTube Controller</p>
             </NavLink>
             <NavLink to=''>
