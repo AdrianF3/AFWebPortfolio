@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 
-
 export default function YouTubeController() {
   // const [ youtubeURL, setYoutubeURL ] = useState('https://www.youtube.com/embed/woD6RYptp58?')  
   const [ youtubeURL, setYoutubeURL ] = useState('https://www.youtube.com/embed/EUTo1urxwPo?')  
@@ -58,10 +57,10 @@ export default function YouTubeController() {
                 Video Description
               </p>
               {/* links to additional resources */}
-              <div>
-                <p>YouTube Channel</p>
-                <p>Armchair Historian Website</p>
-                <p>Wikipedia for D-Day</p>
+              <div className='flex'>wiki                
+                <p><a href='https://www.youtube.com/c/TheArmchairHistorian/about' target='_blank' rel='noreferrer'>YouTube Channel</a></p>
+                <p><a href='https://armchairhistory.tv' target='_blank' rel='noreferrer'>Armchair Historian Website</a></p>
+                <p><a href='https://en.wikipedia.org/wiki/Normandy_landings' target='_blank' rel='noreferrer'>wiki article for D-Day</a></p>                
 
               </div>
 
@@ -88,25 +87,23 @@ export default function YouTubeController() {
 
                 {/* Card 1 */}
                 <div className='bg-gray-300 rounded-xl p-2'>
+                  <div className='flex w-fit px-2 -mt-6  bg-sky-200 rounded-xl'>
+                    <p className='p-1 text-sm font-bold'>2:23</p>
+                  </div>
                   {/* Title in bubble above card */}
-                  <div>
-                    <h3>Tales of Omaha Beach</h3>
-                  </div>
-
-                  {/* centered graphic */}
-                  <div>
-                    
-                  </div>
+                  <div className='flex flex-row'>
+                    <h3 className='text-2xl text-center py-2 border-spacing-2 border-b-2 border-slate-700'>Tales of Omaha Beach</h3>
+                  </div>                  
                   {/* brief description */}
-                  <div>
+                  <div className='py-4'>
                     <p>
                       Brief Description of video feature
                     </p>
                   </div>
                   {/* Button to skip to timestamp */}
-                  <div>
+                  <div className='flex justify-center'>
                     <button className='p-2 bg-emerald-500 rounded-xl'>
-                      Play This in Video
+                      Play This
                     </button>
                   </div>
 
@@ -117,12 +114,7 @@ export default function YouTubeController() {
                   {/* Title in bubble above card */}
                   <div>
                     <h3>Tales of Sword Beach</h3>
-                  </div>
-
-                  {/* centered graphic */}
-                  <div>
-                    
-                  </div>
+                  </div>                  
                   {/* brief description */}
                   <div>
                     <p>
@@ -143,12 +135,7 @@ export default function YouTubeController() {
                   {/* Title in bubble above card */}
                   <div>
                     <h3>Tales of Utah Beach</h3>
-                  </div>
-
-                  {/* centered graphic */}
-                  <div>
-                    
-                  </div>
+                  </div>                  
                   {/* brief description */}
                   <div>
                     <p>
@@ -167,12 +154,7 @@ export default function YouTubeController() {
                   {/* Title in bubble above card */}
                   <div>
                     <h3>Tales of Gold Beach</h3>
-                  </div>
-
-                  {/* centered graphic */}
-                  <div>
-                    
-                  </div>
+                  </div>                  
                   {/* brief description */}
                   <div>
                     <p>
@@ -191,12 +173,7 @@ export default function YouTubeController() {
                   {/* Title in bubble above card */}
                   <div>
                     <h3>Tales of Juno Beach</h3>
-                  </div>
-
-                  {/* centered graphic */}
-                  <div>
-                    
-                  </div>
+                  </div>                  
                   {/* brief description */}
                   <div>
                     <p>
