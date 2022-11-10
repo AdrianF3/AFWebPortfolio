@@ -71,7 +71,7 @@ export default function HeaderNavigation() {
     )
 
     // https://tailwindcomponents.com/component/navbar-hamburger-menu-for-ecommerce
-    console.log('isMobileMenuOpen', isMobileMenuOpen)
+    // console.log('isMobileMenuOpen', isMobileMenuOpen)
 
     return ( <> <div className="flex flex-wrap place-items-center h-fit ">
         <section className="relative mx-auto">
