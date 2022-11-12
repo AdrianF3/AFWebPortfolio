@@ -13,11 +13,12 @@ export default function AFPortfolioBtn(props) {
 
   return (
     <>
-        <button 
-            className={`p-1 rounded-xl border-2 ${bgColor}`}
+    <button 
+        className={`p-1 rounded-xl border-2 ${bgColor}`}
+        onClick={ () => props.function(true)}
         >
-            {props.btnText}
-        </button>
+        {props.btnText}
+    </button>                    
     </>
   )
 }

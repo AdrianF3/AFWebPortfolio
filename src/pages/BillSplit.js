@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useReducer, useState } from 'react'
+import AddRoommateModal from '../components/billSplit/modals/AddRoommateModal'
 import RoommateCard from '../components/billSplit/RoommateCard'
 import TransactionCard from '../components/billSplit/TransactionCard'
 import ContactSection from '../components/ContactSection'
@@ -6,25 +7,29 @@ import HeaderNavigation from '../components/HeaderNavigation'
 import AFPortfolioBtn from '../components/shared/AFPortfolioBtn'
 
 export default function BillSplit() {
+  const [ addRoommateModal, setAddRoommateModal ] = useState(false)
 
-  // dummy roommate data
-  const roommateData = [
-    {
-      name: 'Roommate #1',
-      paid: 280.75,
-      owes: 0
-    },
-    {
-      name: 'Roommate #2',
-      paid: 20.75,
-      owes: 52.45
-    },
-    {
-      name: 'Roommate #3',
-      paid: 2000.75,
-      owes: 45
+  const initialState = {
+    roommates: []
+  }
+
+  function roommateDataReducer( roommateDataState, action ) {
+    switch (action.type) {
+      case 'ADD_ROOMMATE':          
+          setAddRoommateModal(false)
+          return roommateDataState.roommates = [...roommateDataState.roommates, {
+            name: action.userInput,
+            paid: 0,
+            owes: 0
+          }]          
+      default:
+        // or should I throw new error
+        throw new Error()        
     }
-  ]  
+  }
+
+  const [ roommateDataState , dispatch] = useReducer(roommateDataReducer, initialState)
+  
   // dummy payment data
   const transactions = [
     {
@@ -47,9 +52,11 @@ export default function BillSplit() {
     }
   ]
 
+  // console.log(roommateDataState)  
 
   return (<>
     <HeaderNavigation/>
+    {addRoommateModal ? <AddRoommateModal dispatch={dispatch} /> : null}
     <section>
       {/* Page Title and Description */}
       <div className=''>
@@ -108,7 +115,7 @@ export default function BillSplit() {
             </p>
           </div>          
           {/* Rows 2+ generated from array of roommateData */}
-          {roommateData.length > 0 ? roommateData.map((roommate, roommateIndex) => 
+          {roommateDataState.roommates.length > 0 ? roommateDataState.roommates.map((roommate, roommateIndex) => 
             <RoommateCard roommate={roommate} key={roommateIndex} /> ) : 
             null 
           }
@@ -117,7 +124,10 @@ export default function BillSplit() {
 
         <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800'>
           {/* Add Roommate Button */}
-          <AFPortfolioBtn btnText='Add Roommate' />      
+          <AFPortfolioBtn 
+            btnText='Add Roommate' 
+            function={setAddRoommateModal}
+          />      
           {/* Begin Adding Transactions Button */}        
           <AFPortfolioBtn btnText='Done Adding Roommates' />
         </div>
