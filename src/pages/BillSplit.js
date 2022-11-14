@@ -9,26 +9,70 @@ import AFPortfolioBtn from '../components/shared/AFPortfolioBtn'
 export default function BillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
 
-  const initialState = {
-    roommates: []
+  const initialRoommateState = {
+    roommates: [{
+      name: 'Adrian',
+      paid: 0, 
+      owes: 0
+    },{
+      name: "John",
+      paid: 0, 
+      owes: 0
+    },{
+      name: 'Jim',
+      paid: 0,
+      owes: 0
+    }]
+  }
+
+  const initialTransactionState = {
+    transactions: [{
+      date: new Date(),      
+      paidBy: 'Roommate #1',
+      totalPaid: 500,
+      owedBy: [
+        {
+          name: 'Roommate #2',
+          owes: 150,
+        },
+        {
+          name: 'Roommate #3',
+          owes: 150,
+        },
+      ],
+      evenSplit: false,
+      description: 'living room tv upgrade'
+    }]
   }
 
   function roommateDataReducer( roommateDataState, action ) {
     switch (action.type) {
       case 'ADD_ROOMMATE':          
-          setAddRoommateModal(false)
-          return roommateDataState.roommates = [...roommateDataState.roommates, {
-            name: action.userInput,
-            paid: 0,
-            owes: 0
-          }]          
+          setAddRoommateModal(false)          
+          return roommateDataState = {
+            ...roommateDataState,
+            roommates: [...roommateDataState.roommates, {
+              name: action.userInput,
+              paid: 0,
+              owes: 0
+          }]}
+      case 'UPDATE_ROOMMATES_FINANCES':
+          // Update the paid/owes categories for each roommate
+
+          return roommateDataState
+      case 'REMOVE_ROOMMATE':
+          // Remove a roommate - only allowed if roommate has a 0 in owes section          
+          // clone state - remove user from roommates array
+          let clonedState = Object.assign({}, roommateDataState)          
+          clonedState.roommates.splice(action.roommateIndexToDelete, 1)                    
+          return clonedState
       default:
         // or should I throw new error
         throw new Error()        
     }
   }
 
-  const [ roommateDataState , dispatch] = useReducer(roommateDataReducer, initialState)
+  const [ roommateDataState , dispatch] = useReducer(roommateDataReducer, initialRoommateState)
   
   // dummy payment data
   const transactions = [
@@ -52,7 +96,7 @@ export default function BillSplit() {
     }
   ]
 
-  // console.log(roommateDataState)  
+  console.log(roommateDataState)  
 
   return (<>
     <HeaderNavigation/>
@@ -97,7 +141,7 @@ export default function BillSplit() {
           <h4 className='texl-2xl font-bold uppercase text-white'>Roommate Info</h4>
         </div>
         {/* table section */}
-        <div className='grid grid-cols-3 text-sm'>
+        <div className='grid grid-cols-4 text-sm'>
           {/* Row 1 - Descriptions */}
           <div>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
@@ -114,9 +158,18 @@ export default function BillSplit() {
               Owes
             </p>
           </div>          
+          <div>
+            <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
+              Actions
+            </p>
+          </div>          
           {/* Rows 2+ generated from array of roommateData */}
-          {roommateDataState.roommates.length > 0 ? roommateDataState.roommates.map((roommate, roommateIndex) => 
-            <RoommateCard roommate={roommate} key={roommateIndex} /> ) : 
+          { roommateDataState.roommates.length  > 0 ? roommateDataState.roommates.map((roommate, roommateIndex) => 
+            <RoommateCard 
+              roommate={roommate} 
+              dispatch={dispatch}
+              roommateIndex={roommateIndex} 
+              key={roommateIndex} /> ) : 
             null 
           }
         </div>
@@ -143,18 +196,13 @@ export default function BillSplit() {
         </div>
         
         {/* table section */}
-        <div className='grid grid-cols-6 justify-center'>
+        <div className='grid grid-cols-5 justify-center'>
           {/* Row 1 - Descriptions */}
           <div>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Date
             </p>
-          </div>
-          <div>
-            <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
-              Type
-            </p>
-          </div>
+          </div>          
           <div>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Description

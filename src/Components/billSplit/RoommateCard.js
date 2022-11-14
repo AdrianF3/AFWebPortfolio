@@ -2,6 +2,7 @@ import React from 'react'
 
 export default function RoommateCard(props) {
 
+
     return ( <> 
     {/* RoommateName */}
     <div>
@@ -21,5 +22,12 @@ export default function RoommateCard(props) {
             {props.roommate.owes}
         </p> 
     </div> 
+    {/* Edit Buttons */}
+    <div 
+        className='flex flex-row'
+        onClick={() => props.dispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
+    >            
+        <i className='material-icons'>delete</i>
+    </div>            
     </>)
 }

@@ -9,11 +9,11 @@ export default function TransactionCard(props) {
             </p>
         </div>
         {/* Type of Transaction */}
-        <div>
+        {/* <div>
             <p>
                 {props.transaction.type}
             </p>
-        </div>
+        </div> */}
         {/* Transaction Description */}
         <div>
             <p>
@@ -34,6 +34,7 @@ export default function TransactionCard(props) {
         </div>
         {/* Edit Buttons */}
         <div className='flex flex-row'>            
+            <i className='material-icons'>info</i>
             <i className='material-icons'>edit</i>
             <i className='material-icons'>delete</i>
         </div>
