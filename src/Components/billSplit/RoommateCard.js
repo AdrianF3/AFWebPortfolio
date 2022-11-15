@@ -23,11 +23,14 @@ export default function RoommateCard(props) {
         </p> 
     </div> 
     {/* Edit Buttons */}
-    <div 
-        className='flex flex-row'
-        onClick={() => props.dispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
-    >            
-        <i className='material-icons'>delete</i>
+    <div className='flex flex-row gap-4'>            
+        {props.currentlyAddingRoommates ? 
+            <i 
+                className='material-icons'
+                onClick={() => props.dispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
+            >delete</i> : null
+        }
+        <i className='material-icons'>info</i>
     </div>            
     </>)
 }

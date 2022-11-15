@@ -8,6 +8,7 @@ import AFPortfolioBtn from '../components/shared/AFPortfolioBtn'
 
 export default function BillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
+  const [ currentlyAddingRoommates, setCurrentlyAddingRoommates ] = useState(true)
 
   const initialRoommateState = {
     roommates: [{
@@ -68,39 +69,39 @@ export default function BillSplit() {
           return clonedState
       default:
         // or should I throw new error
-        throw new Error()        
+        throw new Error('roommateDataReducer Error')
+    }
+  }
+  const [ roommateDataState , dispatch] = useReducer(roommateDataReducer, initialRoommateState)
+
+  function transactionDataReducer ( transactionData, action) {
+    switch(action.type) {
+      case 'ADD_TRANSACTION':
+
+        return transactionData
+      case 'DELETE_TRANSACTION':
+
+        return transactionData
+
+      case 'EDIT_TRANSACTION':
+
+        return transactionData
+      default:
+        throw new Error('TransactionDataReducer Error')
     }
   }
 
-  const [ roommateDataState , dispatch] = useReducer(roommateDataReducer, initialRoommateState)
+  const [ transactionData, transactionDispatch ] = useReducer(transactionDataReducer, initialTransactionState)
   
-  // dummy payment data
-  const transactions = [
-    {
-      date: new Date(),
-      type: 'once',
-      paidBy: 'Roommate #1',
-      totalPaid: 500,
-      owedBy: [
-        {
-          name: 'Roommate #2',
-          owes: 150,
-        },
-        {
-          name: 'Roommate #3',
-          owes: 150,
-        },
-      ],
-      evenSplit: false,
-      description: 'living room tv upgrade'
-    }
-  ]
 
   console.log(roommateDataState)  
 
   return (<>
+    {addRoommateModal ? <AddRoommateModal 
+      dispatch={dispatch}
+      setAddRoommateModal={setAddRoommateModal}
+    /> : null}
     <HeaderNavigation/>
-    {addRoommateModal ? <AddRoommateModal dispatch={dispatch} /> : null}
     <section>
       {/* Page Title and Description */}
       <div className=''>
@@ -115,7 +116,7 @@ export default function BillSplit() {
             <div className='px-4'>
               <ul>
                 <li>useState: </li>
-                <li>useRef : </li>
+                <li>useReducer: </li>
                 <li></li>
               </ul>
             </div>            
@@ -169,25 +170,35 @@ export default function BillSplit() {
               roommate={roommate} 
               dispatch={dispatch}
               roommateIndex={roommateIndex} 
+              currentlyAddingRoommates={currentlyAddingRoommates}
               key={roommateIndex} /> ) : 
             null 
           }
         </div>
 
-
-        <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800'>
-          {/* Add Roommate Button */}
-          <AFPortfolioBtn 
-            btnText='Add Roommate' 
-            function={setAddRoommateModal}
-          />      
-          {/* Begin Adding Transactions Button */}        
-          <AFPortfolioBtn btnText='Done Adding Roommates' />
-        </div>
+        {currentlyAddingRoommates ? 
+          <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800'>
+            {/* Add Roommate Button - if less than 5 current roommates, otherwse display full message & disable button */}
+            {roommateDataState.roommates.length < 5 ? 
+              <AFPortfolioBtn 
+              btnText='Add Roommate' 
+              function={setAddRoommateModal}
+              /> : <AFPortfolioBtn
+                btnText='Max. Roomates Reached'  
+                type='disabeled'
+                />        
+            }
+            {/* Begin Adding Transactions Button */}        
+            <AFPortfolioBtn 
+              btnText='Done Adding Roommates' 
+              function={() => setCurrentlyAddingRoommates(false)}
+            />
+          </div> : null
+        }
 
       </section>
       {/* Payments & Transactions Display */}
-      <section className='flex flex-col w-10/12 bg-emerald-600/20 my-4 rounded-xl p-4 mx-auto py-8'>
+      <section className={`flex flex-col w-10/12 bg-emerald-600/20 my-10 rounded-xl p-4 mx-auto py-8 ${currentlyAddingRoommates ? 'blur-sm' : null}`}>
       <div className='-mt-8 -ml-6 bg-emerald-600 w-fit p-2 rounded-xl my-4'>
           <h4 className='texl-2xl font-bold uppercase text-white'>Payments &amp; Transactions</h4>
         </div>
@@ -224,7 +235,7 @@ export default function BillSplit() {
             </p>
           </div>
           {/* Rows 2+ generaed from array of transactions */}
-          {transactions.length > 0 ? transactions.map((transaction, transactionIndex) => 
+          {transactionData.transactions.length > 0 ? transactionData.transactions.map((transaction, transactionIndex) => 
             <TransactionCard transaction={transaction} key={transactionIndex} /> ) : 
             null 
           }
