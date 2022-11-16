@@ -1,104 +1,34 @@
-import React, { useReducer, useState } from 'react'
+import React, { useState } from 'react'
 import AddRoommateModal from '../components/billSplit/modals/AddRoommateModal'
 import RoommateCard from '../components/billSplit/RoommateCard'
 import TransactionCard from '../components/billSplit/TransactionCard'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import AFPortfolioBtn from '../components/shared/AFPortfolioBtn'
+import { useRoommateData } from '../hooks/useRoommateData'
+import { useTransactionData } from '../hooks/useTransactionData'
 
 export default function BillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
   const [ currentlyAddingRoommates, setCurrentlyAddingRoommates ] = useState(true)
 
-  const initialRoommateState = {
-    roommates: [{
-      name: 'Adrian',
-      paid: 0, 
-      owes: 0
-    },{
-      name: "John",
-      paid: 0, 
-      owes: 0
-    },{
-      name: 'Jim',
-      paid: 0,
-      owes: 0
-    }]
-  }
-
-  const initialTransactionState = {
-    transactions: [{
-      date: new Date(),      
-      paidBy: 'Roommate #1',
-      totalPaid: 500,
-      owedBy: [
-        {
-          name: 'Roommate #2',
-          owes: 150,
-        },
-        {
-          name: 'Roommate #3',
-          owes: 150,
-        },
-      ],
-      evenSplit: false,
-      description: 'living room tv upgrade'
-    }]
-  }
-
-  function roommateDataReducer( roommateDataState, action ) {
-    switch (action.type) {
-      case 'ADD_ROOMMATE':          
-          setAddRoommateModal(false)          
-          return roommateDataState = {
-            ...roommateDataState,
-            roommates: [...roommateDataState.roommates, {
-              name: action.userInput,
-              paid: 0,
-              owes: 0
-          }]}
-      case 'UPDATE_ROOMMATES_FINANCES':
-          // Update the paid/owes categories for each roommate
-
-          return roommateDataState
-      case 'REMOVE_ROOMMATE':
-          // Remove a roommate - only allowed if roommate has a 0 in owes section          
-          // clone state - remove user from roommates array
-          let clonedState = Object.assign({}, roommateDataState)          
-          clonedState.roommates.splice(action.roommateIndexToDelete, 1)                    
-          return clonedState
-      default:
-        // or should I throw new error
-        throw new Error('roommateDataReducer Error')
-    }
-  }
-  const [ roommateDataState , dispatch] = useReducer(roommateDataReducer, initialRoommateState)
-
-  function transactionDataReducer ( transactionData, action) {
-    switch(action.type) {
-      case 'ADD_TRANSACTION':
-
-        return transactionData
-      case 'DELETE_TRANSACTION':
-
-        return transactionData
-
-      case 'EDIT_TRANSACTION':
-
-        return transactionData
-      default:
-        throw new Error('TransactionDataReducer Error')
-    }
-  }
-
-  const [ transactionData, transactionDispatch ] = useReducer(transactionDataReducer, initialTransactionState)
+  // Load Data Via Reducers
+  const { roommateData, roommateDispatch } = useRoommateData()
+  const { transactionData, transactionDispatch } = useTransactionData()
   
 
-  console.log(roommateDataState)  
+  
+
+
+  
+  
+
+  console.log(roommateData)
+  console.log('transactionData', transactionData)  
 
   return (<>
     {addRoommateModal ? <AddRoommateModal 
-      dispatch={dispatch}
+      roommateDispatch={roommateDispatch}
       setAddRoommateModal={setAddRoommateModal}
     /> : null}
     <HeaderNavigation/>
@@ -106,7 +36,7 @@ export default function BillSplit() {
       {/* Page Title and Description */}
       <div className=''>
         {/* Upper Header Section */}
-        <div className='flex flex-row justify-evenly bg-slate-400 p-4'>
+        <div className='flex flex-col md:flex-row justify-evenly bg-slate-400 p-4'>
           <div className='w-8/12 p-4'>
             <h2 className='text-2xl'>Bill Splitting Project</h2>
             <p className='py-2'>
@@ -165,10 +95,10 @@ export default function BillSplit() {
             </p>
           </div>          
           {/* Rows 2+ generated from array of roommateData */}
-          { roommateDataState.roommates.length  > 0 ? roommateDataState.roommates.map((roommate, roommateIndex) => 
+          { roommateData.roommates.length  > 0 ? roommateData.roommates.map((roommate, roommateIndex) => 
             <RoommateCard 
               roommate={roommate} 
-              dispatch={dispatch}
+              roommateDispatch={roommateDispatch}
               roommateIndex={roommateIndex} 
               currentlyAddingRoommates={currentlyAddingRoommates}
               key={roommateIndex} /> ) : 
@@ -179,7 +109,7 @@ export default function BillSplit() {
         {currentlyAddingRoommates ? 
           <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800'>
             {/* Add Roommate Button - if less than 5 current roommates, otherwse display full message & disable button */}
-            {roommateDataState.roommates.length < 5 ? 
+            {roommateData.roommates.length < 5 ? 
               <AFPortfolioBtn 
               btnText='Add Roommate' 
               function={setAddRoommateModal}

@@ -3,6 +3,11 @@ import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
 
 export default function AddRoommateModal(props) {
     const [ userInput, setUserInput ] = useState('')
+
+    const handleAddRoommate = () => {
+      props.roommateDispatch({ type: 'ADD_ROOMMATE', userInput })
+      props.setAddRoommateModal(false)
+    }
     
   return ( <>
   <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>    
@@ -21,7 +26,7 @@ export default function AddRoommateModal(props) {
         <div className='flex flex-row gap-2 p-4'>
           <AFPortfolioBtn
             btnText='Save Name'
-            function={() => props.dispatch({ type: 'ADD_ROOMMATE', userInput})}
+            function={() => handleAddRoommate()}
           />
           <AFPortfolioBtn
             btnText='Cancel'

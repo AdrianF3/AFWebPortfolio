@@ -27,7 +27,7 @@ export default function RoommateCard(props) {
         {props.currentlyAddingRoommates ? 
             <i 
                 className='material-icons'
-                onClick={() => props.dispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
+                onClick={() => props.roommateDispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
             >delete</i> : null
         }
         <i className='material-icons'>info</i>
