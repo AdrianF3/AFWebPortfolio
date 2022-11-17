@@ -41,6 +41,7 @@ return (
               billSplitDispatch={props.billSplitDispatch}
               roommateIndex={roommateIndex} 
               currentlyAddingRoommates={props.currentlyAddingRoommates}
+              setDetailModal={props.setDetailModal}
               key={roommateIndex} /> ) : 
             null 
           }

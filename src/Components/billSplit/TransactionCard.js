@@ -34,8 +34,14 @@ export default function TransactionCard(props) {
         </div>
         {/* Edit Buttons */}
         <div className='flex flex-row gap-4'>            
-            <i className='material-icons'>info</i>
-            <i className='material-icons'>edit</i>
+            <i 
+                className='material-icons'
+                onClick={() => props.setDetailModal([props.transactionIndex, 'transaction', 'details'])}
+                >info</i>
+            <i 
+                className='material-icons'
+                onClick={() => props.setDetailModal([props.transactionIndex, 'transaction', 'edit'])}                
+            >edit</i>
             <i className='material-icons'>delete</i>
         </div>
     </>

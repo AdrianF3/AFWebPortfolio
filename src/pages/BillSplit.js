@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import BillSplitExplainer from '../components/billSplit/BillSplitExplainer'
 import AddRoommateModal from '../components/billSplit/modals/AddRoommateModal'
+import DetailsModal from '../components/billSplit/modals/DetailsModal'
 import RoommateDisplay from '../components/billSplit/RoommateDisplay'
 import TransactionDisplay from '../components/billSplit/TransactionDisplay'
 import ContactSection from '../components/ContactSection'
@@ -9,6 +10,7 @@ import { useBillSplitApp } from '../hooks/useBillSplitApp'
 
 export default function BillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
+  const [ detailModal, setDetailModal ] = useState(false)
   const [ currentlyAddingRoommates, setCurrentlyAddingRoommates ] = useState(true)
 
   // Load billSplitApp state and reducer functions
@@ -67,6 +69,13 @@ export default function BillSplit() {
       billSplitDispatch={billSplitDispatch}
       setAddRoommateModal={setAddRoommateModal}
     /> : null}
+    {/* Display RoommateDetailsModal */}
+    {detailModal ? <DetailsModal
+      billSplitData={billSplitData}
+      billSplitDispatch={billSplitDispatch}
+      detailModal={detailModal}
+      setDetailModal={setDetailModal}
+    /> : null}
     
     <HeaderNavigation/>
     <section>
@@ -93,6 +102,7 @@ export default function BillSplit() {
         billSplitData={billSplitData}
         billSplitDispatch={billSplitDispatch}
         setAddRoommateModal={setAddRoommateModal}
+        setDetailModal={setDetailModal}
         currentlyAddingRoommates={currentlyAddingRoommates}
         setCurrentlyAddingRoommates={setCurrentlyAddingRoommates}
       />
@@ -104,6 +114,7 @@ export default function BillSplit() {
         billSplitData={billSplitData}
         billSplitDispatch={billSplitDispatch}
         currentlyAddingRoommates={currentlyAddingRoommates}
+        setDetailModal={setDetailModal}
       />
       
 

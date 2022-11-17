@@ -57,7 +57,8 @@ export default function TransactionDisplay(props) {
             <TransactionCard 
                 transaction={transaction} 
                 key={transactionIndex} 
-                transactionIndex={transactionIndex} 
+                transactionIndex={transactionIndex}
+                setDetailModal={props.setDetailModal} 
             /> ) : null 
           }
 

@@ -29,7 +29,12 @@ export default function RoommateCard(props) {
                 onClick={() => props.billSplitDispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
             >delete</i> : null
         }
-        <i className='material-icons'>info</i>
+        {!props.currentlyAddingRoommates ? 
+            <i 
+                className='material-icons'
+                onClick={() => props.setDetailModal([props.roommateIndex, 'roommate', 'details'])}
+            >info</i> : null
+        }        
     </div>            
     </>)
 }
