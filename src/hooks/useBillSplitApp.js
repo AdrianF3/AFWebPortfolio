@@ -37,7 +37,7 @@ const initialStateData = {
         type: 'bill',
         date: new Date(),      
         paidBy: 'Roommate #1',
-        totalPaid: 500,
+        totalPaid: 400,
         owedBy: [
           {
             name: 'Roommate #2',

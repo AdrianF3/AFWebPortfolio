@@ -16,12 +16,11 @@ export default function TransactionDisplay(props) {
         </div>
         <div className='flex flex-col md:flex-row justify-end justify-items-center gap-2'>
             <div className='flex pb-4'>
-                <AFPortfolioBtn btnText='New Transaction' />
-            </div>
-            <div className='flex pb-4'>
-                <AFPortfolioBtn btnText='New Roommate Payment' />
-            </div>
-
+                <AFPortfolioBtn 
+                  btnText='New Transaction' 
+                  function={() => props.setTransactionModal([null, 'ADD'])}
+                />
+            </div>            
         </div>
         
         {/* table section */}
@@ -59,6 +58,7 @@ export default function TransactionDisplay(props) {
                 key={transactionIndex} 
                 transactionIndex={transactionIndex}
                 setDetailModal={props.setDetailModal} 
+                setTransactionModal={props.setTransactionModal}
             /> ) : null 
           }
 

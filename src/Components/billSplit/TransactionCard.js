@@ -40,7 +40,7 @@ export default function TransactionCard(props) {
                 >info</i>
             <i 
                 className='material-icons'
-                onClick={() => props.setDetailModal([props.transactionIndex, 'transaction', 'edit'])}                
+                onClick={() => props.setTransactionModal([props.transactionIndex, 'EDIT'])}                
             >edit</i>
             <i className='material-icons'>delete</i>
         </div>
