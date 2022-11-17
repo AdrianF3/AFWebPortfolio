@@ -5,7 +5,7 @@ export default function AddRoommateModal(props) {
     const [ userInput, setUserInput ] = useState('')
 
     const handleAddRoommate = () => {
-      props.roommateDispatch({ type: 'ADD_ROOMMATE', userInput })
+      props.billSplitDispatch({ type: 'ADD_ROOMMATE', userInput })
       props.setAddRoommateModal(false)
     }
     

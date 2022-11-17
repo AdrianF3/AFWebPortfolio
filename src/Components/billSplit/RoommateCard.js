@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default function RoommateCard(props) {
-
-
+    
     return ( <> 
     {/* RoommateName */}
     <div>
@@ -13,13 +12,13 @@ export default function RoommateCard(props) {
     {/* Paid */}
     <div>
         <p>
-            {props.roommate.paid}
+            {props.roommate.paid.total}
         </p>
     </div>
     {/* Owes */}
     <div>
         <p>
-            {props.roommate.owes}
+            {props.roommate.owes.total}
         </p> 
     </div> 
     {/* Edit Buttons */}
@@ -27,7 +26,7 @@ export default function RoommateCard(props) {
         {props.currentlyAddingRoommates ? 
             <i 
                 className='material-icons'
-                onClick={() => props.roommateDispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
+                onClick={() => props.billSplitDispatch({ type: 'REMOVE_ROOMMATE', roommateIndexToDelete: props.roommateIndex})}
             >delete</i> : null
         }
         <i className='material-icons'>info</i>

@@ -1,19 +1,41 @@
 import { useReducer } from 'react'
 
 
+
+
+
+
 const initialRoommateState = {
     roommates: [{
       name: 'Adrian',
-      paid: 0, 
-      owes: 0
+      paid: {
+        total: 0,
+        details: [{name:'CURRENT_USER', amount:0}, {name: 'John', amount: 0}, {name: 'Jim', amount:0}]
+      }, 
+      owes: {
+        total:0,
+        details: [{name:'CURRENT_USER', amount:0}, {name: 'John', amount: 0}, {name: 'Jim', amount:0}]
+      }
     },{
       name: "John",
-      paid: 0, 
-      owes: 0
+      paid: {
+        total: 0,
+        details: [{name: 'Adrian', amount: 0}, {name:'CURRENT_USER', amount:0}, {name: 'Jim', amount:0}]
+      }, 
+      owes: {
+        total:0,
+        details: [{name: 'Adrian', amount: 0}, {name:'CURRENT_USER', amount:0}, {name: 'Jim', amount:0}]
+      }
     },{
       name: 'Jim',
-      paid: 0,
-      owes: 0
+      paid: {
+        total: 0,
+        details: [{name: 'Adrian', amount: 0}, {name: 'Adrian', amount: 0}, {name: 'John', amount:0}, {name:'CURRENT_USER', amount:0}]
+      },
+      owes: {
+        total:0,
+        details: [{name: 'Adrian', amount: 0}, {name: 'Adrian', amount: 0}, {name: 'John', amount:0}, {name:'CURRENT_USER', amount:0}]
+      }
     }]
   }
 
@@ -29,8 +51,15 @@ const roommateDataReducer = ( roommateData, action ) => {
             ...roommateData,
             roommates: [...roommateData.roommates, {
             name: action.userInput,
-            paid: 0,
-            owes: 0}
+            paid: {
+              total: 0,
+              details: []
+            },
+            owes: {
+              total:0,
+              details: []
+            }
+          }
         ]}
         case 'UPDATE_ROOMMATES_FINANCES':
             // Update the paid/owes categories for each roommate
