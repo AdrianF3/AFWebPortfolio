@@ -33,6 +33,7 @@ const initialStateData = {
         }
       }],
       transactions: [{
+        transactionID: 322,
         type: 'bill',
         date: new Date(),      
         paidBy: 'Roommate #1',
@@ -50,6 +51,7 @@ const initialStateData = {
         evenSplit: false,
         description: 'living room tv upgrade'
       },{
+        transactionID: 321,
         type: 'roommatePayment',
         date: new Date(),      
         paidBy: 'Roommate #1',

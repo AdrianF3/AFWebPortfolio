@@ -1,5 +1,7 @@
 import React from 'react'
 import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
+import RoommateDetails from './RoommateDetails'
+import TransactionDetails from './TransactionDetails'
 
 
 export default function DetailsModal(props) {
@@ -44,6 +46,9 @@ export default function DetailsModal(props) {
       
             {/* Main Section Of Modal */}
             <div className='flex flex-col items-center w-fit h-fit'>
+
+              {props.detailModal[1] === 'roommate' ? <RoommateDetails currentDetails={currentDetails} /> : null}
+              {props.detailModal[1] === 'transaction' ? <TransactionDetails currentDetails={currentDetails} /> : null}
                 
                 
                 

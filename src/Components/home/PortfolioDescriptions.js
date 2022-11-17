@@ -16,7 +16,7 @@ export default function PortfolioDescriptions() {
     <div
       className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3"
     >
-      <div className="flex items-start col-span-2">
+      <div className="flex items-start col-span-1">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <img className='h-10' src={etgMini} alt='Ector Grow logo'/>
         </span>
@@ -60,7 +60,7 @@ export default function PortfolioDescriptions() {
         </div>
       </div> */}
 
-      <div className="flex items-start">
+      <div className="flex items-start col-span-1">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <i className='material-icons'>thunderstorm</i>
         </span>
@@ -77,7 +77,7 @@ export default function PortfolioDescriptions() {
       </div>
 
 
-      <div className="flex items-start">
+      <div className="flex items-start col-span-1">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <i className='material-icons'>play_arrow</i>
         </span>
@@ -93,7 +93,7 @@ export default function PortfolioDescriptions() {
         </div>
       </div>
 
-      <div className="flex items-start">
+      <div className="flex items-start col-span-1">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <i className='material-icons'>feed</i>
         </span>
