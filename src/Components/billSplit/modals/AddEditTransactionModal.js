@@ -33,8 +33,13 @@ export default function AddEditTransactionModal(props) {
       
             {/* Main Section Of Modal */}
             <div className='flex flex-col items-center w-fit h-fit'>
+                
+                
                 {props.transactionModal[1] === 'ADD' ? <h3>Add Transaction</h3> : <h3>Edit Transaction</h3>}
                 <input onChange={(e) => setUserInput(e.target.value)} type='text' />
+
+
+
                 <div className='flex flex-row gap-2 p-4'>
                   <AFPortfolioBtn
                     btnText='Save Name'

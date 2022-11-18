@@ -9,7 +9,7 @@ return (
     {/* Roommate Table Display */}
     <section className='flex flex-col w-10/12 mx-auto bg-sky-600/20 p-4 rounded-xl'>
         <div className='-mt-8 -ml-6 bg-sky-600 w-fit p-2 rounded-xl my-4'>
-          <h4 className='texl-2xl font-bold uppercase text-white'>Roommate Info</h4>
+          <h4 className='texl-2xl font-bold uppercase text-white'>Roommates</h4>
         </div>
         {/* table section */}
         <div className='grid grid-cols-4 text-sm'>

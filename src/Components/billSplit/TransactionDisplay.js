@@ -59,6 +59,7 @@ export default function TransactionDisplay(props) {
                 transactionIndex={transactionIndex}
                 setDetailModal={props.setDetailModal} 
                 setTransactionModal={props.setTransactionModal}
+                billSplitDispatch={props.billSplitDispatch}
             /> ) : null 
           }
 

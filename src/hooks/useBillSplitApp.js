@@ -74,6 +74,8 @@ const initialStateData = {
 
 // DEFINE REDUCER
 const billSplitAppReducer = ( billSplitData, action) => {
+  let clonedState = Object.assign({}, billSplitData)
+
     switch (action.type) {
         // ROOMMATE FOCUSED
         case 'ADD_ROOMMATE': 
@@ -95,20 +97,24 @@ const billSplitAppReducer = ( billSplitData, action) => {
           }
         ]}        
         case 'REMOVE_ROOMMATE':
-            // Remove a roommate - only allowed if roommate has a 0 in owes section          
-            // clone state - remove user from roommates array
-            let clonedState = Object.assign({}, billSplitData)          
-            clonedState.roommates.splice(action.roommateIndexToDelete, 1)                    
+          // find index to delete by matching roommates name
+          let roommateIndexToDelete = clonedState.roommates.findIndex( roommmate => { return roommmate.name === action.roommateName } )          
+          // only delete if roommate name was found in index
+          if (roommateIndexToDelete !== -1) {
+            clonedState.roommates.splice(roommateIndexToDelete, 1)                                
+          }            
             return clonedState
-
-        // TRANSACTION FOCUSED
         case 'ADD_TRANSACTION':
 
             return billSplitData
         case 'DELETE_TRANSACTION':
-    
-            return billSplitData
-    
+            // find index to delete by matching ID
+            let transactionIndexToDelete = clonedState.transactions.findIndex(transaction => { return transaction.transactionID === action.transactionID } )
+            // Only delete if transactionID was found in index
+            if (transactionIndexToDelete !== -1) {
+              clonedState.transactions.splice(transactionIndexToDelete, 1)              
+            }
+            return clonedState    
         case 'EDIT_TRANSACTION':
 
             return billSplitData

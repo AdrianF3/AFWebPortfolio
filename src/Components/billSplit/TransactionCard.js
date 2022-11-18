@@ -42,7 +42,11 @@ export default function TransactionCard(props) {
                 className='material-icons'
                 onClick={() => props.setTransactionModal([props.transactionIndex, 'EDIT'])}                
             >edit</i>
-            <i className='material-icons'>delete</i>
+            <i 
+                className='material-icons'
+                onClick={() => props.billSplitDispatch({type: 'DELETE_TRANSACTION', transactionID: props.transaction.transactionID})}
+            >delete
+            </i>
         </div>
     </>
   )
