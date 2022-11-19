@@ -9,6 +9,7 @@ export default function AddEditTransactionModal(props) {
   const [ roommatesChecked, setRoommatesChecked ] = useState( new Array(props.billSplitData.roommates.length).fill(false)) 
   const [ roommateAmounts, setRoommateAmounts ] = useState(new Array(props.billSplitData.roommates.length).fill(0))
   const [ roommatesSplit, setRoommateSplit ] = useState(0)
+  const [ totalPaid, setTotalPaid ] = useState(0)
   
   
   
@@ -25,12 +26,35 @@ export default function AddEditTransactionModal(props) {
       paidBy: null,
       totalPaid: 0,
       evenSplit: false,
-      description: '...bill description'
+      description: '...bill description',
+      financialDetails: []
     })
   }
   
   const handleSaveChanges = () => {
+
+    // build new transaction
+    let tempSaveObject = Object.assign({}, transactionObject)
+    let tempFinanceDetails = new Array(props.billSplitData.roommates).fill(0)
     
+    for (let index = 0; index <   roommatesChecked.length; index++) {
+      const element = roommateAmounts[index];
+      
+    }
+
+
+    // if adding a new transaction
+      // new transactionObject
+    if (props.transactionModal[1] === 'ADD') {
+      
+    }
+    // pass to dispatch
+
+
+    // if editing a transaction
+      // newTransactionObject * the index to replace
+    console.log('ABOUT TO ADD THIS TRANSACTION')
+    console.log('tempSaveObject', tempSaveObject)
   }
   
 
@@ -119,16 +143,27 @@ export default function AddEditTransactionModal(props) {
     }
      
     const handleRecalculateAmounts = ( indexOfRoommate, amount ) => {      
-      //  TO DO *** 
-      // check to make sure values would not exceed the totalPaid amount, otherwise, alert to user
+      // Calculate total paid with new amounts as well as updating who has paid what in a new array
       
-      let updatedRoommateAmounts = roommateAmounts.map((prevAmount, index) => {        
+      let billTotal = 0
+      let updatedRoommateAmounts = new Array(props.billSplitData.roommates).fill(0)      
+      updatedRoommateAmounts = roommateAmounts.map((prevAmount, index) => {        
         return index === indexOfRoommate ? amount : roommateAmounts[index]
-      })      
+      }) 
+      
+      for (let index = 0; index < updatedRoommateAmounts.length; index++) {      
+        billTotal += parseInt(updatedRoommateAmounts[index])        
+      }     
+      
       //  TO DO *** 
       // check to make sure the new TOTAL COMBINED VALUEq would not exceed the totalPaid amount, otherwise, alert to user
+      if (billTotal > transactionObject.totalPaid) {
+        alert('The Amount Owed Cannot Exceed The Bill Total')
+      } else { 
+        setTotalPaid(billTotal)              
+        setRoommateAmounts(updatedRoommateAmounts)
+      }
       
-      setRoommateAmounts(updatedRoommateAmounts)
     }
 
 
@@ -138,7 +173,8 @@ export default function AddEditTransactionModal(props) {
 
     // console.log('roommatesChecked', roommatesChecked)
     // console.log('props', props)
-    // console.log('transactionObject', transactionObject)
+    console.log('transactionObject', transactionObject)
+    console.log(roommateAmounts)
     // console.log('roommateAmounts', roommateAmounts)
     // console.log('roommatesSplit', roommatesSplit)
     
@@ -198,6 +234,10 @@ export default function AddEditTransactionModal(props) {
                                 value="DeliveryStandard"
                                 id="DeliveryStandard"
                                 className="peer hidden"
+                                onClick={() => setTransactionObject( transactionObject => ({
+                                  ...transactionObject,
+                                  type: 'bill'
+                                }))}
                                 defaultChecked
                               />
 
@@ -216,6 +256,10 @@ export default function AddEditTransactionModal(props) {
                                 value="DeliveryPriority"
                                 id="DeliveryPriority"
                                 className="peer hidden"
+                                onClick={() => setTransactionObject( transactionObject => ({
+                                  ...transactionObject,
+                                  type: 'roommatePayment'
+                                }))}
                               />
 
                               <label
@@ -255,8 +299,12 @@ export default function AddEditTransactionModal(props) {
                           </div>
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Owed By </label>                            
+                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" >
+                              {transactionObject.type === 'bill' ? 'Owed By' : 'Paid To' }
+                            </label>                            
                             {props.billSplitData.roommates.map((roommate, index) => {
+
+
                               return (<>
                                 <label htmlFor={roommate.name}>{roommate.name}</label>
                                 <input
@@ -265,7 +313,7 @@ export default function AddEditTransactionModal(props) {
                                   name={roommate.name}
                                   value={roommate.name}                                  
                                   id={roommate.name}
-                                  onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}
+                                  onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}                                  
                                   />
                               </>)
                             })}
@@ -351,15 +399,17 @@ export default function AddEditTransactionModal(props) {
 
                 {/* Display Owed / Paid Totals as user updates the form */}
                 <section>
-                  <div>
-                    <h3>Owed/Paid Totals</h3>
-                  </div>
 
                   <div className='flex flex-col justify-evenly'>
                     {props.billSplitData.roommates.map((roommate, index) => {
                     if (roommatesChecked[index]) {
                       return (<>
                         <div key={index} className='flex flex-col'>
+                          <div>
+                            <h3>
+                            {transactionObject.type === 'bill' ? 'Owed' : 'Paid' } Details
+                            </h3>
+                          </div>
                           <div>
                             {roommate.name}
                           </div>
@@ -383,6 +433,13 @@ export default function AddEditTransactionModal(props) {
                       return null
                     }
                     })}
+                    {totalPaid > 0 ? 
+                    <div>
+                      <p>
+                        Total ${totalPaid}
+                      </p>
+                    </div> : null
+                    }
                   </div>
 
                 </section>

@@ -36,15 +36,15 @@ const initialStateData = {
         transactionID: 322,
         type: 'bill',
         date: new Date(),      
-        paidBy: 'Roommate #1',
+        paidBy: 'Adrian',
         totalPaid: 400,
-        owedBy: [
+        financialDetails: [
           {
-            name: 'Roommate #2',
+            name: 'John',
             owes: 150,
           },
           {
-            name: 'Roommate #3',
+            name: 'Jim',
             owes: 150,
           },
         ],
@@ -54,15 +54,15 @@ const initialStateData = {
         transactionID: 321,
         type: 'roommatePayment',
         date: new Date(),      
-        paidBy: 'Roommate #1',
+        paidBy: 'Adrian',
         totalPaid: 500,
-        debtsPaid: [
+        financialDetails: [
           {
-            name: 'Roommate #2',
+            name: 'John',
             paid: 150,
           },
           {
-            name: 'Roommate #3',
+            name: 'Jim',
             paid: 150,
           },
         ],
