@@ -1,40 +1,154 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
 import DatePicker from 'react-datepicker'
 
 import "react-datepicker/dist/react-datepicker.css"
 
 export default function AddEditTransactionModal(props) {
-    const [ transactionObject, setTransactionObject ] = useState(null)    
+  const [ transactionObject, setTransactionObject ] = useState(null)
+  const [ roommatesChecked, setRoommatesChecked ] = useState( new Array(props.billSplitData.roommates.length).fill(false)) 
+  const [ roommateAmounts, setRoommateAmounts ] = useState(new Array(props.billSplitData.roommates.length).fill(0))
+  const [ roommatesSplit, setRoommateSplit ] = useState(0)
+  
+  
+  
+  // if editing transaction, load the data into array ELSE 
+  // for new transactions, add empty object with generated transactionID and default to todays date
+  if ( props.transactionModal[1] === 'EDIT' && !transactionObject ) {        
+    setTransactionObject(props.billSplitData.transactions[props.transactionModal[0]])
+  } 
+  if (props.transactionModal[1] === 'ADD' && !transactionObject)  {
+    setTransactionObject({
+      transactionID: Math.floor(Math.random() * 1000),
+      type: 'bill',
+      date: new Date(),      
+      paidBy: null,
+      totalPaid: 0,
+      evenSplit: false,
+      description: '...bill description'
+    })
+  }
+  
+  const handleSaveChanges = () => {
+    
+  }
+  
 
-    // if editing transaction, load the data into array ELSE 
-    // for new transactions, add empty object with generated transactionID and default to todays date
-    if ( props.transactionModal[1] === 'EDIT' && !transactionObject ) {        
-        setTransactionObject(props.billSplitData.transactions[props.transactionModal[0]])
-    } 
-    if (props.transactionModal[1] === 'ADD' && !transactionObject)  {
-        setTransactionObject({
-          transactionID: Math.floor(Math.random() * 1000),
-          type: 'bill',
-          date: new Date(),      
-          paidBy: null,
-          totalPaid: 0,
-          evenSplit: false,
-          description: '...bill description'
-        })
+    // Check or Uncheck a roommate in the owedBy/paidTo checkbox input
+    const handleCheckedRoommate = ( roommateIndex, evenSplitChange = false ) => {     
+      let updateCheckedState = roommatesChecked.map(( check, index ) => {
+        return index === roommateIndex ? !check : check
+        
+      })
+      setRoommatesChecked(updateCheckedState)
+      let numberOfRoommatesSplit = 0
+      for (let index = 0; index < updateCheckedState.length; index++) {
+        if (updateCheckedState[index]) {          
+          numberOfRoommatesSplit = numberOfRoommatesSplit + 1
+        }        
+      }
+      // console.log('numberOfRoommatesSplit', numberOfRoommatesSplit)
+      setRoommateSplit(numberOfRoommatesSplit)
+      
+      // if evenSplit is true, call function
+      
+      if (evenSplitChange) {
+        // console.log('evenSplitChange called')      
+        handleEvenlySplit(updateCheckedState)
+      }
+    }
+    
+
+    // using roommateCheckedOveride when callinng after updating roommatesChecked but state may not have updated yet
+    const handleEvenlySplit = (roommateCheckedOveride = false, newTotalPaid = false) => {      
+      let numberOfRoommatesSplit = 0
+      if (!roommateCheckedOveride) {
+        for (let index = 0; index < roommatesChecked.length; index++) {
+          if (roommatesChecked[index]) {          
+            numberOfRoommatesSplit = numberOfRoommatesSplit + 1
+          }        
+        }        
+      } else {
+        for (let index = 0; index < roommateCheckedOveride.length; index++) {
+          if (roommateCheckedOveride[index]) {          
+            numberOfRoommatesSplit = numberOfRoommatesSplit + 1
+          }        
+        }                
+      }
+      // console.log('numberOfRoommatesSplit', numberOfRoommatesSplit)
+      
+      let evenShare = 0
+      // console.log('newTotalPaid', newTotalPaid)
+      if (newTotalPaid) {
+        evenShare = Math.round( newTotalPaid / numberOfRoommatesSplit) * 100 / 100
+        evenShare = ( newTotalPaid / numberOfRoommatesSplit).toFixed(2)
+        // console.log('using new total paid, when updating bill total')     
+      } else {
+        // evenShare = Math.round( transactionObject.totalPaid / numberOfRoommatesSplit) * 100 / 100
+        evenShare = ( transactionObject.totalPaid / numberOfRoommatesSplit ).toFixed(2)
+        // console.log('using transactionObhect, when toggiling even split, or adding removing roommates')     
+      }
+      // console.log('evenShare', evenShare)
+      
+      let tempRoommateAmounts = new Array(props.billSplitData.roommates).fill(0)
+      // load the even share into the applicable users
+      if (!roommateCheckedOveride) {
+        for (let index = 0; index < roommatesChecked.length; index++) {
+          if (roommatesChecked[index]) {
+            tempRoommateAmounts[index] = evenShare
+          }        
+        }
+      } else {
+        for (let index = 0; index < roommateCheckedOveride.length; index++) {
+          if (roommateCheckedOveride[index]) {
+            tempRoommateAmounts[index] = evenShare
+          }        
+        }
+      }
+      setRoommateAmounts(tempRoommateAmounts)
+      
     }
 
-    const handleSaveChanges = () => {
+    const handleTotalPaidChange = ( newTotalPaid ) => {
+      // if even split is true, call function
+      if (transactionObject.evenSplit) {
+        // console.log('called')
+        handleEvenlySplit(false, newTotalPaid)        
+      }
 
+    }
+     
+    const handleRecalculateAmounts = ( indexOfRoommate, amount ) => {      
+      //  TO DO *** 
+      // check to make sure values would not exceed the totalPaid amount, otherwise, alert to user
+      
+      let updatedRoommateAmounts = roommateAmounts.map((prevAmount, index) => {        
+        return index === indexOfRoommate ? amount : roommateAmounts[index]
+      })      
+      //  TO DO *** 
+      // check to make sure the new TOTAL COMBINED VALUEq would not exceed the totalPaid amount, otherwise, alert to user
+      
+      setRoommateAmounts(updatedRoommateAmounts)
     }
 
 
     // roommate list
     const optionRoommateNames = props.billSplitData.roommates.map((roommate, index)  =>  { return <option key={index}>{roommate.name}</option> } )
-    console.log('optionRoommateNames', optionRoommateNames)
-    console.log('props', props)
 
-    console.log('transactionObject', transactionObject)
+
+    // console.log('roommatesChecked', roommatesChecked)
+    // console.log('props', props)
+    // console.log('transactionObject', transactionObject)
+    // console.log('roommateAmounts', roommateAmounts)
+    // console.log('roommatesSplit', roommatesSplit)
+    
+
+
+    // temp fix -> issue was app not loading properly with null data, didn't want to implement conditional renders throughout
+    if (!transactionObject) {
+      return
+    }
+
 
     return ( <>    
         <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>    
@@ -68,16 +182,7 @@ export default function AddEditTransactionModal(props) {
                           
                           <div>
                             <label className="block text-sm font-medium text-gray-800 dark:text-gray-400"> Paid By </label>
-
-                            {/* <input 
-                              className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1" 
-                              id="name" 
-                              type="text" 
-                              name="name" 
-                              placeholder="Your display name" 
-                              required="required" 
-                              autofocus="autofocus" 
-                            /> */}
+                            
                             <select>
                               {optionRoommateNames}
                             </select>
@@ -85,15 +190,7 @@ export default function AddEditTransactionModal(props) {
 
                           <div className="mt-4">
                             <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" >Transaction Type</label>
-
-                            {/* <input 
-                              className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
-                              id="email"
-                              type="number" 
-                              name="email" 
-                              placeholder="Your email address" 
-                              required="required" 
-                            /> */}
+                            
                             <div>
                               <input
                                 type="radio"
@@ -136,61 +233,17 @@ export default function AddEditTransactionModal(props) {
                             <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Bill Total</label>
 
                             <input 
-                              className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
-                              id="email"
+                              // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
+                              className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
+                              id="billTotal"
                               type="number" 
-                              name="email" 
-                              placeholder="Your email address" 
+                              name="billTotal" 
+                              placeholder="$0" 
+                              value={transactionObject.totalPaid}
+                              onChange={(e) => {setTransactionObject(transactionObject => ({...transactionObject, totalPaid: e.target.value})); handleTotalPaidChange(e.target.value)}}
                               required="required" 
                             />
-                          </div>
-
-                          <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Evenly Split The Bill?</label>
-
-                            {/* <input 
-                              className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
-                              id="email"
-                              type="number" 
-                              name="email" 
-                              placeholder="Your email address" 
-                              required="required" 
-                            /> */}
-                            <div>
-                              <input
-                                type="radio"
-                                name="EvenSplit"
-                                value="Yes"
-                                id="ToggleYes"
-                                className="peer hidden"
-                                defaultChecked
-                              />
-
-                              <label
-                                htmlFor="ToggleYes"
-                                className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                              >
-                                <p className="text-gray-700">Yes</p>                                
-                              </label>
-                            </div>
-
-                            <div>
-                              <input
-                                type="radio"
-                                name="EvenSplit"
-                                value="No"
-                                id="ToggleNo"
-                                className="peer hidden"
-                              />
-
-                              <label
-                                htmlFor="ToggleNo"
-                                className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
-                              >
-                                <p className="text-gray-700">No</p>                                
-                              </label>
-                            </div>
-                          </div>
+                          </div>                         
 
                           <div className="mt-4">
                             <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Date </label>
@@ -202,30 +255,89 @@ export default function AddEditTransactionModal(props) {
                           </div>
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Owed By </label>
-
-                            {/* <input 
-                              className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
-                              id="password_confirmation"
-                              type="text"
-                              name="password_confirmation" 
-                              placeholder="Repeat your password" 
-                              required="required" 
-                            /> */}
-                            <select>
-                              {optionRoommateNames}
-                            </select>
+                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Owed By </label>                            
+                            {props.billSplitData.roommates.map((roommate, index) => {
+                              return (<>
+                                <label htmlFor={roommate.name}>{roommate.name}</label>
+                                <input
+                                  type='checkbox'
+                                  checked={roommatesChecked[index]}
+                                  name={roommate.name}
+                                  value={roommate.name}                                  
+                                  id={roommate.name}
+                                  onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}
+                                  />
+                              </>)
+                            })}
                           </div>
+
+                          {roommatesSplit >= 2 ? 
+                            <div className="mt-4">
+                              <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Evenly Split The Bill?</label>
+
+                              <div>
+                                <input
+                                  type="radio"
+                                  name="EvenSplit"                                
+                                  value="No"
+                                  id="ToggleNo"
+                                  className="peer hidden"
+                                  onClick={() => setTransactionObject( transactionObject => ({
+                                    ...transactionObject,
+                                    evenSplit: false
+                                  }))}
+                                  defaultChecked
+                                />
+
+                                <label
+                                  htmlFor="ToggleNo"
+                                  className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                                >
+                                  <p className="text-gray-700">No</p>                                
+                                </label>
+                              </div>
+                              <div>
+                                <input
+                                  type="radio"
+                                  name="EvenSplit"
+                                  value="Yes"
+                                  id="ToggleYes"
+                                  className="peer hidden"
+                                  onClick={() => { 
+                                    setTransactionObject( transactionObject => ({
+                                      ...transactionObject,
+                                      evenSplit: true
+                                    }));
+                                    handleEvenlySplit()
+                                  }}
+                                />
+
+                                <label
+                                  htmlFor="ToggleYes"
+                                  className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-blue-500 peer-checked:ring-1 peer-checked:ring-blue-500"
+                                >
+                                  <p className="text-gray-700">Yes</p>                                
+                                </label>
+                              </div>
+
+                            </div> : null
+                          }
 
                           <div className="mt-4">
                             <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Description </label>
 
                             <textarea 
-                              className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
+                              // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
+                              className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
                               id="password_confirmation"
                               type="textarea"
                               name="password_confirmation" 
-                              placeholder="Repeat your password" 
+                              placeholder="Bill description" 
+                              value={transactionObject.description}
+                              onChange={(e) => setTransactionObject( transactionObject => ({
+                                ...transactionObject,
+                                description: e.target.value
+                              }))}
                               required="required" 
                             />
                           </div>                          
@@ -239,6 +351,39 @@ export default function AddEditTransactionModal(props) {
 
                 {/* Display Owed / Paid Totals as user updates the form */}
                 <section>
+                  <div>
+                    <h3>Owed/Paid Totals</h3>
+                  </div>
+
+                  <div className='flex flex-col justify-evenly'>
+                    {props.billSplitData.roommates.map((roommate, index) => {
+                    if (roommatesChecked[index]) {
+                      return (<>
+                        <div key={index} className='flex flex-col'>
+                          <div>
+                            {roommate.name}
+                          </div>
+                          <div>
+                            {transactionObject.evenSplit ? <span>${roommateAmounts[index]}</span> :
+                          <input 
+                          // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
+                          className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
+                          id=""
+                          type="number" 
+                          name=""                               
+                          placeholder="$0"
+                          value={roommateAmounts[index]}
+                          onChange={(e) => handleRecalculateAmounts(index, e.target.value)}                               
+                          /> }
+                          </div>
+                        </div>
+                      </>)
+                      
+                    } else {
+                      return null
+                    }
+                    })}
+                  </div>
 
                 </section>
 

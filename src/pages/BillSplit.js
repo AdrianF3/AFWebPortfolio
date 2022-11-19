@@ -63,7 +63,7 @@ export default function BillSplit() {
   
 
   
-  console.log(billSplitData)
+  // console.log(billSplitData)
 
   return (<>
     {/* Display Add Roommate Modal */}

@@ -67,7 +67,7 @@ const initialStateData = {
           },
         ],
         evenSplit: false,
-        description: 'living room tv upgrade'
+        description: 'roommate payment'
       }]
 }
 // END OF INITIAL STATE DATA
