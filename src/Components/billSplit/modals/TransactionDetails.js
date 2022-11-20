@@ -55,14 +55,14 @@ export default function TransactionDetails(props) {
         {/* owed/paid section */}
         {props.currentDetails.type === 'bill' ? 
         <div className='flex flex-col'>
-            {props.currentDetails.owedBy.length > 0 ? props.currentDetails.owedBy.map((roommateOwes, index) => {
-                return <p>{roommateOwes.name}: {roommateOwes.owes}</p>
+            {props.currentDetails.financialDetails.length > 0 ? props.currentDetails.financialDetails.map((roommateOwes, index) => {
+                return <p key={index}>{roommateOwes.name}: {roommateOwes.amount}</p>
             }) : null}
         </div> : null}
         {props.currentDetails.type === 'roommatePayment' ? 
         <div className='flex flex-col'>
-            {props.currentDetails.debtsPaid.length > 0 ? props.currentDetails.debtsPaid.map((roommatePaid, index) => {
-                return <p>{roommatePaid.name}: {roommatePaid.paid}</p>
+            {props.currentDetails.financialDetails.length > 0 ? props.currentDetails.financialDetails.map((roommatePaid, index) => {
+                return <p key={index}>{roommatePaid.name}: {roommatePaid.amount}</p>
             }) : null}
         </div> : null}
 

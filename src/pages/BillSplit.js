@@ -68,7 +68,7 @@ export default function BillSplit() {
   return (<>
     {/* Display Add Roommate Modal */}
     {addRoommateModal ? <AddRoommateModal 
-      billSplitData={billSplitData}
+    billSplitData={billSplitData}
       billSplitDispatch={billSplitDispatch}
       setAddRoommateModal={setAddRoommateModal}
     /> : null}

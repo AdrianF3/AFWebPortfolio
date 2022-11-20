@@ -17,13 +17,34 @@ export default function AddEditTransactionModal(props) {
   // for new transactions, add empty object with generated transactionID and default to todays date
   if ( props.transactionModal[1] === 'EDIT' && !transactionObject ) {        
     setTransactionObject(props.billSplitData.transactions[props.transactionModal[0]])
+    
+    // update roommates checked
+    let tempRoommatesChecked = roommatesChecked
+    let tempRoommateAmounts = roommateAmounts
+    
+
+    for (let index = 0; index < props.billSplitData.roommates.length; index++) {
+      // if roommates name exists in the financialDetails array, make same index of roommatesChecked array true
+      let existsInFinancialDetails = props.billSplitData.transactions[props.transactionModal[0]].financialDetails.findIndex(record => record.name === props.billSplitData.roommates[index].name)
+      // console.log('existsInFinancialDetails', existsInFinancialDetails)
+      if (existsInFinancialDetails === -1) {
+        tempRoommatesChecked[index] = false
+        tempRoommateAmounts[index] = 0
+      } else {
+        tempRoommatesChecked[index] = true
+        tempRoommateAmounts[index] = props.billSplitData.transactions[props.transactionModal[0]].financialDetails[existsInFinancialDetails].amount        
+      }
+      
+    }
+    // console.log('tempRoommatesChecked', tempRoommatesChecked)
+
   } 
   if (props.transactionModal[1] === 'ADD' && !transactionObject)  {
     setTransactionObject({
       transactionID: Math.floor(Math.random() * 1000),
       type: 'bill',
       date: new Date(),      
-      paidBy: null,
+      paidBy: props.billSplitData.roommates[1].name,
       totalPaid: 0,
       evenSplit: false,
       description: '...bill description',
@@ -32,29 +53,45 @@ export default function AddEditTransactionModal(props) {
   }
   
   const handleSaveChanges = () => {
-
-    // build new transaction
+    // build new transactionObject
     let tempSaveObject = Object.assign({}, transactionObject)
-    let tempFinanceDetails = new Array(props.billSplitData.roommates).fill(0)
+    let tempFinanceDetails = new Array(props.billSplitData.roommates.length).fill(0)
     
-    for (let index = 0; index <   roommatesChecked.length; index++) {
-      const element = roommateAmounts[index];
-      
-    }
+    for (let index = 0; index <   roommatesChecked.length; index++) {      
+      let roommateObject = null
+      if (roommatesChecked[index] === true) {
+        roommateObject = { name: props.billSplitData.roommates[index].name, amount: roommateAmounts[index]}
+      } else {
+        roommateObject = { name: props.billSplitData.roommates[index].name, amount: 0}
+      }
+      tempFinanceDetails[index] = roommateObject
+    }    
 
-
-    // if adding a new transaction
-      // new transactionObject
-    if (props.transactionModal[1] === 'ADD') {
-      
-    }
-    // pass to dispatch
-
-
-    // if editing a transaction
-      // newTransactionObject * the index to replace
+    tempSaveObject.financialDetails = tempFinanceDetails
+    
+    
+    // newTransactionObject * the index to replace
     console.log('ABOUT TO ADD THIS TRANSACTION')
     console.log('tempSaveObject', tempSaveObject)
+    
+    // SAVING DATA
+    
+    // if adding a new transaction
+    // new transactionObject
+    if (props.transactionModal[1] === 'ADD') {
+      // pass to dispatch
+      props.billSplitDispatch({type: 'ADD_TRANSACTION', transactionToSave: tempSaveObject})
+      props.setTransactionModal(false)
+    }
+    // if editing a transaction
+    if (props.transactionModal[1] === 'EDIT') {
+      // pass to dispatch      
+      props.billSplitDispatch({ type: 'EDIT_TRANSACTION', transactionToReplace: tempSaveObject})
+      props.setTransactionModal(false)
+    }
+
+
+
   }
   
 
@@ -133,10 +170,9 @@ export default function AddEditTransactionModal(props) {
       
     }
 
+    // if even split is true, call when upda
     const handleTotalPaidChange = ( newTotalPaid ) => {
-      // if even split is true, call function
-      if (transactionObject.evenSplit) {
-        // console.log('called')
+      if (transactionObject.evenSplit) {        
         handleEvenlySplit(false, newTotalPaid)        
       }
 
@@ -146,7 +182,9 @@ export default function AddEditTransactionModal(props) {
       // Calculate total paid with new amounts as well as updating who has paid what in a new array
       
       let billTotal = 0
-      let updatedRoommateAmounts = new Array(props.billSplitData.roommates).fill(0)      
+      let updatedRoommateAmounts = new Array(props.billSplitData.roommates.length).fill(0)
+      console.log('props.billSplitData.roommates', props.billSplitData.roommates)
+      console.log('updatedRoommateAmounts', updatedRoommateAmounts)      
       updatedRoommateAmounts = roommateAmounts.map((prevAmount, index) => {        
         return index === indexOfRoommate ? amount : roommateAmounts[index]
       }) 
@@ -167,23 +205,26 @@ export default function AddEditTransactionModal(props) {
     }
 
 
+    // temp fix -> issue was app not loading properly with null data, didn't want to implement conditional renders throughout
+    if (!transactionObject) {
+      return
+    }
     // roommate list
-    const optionRoommateNames = props.billSplitData.roommates.map((roommate, index)  =>  { return <option key={index}>{roommate.name}</option> } )
+    const optionRoommateNames = props.billSplitData.roommates.map((roommate, index)  =>  {      
+      // return <option key={index} value={roommate.name} selected={roommate.name === transactionObject.paidBy ? 'selected' : null}>{roommate.name}</option> 
+      return <option key={index} value={roommate.name} >{roommate.name}</option> 
+    } )
 
 
     // console.log('roommatesChecked', roommatesChecked)
     // console.log('props', props)
-    console.log('transactionObject', transactionObject)
-    console.log(roommateAmounts)
+    // console.log('transactionObject', transactionObject)
+    // console.log(roommateAmounts)
     // console.log('roommateAmounts', roommateAmounts)
     // console.log('roommatesSplit', roommatesSplit)
     
 
 
-    // temp fix -> issue was app not loading properly with null data, didn't want to implement conditional renders throughout
-    if (!transactionObject) {
-      return
-    }
 
 
     return ( <>    
@@ -219,7 +260,13 @@ export default function AddEditTransactionModal(props) {
                           <div>
                             <label className="block text-sm font-medium text-gray-800 dark:text-gray-400"> Paid By </label>
                             
-                            <select>
+                            <select
+                              defaultValue={transactionObject.paidBy}
+                              onChange={(e) => setTransactionObject( transactionObject => ({
+                                ...transactionObject, 
+                                paidBy: e.target.value
+                              }))}
+                            >
                               {optionRoommateNames}
                             </select>
                           </div>
@@ -305,7 +352,7 @@ export default function AddEditTransactionModal(props) {
                             {props.billSplitData.roommates.map((roommate, index) => {
 
 
-                              return (<>
+                              return (<>                                
                                 <label htmlFor={roommate.name}>{roommate.name}</label>
                                 <input
                                   type='checkbox'
@@ -313,7 +360,8 @@ export default function AddEditTransactionModal(props) {
                                   name={roommate.name}
                                   value={roommate.name}                                  
                                   id={roommate.name}
-                                  onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}                                  
+                                  onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}
+                                  selected={roommatesChecked[index] ? true : false}                                  
                                   />
                               </>)
                             })}
@@ -401,14 +449,14 @@ export default function AddEditTransactionModal(props) {
                 <section>
 
                   <div className='flex flex-col justify-evenly'>
+                    <h3 className='underline underline-offset-2'>
+                    {transactionObject.type === 'bill' ? `Owed to ${transactionObject.paidBy}` : `${transactionObject.paidBy } Paid:` }
+                    </h3>
                     {props.billSplitData.roommates.map((roommate, index) => {
                     if (roommatesChecked[index]) {
                       return (<>
                         <div key={index} className='flex flex-col'>
                           <div>
-                            <h3>
-                            {transactionObject.type === 'bill' ? 'Owed' : 'Paid' } Details
-                            </h3>
                           </div>
                           <div>
                             {roommate.name}

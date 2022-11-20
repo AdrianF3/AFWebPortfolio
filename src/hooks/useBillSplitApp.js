@@ -41,11 +41,11 @@ const initialStateData = {
         financialDetails: [
           {
             name: 'John',
-            owes: 150,
+            amount: 150,
           },
           {
             name: 'Jim',
-            owes: 150,
+            amount: 150,
           },
         ],
         evenSplit: false,
@@ -59,11 +59,11 @@ const initialStateData = {
         financialDetails: [
           {
             name: 'John',
-            paid: 150,
+            amount: 150,
           },
           {
             name: 'Jim',
-            paid: 150,
+            amount: 150,
           },
         ],
         evenSplit: false,
@@ -105,8 +105,9 @@ const billSplitAppReducer = ( billSplitData, action) => {
           }            
             return clonedState
         case 'ADD_TRANSACTION':
-
-            return billSplitData
+          clonedState.transactions.push(action.transactionToSave)
+          console.log('clonedState', clonedState)
+          return clonedState
         case 'DELETE_TRANSACTION':
             // find index to delete by matching ID
             let transactionIndexToDelete = clonedState.transactions.findIndex(transaction => { return transaction.transactionID === action.transactionID } )
@@ -116,6 +117,12 @@ const billSplitAppReducer = ( billSplitData, action) => {
             }
             return clonedState    
         case 'EDIT_TRANSACTION':
+            let indexOfTransaction = clonedState.transactions.findIndex((transaction => transaction.transactionID === action.transactionToReplace.transactionID))
+            console.log('clonedState', clonedState)
+            console.log('first', action.transactionToReplace)
+            console.log('indexOfTransaction', indexOfTransaction)
+            clonedState.transactions[indexOfTransaction] = action.transactionToReplace
+
 
             return billSplitData
         default:
