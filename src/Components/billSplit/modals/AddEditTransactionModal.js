@@ -285,7 +285,8 @@ export default function AddEditTransactionModal(props) {
                                   ...transactionObject,
                                   type: 'bill'
                                 }))}
-                                defaultChecked
+                                checked={transactionObject.type === 'bill' ? true : false}
+                                // defaultChecked
                               />
 
                               <label
@@ -307,6 +308,7 @@ export default function AddEditTransactionModal(props) {
                                   ...transactionObject,
                                   type: 'roommatePayment'
                                 }))}
+                                checked={transactionObject.type === 'roommatePayment' ? true : false}
                               />
 
                               <label
