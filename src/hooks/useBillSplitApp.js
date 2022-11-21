@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 
-const initialStateData = {
+//  DUMMY STATE DATA  
+const dummyData = {
     roommates: [{
         name: 'Adrian',
         totalPaid: 0, 
@@ -93,14 +94,18 @@ const initialStateData = {
         description: 'roommate payment'
       }]
 }
-// END OF INITIAL STATE DATA
+
+// INITIAL STATE DATA (emppty by default)
+const initialStateData = {
+    roommates: [],
+      transactions: []
+}
 
 
 
 const processTransactions = ( clonedState ) => {    
   // Clone Transactions Array
-  // console.log('first', first)
-  console.log('process transactions called')
+    
   console.log('clonedState', clonedState)
 
   // Order Transactions Chronologically by date
@@ -113,12 +118,8 @@ const processTransactions = ( clonedState ) => {
 
   // Create new, temporary roommates array, to hold updateded data -> after looping 
   // through all transactions, this array will be the new roommates array saved to state
-  
-  // Loop through transactionData, calculating what is owed & what has been paid, up to that transaction
-
-  // Start by creating roommate array with no financial details
   let tempRoommatesArray = new Array(clonedState.roommates.length)
-  console.log('tempRoommatesArray', tempRoommatesArray)
+  // console.log('tempRoommatesArray', tempRoommatesArray)
   for (let index = 0; index < tempRoommatesArray.length; index++) {
     tempRoommatesArray[index] = {
       name: clonedState.roommates[index].name,
@@ -130,161 +131,76 @@ const processTransactions = ( clonedState ) => {
     }
     
   }
-  console.log( tempRoommatesArray)
-
-  // {
-  //   name: 'Adrian',
-  //   totalPaid: 0, 
-  //   owes: {
-  //     total:0,
-  //     details: [{name:'CURRENT_USER', amount:0}, {name: 'John', amount: 0}, {name: 'Jim', amount:0}]
-  //   }
-  // }
-
-
-  // financialDetails: [
-  //   {
-  //     name: 'John',
-  //     amount: 150,
-  //   },
-  //   {
-  //     name: 'Jim',
-  //     amount: 150,
-  //   },
-  // ]
+  console.log(tempRoommatesArray)
   
+  // for each transaction ->
+  clonedState.transactions.forEach(transaction => {  
+  
+  let nameOfRoommateWhoPaid = transaction.paidBy
+  let indexOfRoommateWhoPaid = tempRoommatesArray.findIndex(roommate => roommate.name === nameOfRoommateWhoPaid)
 
+  
+  // ** FOR TYPE BILL **
+  if (transaction.type === 'bill') {
+    tempRoommatesArray[indexOfRoommateWhoPaid].totalPaid = ( tempRoommatesArray[indexOfRoommateWhoPaid].totalPaid + transaction.totalPaid )
+    // loop through the financialDetails array, match the name to the name in tempRoommates array
+    transaction.financialDetails.forEach(roommateRecord => {
+      // find index of name in tempRoommates Array
+      let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
 
-    // for each transaction ->
-    clonedState.transactions.forEach(transaction => {
-    // - find index of roommate who paid, update paid by totalPaid
-    // console.log('transaction', transaction)
-    let nameOfRoommateWhoPaid = transaction.paidBy
-    let indexOfRoommateWhoPaid = tempRoommatesArray.findIndex(roommate => roommate.name === nameOfRoommateWhoPaid)
-    // increase the amount this user has paid
-    // console.log('tempRoommatesArray', tempRoommatesArray)
-    // console.log('indexOfRoommateWhoPaid', indexOfRoommateWhoPaid)
-    // console.log('tempRoommatesArray', tempRoommatesArray)
-    
-    // console.log('indexOfRoommateWhoPaid', indexOfRoommateWhoPaid)
-    if (transaction.type === 'bill') {
-      tempRoommatesArray[indexOfRoommateWhoPaid].totalPaid = ( tempRoommatesArray[indexOfRoommateWhoPaid].totalPaid + transaction.totalPaid )
-      // loop through the financialDetails array, match the name to the name in tempRoommates array
-      transaction.financialDetails.forEach(roommateRecord => {
-        // find index of name in tempRoommates Array
-        let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
-        // console.log('tempRoommatesArray', tempRoommatesArray)
-        // console.log('tempRoommatesArray[indexOfRoommate]', tempRoommatesArray[indexOfRoommate])
-        // console.log('roommateRecord', roommateRecord)
+      // increase roommate owes total
+      tempRoommatesArray[indexOfRoommate].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total + roommateRecord.amount) 
 
-        // increase roommate owes total
-        tempRoommatesArray[indexOfRoommate].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total + roommateRecord.amount) 
+      // add record of who they owe what to the paid by user
+      let tempRoommateObject = { name: nameOfRoommateWhoPaid }
+      // find index of roommateToUpdatew in paidBy Roommate
+      let indexOfRoommateToUpdate = tempRoommatesArray[indexOfRoommate].owes.details.findIndex(debtDetail => debtDetail.name === transaction.paidBy)
 
-        // add record of who they owe what to the paid by user
-
-
-        let tempRoommateObject = { name: nameOfRoommateWhoPaid }
-        // find index of roommateToUpdatew in paidBy Roommate
-        let indexOfRoommateToUpdate = tempRoommatesArray[indexOfRoommate].owes.details.findIndex(debtDetail => debtDetail.name === transaction.paidBy)
-        console.log('indexOfRoommateToUpdate', indexOfRoommateToUpdate)
-
-        console.log('tempRoommatesArray[indexOfRoommate].owes', tempRoommatesArray[indexOfRoommate].owes)
-        // if (tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommate] !== undefined) {
-        if (indexOfRoommateToUpdate  !== -1) {
-          console.log('add total called')
-          tempRoommateObject = {   
-            ...tempRoommateObject,         
-            amount: ( tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateToUpdate].amount + roommateRecord.amount )
-          }          
-        } else {
-          tempRoommateObject = {    
-            ...tempRoommateObject,        
-            amount: roommateRecord.amount
-          }
+      // if (tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommate] !== undefined) {
+      if (indexOfRoommateToUpdate  !== -1) {
+        // console.log('add total called')
+        tempRoommateObject = {   
+          ...tempRoommateObject,         
+          amount: ( tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateToUpdate].amount + roommateRecord.amount )
+        }          
+      } else {
+        tempRoommateObject = {    
+          ...tempRoommateObject,        
+          amount: roommateRecord.amount
         }
-        // console.log('tempRoommateObject', tempRoommateObject)
-        
-        tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateWhoPaid] = tempRoommateObject
-        // console.log('tempRoommatesArray[indexOfRoommate]', tempRoommatesArray[indexOfRoommate])
-      });
-        // console.log('tempRoommatesArray', tempRoommatesArray)
-      // when matched, find the paidBy user, in the owes details array, if doesn't exist, create it
-
-      // add the amount owed and update the totall.... probably wrong... bronces just lost and that sucks
-      clonedState.roommates = tempRoommatesArray
+      }      
       
-    }
+      tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateWhoPaid] = tempRoommateObject      
+    })      
+    // add the amount owed and update the totall.... probably wrong... bronces just lost and that sucks
+    clonedState.roommates = tempRoommatesArray    
+  }
 
-    if (transaction.type === 'roommatePayment') {
-      // loop through the financialDetails array, match the name to the name in tempRoommates array
-      transaction.financialDetails.forEach(roommateRecord => {
-        // find index of name in tempRoommates Array
-        let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
-        tempRoommatesArray[indexOfRoommateWhoPaid].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total - roommateRecord.amount) 
-        console.log('tempRoommatesArray', tempRoommatesArray)
-        console.log('tempRoommatesArray[indexOfRoommate]', tempRoommatesArray[indexOfRoommate])
-        console.log('roommateRecord', roommateRecord)
-
-        // increase roommate owes total
-        // tempRoommatesArray[indexOfRoommate].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total + roommateRecord.amount) 
-
-        // add record of who they owe what to the paid by user
-
-
-        // let tempRoommateObject = { name: roommateRecord.name }
-        // if (tempRoommatesArray[indexOfRoommateWhoPaid].owes.details.total !== undefined) {
-        //   tempRoommateObject = {            
-        //     ...tempRoommateObject,
-        //     // amount: ( tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateWhoPaid].amount - roommateRecord.amount )
-        //     amount: ( tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommate].amount - roommateRecord.amount )
-        //   }          
-        // } else {
-        //   tempRoommateObject = {            
-        //     ...tempRoommateObject,
-        //     amount: roommateRecord.amount
-        //   }
-        // }
-        // console.log('tempRoommateObject', tempRoommateObject)
-        
-        // tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateWhoPaid] = tempRoommateObject
-        // tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommate] = tempRoommateObject
-        console.log('tempRoommatesArray[indexOfRoommate]', tempRoommatesArray[indexOfRoommate])
-      });
-        console.log('tempRoommatesArray', tempRoommatesArray)
-      // when matched, find the paidBy user, in the owes details array, if doesn't exist, create it
-
-      // add the amount owed and update the totall.... probably wrong... bronces just lost and that sucks
-      clonedState.roommates = tempRoommatesArray
+  // ** FOR TYPE ROOMMATEPAYMENT **
+  if (transaction.type === 'roommatePayment') {
+    // loop through the financialDetails array, match the name to the name in tempRoommates array
+    transaction.financialDetails.forEach(roommateRecord => {
+      // find index of name in tempRoommates Array
       
-    }
-    // - loop through each debt in owedBy array -> 
-      // - for each debt, find index of the roommate by matching roommateName -> 
-        // then update that roommates owes.details to properly reflect that they owe
-        // the paidBy user, their owes amount
+      let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
+      let indexOfRoommateDetails = tempRoommatesArray[indexOfRoommateWhoPaid].owes.details.findIndex(roommate => roommate.name === roommateRecord.name)
       
-    });
+      tempRoommatesArray[indexOfRoommateWhoPaid].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total - roommateRecord.amount) 
+
+      if (indexOfRoommateDetails !== -1) {
+        tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] = (tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] - roommateRecord.amount)            
+      } else {
+        tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] = (0 - roommateRecord.amount)            
+      }
       
-      
-
-      // else if type is roommatePayemnt
-
-        // find index of roommate who paid, update paid by totalPaid
-          // loop through each payment in debtPaid array ->
-            // for each payment, find index in paidBy users paid.details array and 
-            // increment the amount paid          
-
-
-  // END LOOPRING THROUGH ALL TRANSACTION DATA
-
-  
-
-  // return two objects 
-    // - the cloned transactions array that is now sorted by date
-    // - the new roommatesArray with updated financial totals
-  
+    })          
+    clonedState.roommates = tempRoommatesArray    
+  }  
+});
 
   return clonedState
 }
+// END OF PROCESS TRANSACTION FUNCTION
 
 // DEFINE REDUCER
 const billSplitAppReducer = ( billSplitData, action) => {
@@ -298,10 +214,7 @@ const billSplitAppReducer = ( billSplitData, action) => {
             ...billSplitData,
             roommates: [...billSplitData.roommates, {
             name: action.userInput,
-            paid: {
-              total: 0,
-              details: []
-            },
+            totalPaid: 0,
             owes: {
               total:0,
               details: []
@@ -333,7 +246,10 @@ const billSplitAppReducer = ( billSplitData, action) => {
             clonedState.transactions[indexOfTransaction] = action.transactionToReplace
             clonedState = processTransactions( clonedState )            
             return clonedState
-        default:
+          case 'LOAD_DUMMY_DATA':
+            let dummyDataToSave = processTransactions(dummyData)
+            return dummyDataToSave
+        default:  
             // or should I throw new error
             throw new Error('roommateDataReducer Error')
     }

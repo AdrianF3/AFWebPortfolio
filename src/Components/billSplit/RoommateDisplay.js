@@ -51,19 +51,32 @@ return (
           <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800'>
             {/* Add Roommate Button - if less than 5 current roommates, otherwse display full message & disable button */}
             {props.billSplitData.roommates.length < 5 ? 
-              <AFPortfolioBtn 
-              btnText='Add Roommate' 
-              function={props.setAddRoommateModal}
-              /> : <AFPortfolioBtn
+              <>
+                <div>
+                  <AFPortfolioBtn 
+                  btnText='Add Roommate' 
+                  function={props.setAddRoommateModal}
+                  />
+                  <AFPortfolioBtn 
+                  btnText='Load Dummy Data' 
+                  function={() => props.billSplitDispatch({ type: 'LOAD_DUMMY_DATA'}, props.setCurrentlyAddingRoommates(false))}
+                  />
+                </div>
+              </> : <AFPortfolioBtn
                 btnText='Max. Roomates Reached'  
                 type='disabeled'
                 />        
             }
-            {/* Begin Adding Transactions Button */}        
-            <AFPortfolioBtn 
-              btnText='Done Adding Roommates' 
-              function={() => props.setCurrentlyAddingRoommates(false)}
+            {/* Begin Adding Transactions Button */}
+            {props.billSplitData.roommates.length >= 2 ?
+              <AFPortfolioBtn 
+                btnText='Done Adding Roommates' 
+                function={() => props.setCurrentlyAddingRoommates(false)}
+              /> : <AFPortfolioBtn 
+              btnText='Add at least two roommate to continue' 
+              type='disabeled'              
             />
+            }        
           </div> : null
         }
 

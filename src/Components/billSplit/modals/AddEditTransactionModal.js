@@ -44,7 +44,7 @@ export default function AddEditTransactionModal(props) {
       transactionID: Math.floor(Math.random() * 1000),
       type: 'bill',
       date: new Date(),      
-      paidBy: props.billSplitData.roommates[1].name,
+      paidBy: props.billSplitData.roommates[0].name,
       totalPaid: 0,
       evenSplit: false,
       description: '...bill description',

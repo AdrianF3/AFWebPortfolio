@@ -29,8 +29,8 @@ export default function DetailsModal(props) {
   }
 
 
-  console.log(currentDetails)
-  console.log('props.detailModal', props.detailModal)
+  // console.log(currentDetails)
+  // console.log('props.detailModal', props.detailModal)
 
     return ( <>    
         <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>    
