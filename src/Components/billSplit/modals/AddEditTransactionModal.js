@@ -55,6 +55,7 @@ export default function AddEditTransactionModal(props) {
   const handleSaveChanges = () => {
     // build new transactionObject
     let tempSaveObject = Object.assign({}, transactionObject)
+    tempSaveObject.totalPaid = parseInt(tempSaveObject.totalPaid)
     let tempFinanceDetails = new Array(props.billSplitData.roommates.length).fill(0)
     
     for (let index = 0; index <   roommatesChecked.length; index++) {      

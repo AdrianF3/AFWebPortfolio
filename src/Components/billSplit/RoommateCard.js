@@ -12,7 +12,7 @@ export default function RoommateCard(props) {
     {/* Paid */}
     <div>
         <p>
-            {props.roommate.paid.total}
+            {props.roommate.totalPaid}
         </p>
     </div>
     {/* Owes */}

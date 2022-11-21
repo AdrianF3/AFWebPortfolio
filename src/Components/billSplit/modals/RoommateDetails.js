@@ -14,21 +14,21 @@ export default function RoommateDetails(props) {
                 {/* Paid Table Section */}
                 <div className='flex flex-col'>
                     <h4>Paid Details</h4>
-
-                    {props.currentDetails.paid.details.length > 0 ? props.currentDetails.paid.details.map((roommate, index) => {
+                    <p>Total Paid {props.currentDetails.totalPaid}</p>
+                    {/* {props.currentDetails.paid.details.length > 0 ? props.currentDetails.paid.details.map((roommate, index) => {
                         // roommate.name === 'CURRENT_USER' ? return : null
                         if (roommate.name === 'CURRENT_USER') {
                             return null
                         }
                         return <p>{roommate.name}: {roommate.amount}</p>
-                    }) : null}
+                    }) : null} */}
 
                 </div>
 
                 <div className='flex flex-col'>
                     <h4>Owes Details</h4>
 
-                    {props.currentDetails.paid.details.length > 0 ? props.currentDetails.paid.details.map((roommate, index) => {
+                    {props.currentDetails.owes.details.length > 0 ? props.currentDetails.owes.details.map((roommate, index) => {
                         // roommate.name === 'CURRENT_USER' ? return : null
                         if (roommate.name === 'CURRENT_USER') {
                             return null
