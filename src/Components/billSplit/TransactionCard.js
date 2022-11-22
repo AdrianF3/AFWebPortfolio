@@ -3,37 +3,31 @@ import React from 'react'
 export default function TransactionCard(props) {
   return (
     <>
-        <div>
+        <div className=''>
             <p>
                 {props.transaction.date.toDateString()}
             </p>
-        </div>
-        {/* Type of Transaction */}
-        {/* <div>
-            <p>
-                {props.transaction.type}
-            </p>
-        </div> */}
+        </div>        
         {/* Transaction Description */}
-        <div>
+        <div className=''>
             <p>
                 {props.transaction.description}
             </p>
         </div>
         {/* Paid By (which roommate) */}
-        <div>
+        <div className=''>
             <p>
                 {props.transaction.paidBy}
             </p>
         </div>
         {/* Total Paid Section */}
-        <div>
+        <div className=''>
             <p>
                 ${props.transaction.totalPaid}
             </p>
         </div>
         {/* Edit Buttons */}
-        <div className='flex flex-row gap-4'>            
+        <div className='flex flex-row gap-4 '>            
             <i 
                 className='material-icons'
                 onClick={() => props.setDetailModal([props.transactionIndex, 'transaction', 'details'])}

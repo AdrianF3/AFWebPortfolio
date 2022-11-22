@@ -12,7 +12,7 @@ return (
           <h4 className='texl-2xl font-bold uppercase text-white'>Roommates</h4>
         </div>
         {/* table section */}
-        <div className='grid grid-cols-4 text-sm'>
+        <div className='grid grid-cols-4 text-sm justify-items-center'>
           {/* Row 1 - Descriptions */}
           <div>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
@@ -48,11 +48,11 @@ return (
         </div>
 
         {props.currentlyAddingRoommates ? 
-          <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800'>
+          <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800 gap-4'>
             {/* Add Roommate Button - if less than 5 current roommates, otherwse display full message & disable button */}
             {props.billSplitData.roommates.length < 5 ? 
               <>
-                <div>
+                <div className='flex gap-3 justify-evenly'>
                   <AFPortfolioBtn 
                   btnText='Add Roommate' 
                   function={props.setAddRoommateModal}

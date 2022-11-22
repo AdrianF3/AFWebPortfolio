@@ -10,8 +10,8 @@ export default function TransactionDisplay(props) {
   return (
     <>        
       {/* Payments & Transactions Display */}
-      <section className={`flex flex-col w-10/12 bg-emerald-600/20 my-10 rounded-xl p-4 mx-auto py-8 ${props.currentlyAddingRoommates ? 'blur-sm' : null}`}>
-      <div className='-mt-8 -ml-6 bg-emerald-600 w-fit p-2 rounded-xl my-4'>
+      <section className={`flex flex-col w-10/12 bg-emerald-600/20 my-10 rounded-xl p-4 mx-auto py-8 ${props.currentlyAddingRoommates ? 'hidden' : null}`}>
+        <div className='-mt-8 -ml-6 bg-emerald-600 w-fit p-2 rounded-xl my-4'>
           <h4 className='texl-2xl font-bold uppercase text-white'>Payments &amp; Transactions</h4>
         </div>
         <div className='flex flex-col md:flex-row justify-end justify-items-center gap-2'>
@@ -24,29 +24,29 @@ export default function TransactionDisplay(props) {
         </div>
         
         {/* table section */}
-        <div className='grid grid-cols-5 justify-center'>
+        <div className='grid grid-cols-5 mx-auto justify-items-center overflow-auto'>
           {/* Row 1 - Descriptions */}
-          <div>
+          <div className=''>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Date
             </p>
           </div>          
-          <div>
+          <div className=''>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Description
             </p>
           </div>
-          <div>
+          <div className=''>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Paid By
             </p>
           </div>
-          <div>
+          <div className=''>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Amount
             </p>
           </div>
-          <div>
+          <div className=''>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Actions
             </p>

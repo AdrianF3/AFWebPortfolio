@@ -2,21 +2,22 @@ import React from 'react'
 
 export default function RoommateCard(props) {
     
-    return ( <> 
+    return ( <>     
+    
     {/* RoommateName */}
-    <div>
-        <p className='text-xs md:text-base'>
+    <div className=''>
+        <p>
             {props.roommate.name}
         </p>
     </div> 
     {/* Paid */}
-    <div>
+    <div className=''>
         <p>
             {props.roommate.totalPaid}
         </p>
     </div>
     {/* Owes */}
-    <div>
+    <div className=''>
         <p>
             {props.roommate.owes.total}
         </p> 
@@ -36,5 +37,6 @@ export default function RoommateCard(props) {
             >info</i> : null
         }        
     </div>            
+    
     </>)
 }
