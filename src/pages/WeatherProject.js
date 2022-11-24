@@ -1,55 +1,113 @@
 import React, { useState } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
-import { WiThermometer } from "react-icons/wi";
+import axios from 'axios';
+import WeatherCard from '../components/weatherGame/WeatherCard';
 
 export default function WeatherProject() {
-  const [ score, setScore ] = useState(0)
+  // const axios = require('axios');
+  const [ gameData, setGameData ] = useState({
+    score: 0
+  })
+  const [ currentCityIndex, setCurrentCityIndex ] = useState(0)
+  const [ cityData, setCityData ] = useState([{
+    name: 'Los Angeles',
+    lat: '34.05',
+    lon: '-118.24',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Dallas',
+    lat: '32.77',
+    lon: '96.79',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Chicago',
+    lat: '41.87',
+    lon: '87.62',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Miami',
+    lat: '25.77',
+    lon: '-80.19',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Boston',
+    lat: '42.35',
+    lon: '-71.06',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'San Francisco',
+    lat: '37.77',
+    lon: '-122.41',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Las Vegas',
+    lat: '36.16',
+    lon: '-115.14',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Honolulu',
+    lat: '21.30',
+    lon: '-157.85',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'Denver',
+    lat: '39.73',
+    lon: '-104.98',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  },{ 
+    name: 'New York',
+    lat: '40.71',
+    lon: '-74.00',
+    data: null,
+    dataModifiedA: null,
+    dataModifiedB: null
+  }]
+)  
 
-  const cityIdeas = [
-    {
-      name: 'Los Angeles',
-    },
-    { 
-      name: 'Dallas',
-    },
-    { 
-      name: 'Chicago',
-    },
-    { 
-      name: 'Miami',
-    },
-    { 
-      name: 'Boston',
-    },
-    { 
-      name: 'San Francisco',
-    },
-    { 
-      name: 'Las Vegas',
-    },
-    { 
-      name: 'Honolulu',
-    },
-    { 
-      name: 'Denver',
-    },
-    { 
-      name: 'London',
-    },
-    { 
-      name: 'Sydney',
-    },
-    { 
-      name: 'Tokyo',
-    },
-    { 
-      name: 'Rome',
-    },
-    { 
-      name: 'Hamburg',
+
+  const retrieveWeatherData = async ( ) => {
+    console.log('retrieveWeatherData Called')
+    try {      
+      const response = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`)
+      let cityDataClone = Object.assign({}, cityData)      
+      cityDataClone[currentCityIndex].data = response.data
+      setCityData(cityDataClone)      
+    } catch (error) {
+      console.log('error', error)
     }
-  ]
+
+
+  }
+
+
+  // use useEffect to call render of data, automatically load one
+
+  // console.log('cityData[0].name', cityData[0].name)
+
+  // build array of random functions that slightly modify the weather fields
+  // include fields: 
+
+  // 4 random types
+  // daily high weather by 3, daily high lower by 2, 
 
 
   return (<>
@@ -71,7 +129,8 @@ export default function WeatherProject() {
                 <li>useRef : </li>
                 <li></li>
               </ul>
-            </div>            
+            </div>      
+            <div><button className='p-2 bg-sky-400 rounded-xl' onClick={() => retrieveWeatherData()}>Click To Test Data</button></div>      
           </div>
           <div className='border-2 border-dashed p-4 mt-6'>
             <h4 className='text-xl uppercase'>Instructions:</h4>
@@ -89,83 +148,50 @@ export default function WeatherProject() {
         </div>
         <div className='text-center'>
           <h4 className='text-xl'>Current Score</h4>
-          <div className='bg-slate-800 text-white rounded-xl'>
-            <p>{score} # 10</p>
+          <div className='bg-emerald-300 text-white rounded-xl'>
+            <p className='p-1 font-medium'>Guessed {gameData.score} of 10 correctly</p>
           </div>
         </div>
       </div>    
 
       {/* List of citites & city info  */}
       <div className='p-4'>
-        <h3 className='text-2xl'>Current City:</h3>
-        <div className='flex flex-row snap-x'>
-          {cityIdeas.length > 0 ? cityIdeas.map((city) => <>
-            <p className='w-full snap-center'>
-              {city.name}
-            </p>
-          </>) : null }
+        <h3 className='text-2xl'>Cities & Status:</h3>
+        <div className='grid grid-cols-3 md:grid-cols-5 justify-items-center gap-4 py-4'>
+          {cityData.map((city) => <>
+          <div className='w-40'>
+              <p className='w-full snap-center'>
+                {city.name}
+              </p>
+          </div>
+          </>)}
           
         </div>        
       </div>
 
       {/* GUESSING SECTION */}
       <section>
-        {/* area to guess daily highs */}
-        <div classname=''>
-          <h3 className='text-2xl tracking-wide'>Daily Highs</h3>
+        {/* area to guess which weather card is correct */}
+        <div className=''>
+          <h3 className='text-2xl tracking-wide'>Guess The Correct Weather</h3>
           {/* grid layout for user options */}
-          <div className='grid grid-cols-5'>
-            <div>
-              {/* title */}
-              <div>
-                <h4>Card 1</h4>
-
-              </div>
-              {/* weather description */}
-              <div>
-                <WiThermometer />
-              </div>
-            </div>
-            <div><p>Card 2</p></div>
-            <div><p>Card 3</p></div>
-            <div><p>Card 4</p></div>
-            <div><p>Card 5</p></div>
+          <div className='grid grid-cols-3 justify-evenly justify-items-center py-14'>
+            <WeatherCard />
+            <WeatherCard />
+            <WeatherCard />
           </div>
-        </div>
-        {/* area to guess daily lows */}
-        <div>
-          <h3>Daily Highs</h3>
-          {/* grid layout for user options */}
-          <div className='grid grid-cols-5'>
-            <div><p>Card 1</p></div>
-            <div><p>Card 2</p></div>
-            <div><p>Card 3</p></div>
-            <div><p>Card 4</p></div>
-            <div><p>Card 5</p></div>
-          </div>
-        </div>
+        </div>        
 
         {/* button to submit guess */}
-        <div className='flex justify-end'>
-          <button className='p-2 bg-sky-800/30 rounded-xl'>
-            Submit My Guess
-          </button>
+        <div className='flex justify-center pt-10 pb-8'>
+          <div className='py-8 px-16 border-2 border-slate-700 border-dashed rounded-xl'>
+            <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
+              Submit My Guess
+            </button>
+          </div>
         </div>
 
-      </section>
-
-      {/* Reveal Section */}
-      <div>
-        <h3>Current City Name</h3>
-        <p>You guessed right or you guessed wrong</p>
-        {/* Display of actual user data */}
-        <div>
-            <p>
-              Use this area to display the correct weather data for the currently 
-              selected city, after the user submits their choice
-            </p>
-        </div>
-      </div>
+      </section>      
 
     </section>
     <ContactSection/>
