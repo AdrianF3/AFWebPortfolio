@@ -3,11 +3,44 @@ import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import axios from 'axios';
 import WeatherCard from '../components/weatherGame/WeatherCard';
+import CityStatus from '../components/weatherGame/CityStatus'
 
 export default function WeatherProject() {
   // const axios = require('axios');
   const [ gameData, setGameData ] = useState({
-    score: 0
+    score: 0,
+    userGuesses: [
+      {
+        guessed: null
+      },
+      {
+        guessed: 'correct'
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      },
+    ]
   })
   const [ currentCityIndex, setCurrentCityIndex ] = useState(0)
   const [ cityData, setCityData ] = useState([{
@@ -110,6 +143,8 @@ export default function WeatherProject() {
   // daily high weather by 3, daily high lower by 2, 
 
 
+  console.log('currentCityIndex', currentCityIndex)
+
   return (<>
     <HeaderNavigation/>
     <section>
@@ -158,11 +193,18 @@ export default function WeatherProject() {
       <div className='p-4'>
         <h3 className='text-2xl'>Cities & Status:</h3>
         <div className='grid grid-cols-3 md:grid-cols-5 justify-items-center gap-4 py-4'>
-          {cityData.map((city) => <>
+          {cityData.map((city, cityIndex) => <>
           <div className='w-40'>
-              <p className='w-full snap-center'>
-                {city.name}
-              </p>
+                {/* {city.name} */}
+                <CityStatus
+                  key={`${cityIndex}-cityStatus`}
+                  cityData={cityData}
+                  cityIndex={cityIndex}
+                  gameData={gameData}
+                  setGameData={setGameData}
+                  currentCityIndex={currentCityIndex}
+                  setCurrentCityIndex={setCurrentCityIndex}
+                />              
           </div>
           </>)}
           
