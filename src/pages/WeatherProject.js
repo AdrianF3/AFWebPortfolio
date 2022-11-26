@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import axios from 'axios';
@@ -42,7 +42,7 @@ export default function WeatherProject() {
       },
     ]
   })
-  const [ currentCityIndex, setCurrentCityIndex ] = useState(0)
+  const [ currentCityIndex, setCurrentCityIndex ] = useState(10)
   const [ cityData, setCityData ] = useState([{
     name: 'Los Angeles',
     lat: '34.05',
@@ -116,22 +116,52 @@ export default function WeatherProject() {
   }]
 )  
 
-
-  const retrieveWeatherData = async ( ) => {
-    console.log('retrieveWeatherData Called')
-    try {      
-      const response = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`)
-      let cityDataClone = Object.assign({}, cityData)      
-      cityDataClone[currentCityIndex].data = response.data
-      setCityData(cityDataClone)      
-    } catch (error) {
-      console.log('error', error)
-    }
-
-
+  // // original function to retrieve data
+  // const retrieveWeatherData = async ( ) => {
+  //   console.log('retrieveWeatherData Called')
+  //   try {      
+  //     const response = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`)
+  //     let cityDataClone = Object.assign({}, cityData)      
+  //     cityDataClone[currentCityIndex].data = response.data
+  //     setCityData(cityDataClone)      
+  //   } catch (error) {
+  //     console.log('error', error)
+  //   }
+  // }
+  // if current city index < 9, reset to 0
+  if (currentCityIndex > 9) {
+    setCurrentCityIndex(0)
   }
+  
+  // attempt using useEffect
+  useEffect(() => {
 
 
+    // if weather data for current city not already loaded, 
+
+    console.log('use effect called')
+    // **  research better way to check against null
+    if (cityData[currentCityIndex].data == null) {
+      let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`
+      console.log('apiURL', apiURL)
+      axios.get(apiURL)
+      .then((response) => {
+        // let cityDataClone = Object.assign({}, cityData) 
+        console.log('response', response)
+        // let cityDataClone = new Array(cityData)
+        let cityDataClone = JSON.parse(JSON.stringify(cityData))
+        
+        cityDataClone[currentCityIndex].data = response.data
+        console.log('cityDataClone', cityDataClone)
+        setCityData([...cityDataClone])
+        console.log('useEffect called')       
+      })      
+    }
+  
+  }, [currentCityIndex, cityData])
+
+
+  console.log('cityData', cityData)
   // use useEffect to call render of data, automatically load one
 
   // console.log('cityData[0].name', cityData[0].name)
@@ -143,7 +173,7 @@ export default function WeatherProject() {
   // daily high weather by 3, daily high lower by 2, 
 
 
-  console.log('currentCityIndex', currentCityIndex)
+  // console.log('currentCityIndex', currentCityIndex)
 
   return (<>
     <HeaderNavigation/>
@@ -165,7 +195,7 @@ export default function WeatherProject() {
                 <li></li>
               </ul>
             </div>      
-            <div><button className='p-2 bg-sky-400 rounded-xl' onClick={() => retrieveWeatherData()}>Click To Test Data</button></div>      
+            {/* <div><button className='p-2 bg-sky-400 rounded-xl' onClick={() => retrieveWeatherData()}>Click To Test Data</button></div>       */}
           </div>
           <div className='border-2 border-dashed p-4 mt-6'>
             <h4 className='text-xl uppercase'>Instructions:</h4>
@@ -193,7 +223,7 @@ export default function WeatherProject() {
       <div className='p-4'>
         <h3 className='text-2xl'>Cities & Status:</h3>
         <div className='grid grid-cols-3 md:grid-cols-5 justify-items-center gap-4 py-4'>
-          {cityData.map((city, cityIndex) => <>
+          { cityData.map((city, cityIndex) => <>
           <div className='w-40'>
                 {/* {city.name} */}
                 <CityStatus
@@ -206,7 +236,7 @@ export default function WeatherProject() {
                   setCurrentCityIndex={setCurrentCityIndex}
                 />              
           </div>
-          </>)}
+          </>) }
           
         </div>        
       </div>
