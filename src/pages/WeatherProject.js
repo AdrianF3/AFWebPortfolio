@@ -6,7 +6,9 @@ import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
 
 export default function WeatherProject() {
-  // const axios = require('axios');
+  // let weatherGuessOrder = [ 'default', 'modifiedA', 'modifiedB']
+  const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
+  
   const [ gameData, setGameData ] = useState({
     score: 0,
     userGuesses: [
@@ -14,7 +16,7 @@ export default function WeatherProject() {
         guessed: null
       },
       {
-        guessed: 'correct'
+        guessed: null
       },
       {
         guessed: null
@@ -42,7 +44,7 @@ export default function WeatherProject() {
       },
     ]
   })
-  const [ currentCityIndex, setCurrentCityIndex ] = useState(10)
+  const [ currentCityIndex, setCurrentCityIndex ] = useState(0)
   const [ cityData, setCityData ] = useState([{
     name: 'Los Angeles',
     lat: '34.05',
@@ -116,61 +118,71 @@ export default function WeatherProject() {
   }]
 )  
 
-  // // original function to retrieve data
-  // const retrieveWeatherData = async ( ) => {
-  //   console.log('retrieveWeatherData Called')
-  //   try {      
-  //     const response = await axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`)
-  //     let cityDataClone = Object.assign({}, cityData)      
-  //     cityDataClone[currentCityIndex].data = response.data
-  //     setCityData(cityDataClone)      
-  //   } catch (error) {
-  //     console.log('error', error)
-  //   }
-  // }
+  // CAN I REFACTOR TO IMPROVE OR REMOVE THIS
   // if current city index < 9, reset to 0
-  if (currentCityIndex > 9) {
-    setCurrentCityIndex(0)
-  }
+  // if (currentCityIndex > 9) {
+  //   setCurrentCityIndex(0)
+  // }
   
+  // create an array, limited to 3 positions, saving the keys, default, modifiedA, and modifiedB
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
   // attempt using useEffect
   useEffect(() => {
+
+    // setWeatherGuessOrder( shuffleArray(weatherGuessOrder) )
+    shuffleArray(weatherGuessOrder)
+    
 
 
     // if weather data for current city not already loaded, 
 
-    console.log('use effect called')
+    // console.log('use effect called')
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
       let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`
-      console.log('apiURL', apiURL)
+      // console.log('apiURL', apiURL)
       axios.get(apiURL)
-      .then((response) => {
-        // let cityDataClone = Object.assign({}, cityData) 
+      .then((response) => {        
         console.log('response', response)
-        // let cityDataClone = new Array(cityData)
+        // deep clone of the existing cityData
         let cityDataClone = JSON.parse(JSON.stringify(cityData))
-        
+        // update the data for currently selected city
         cityDataClone[currentCityIndex].data = response.data
-        console.log('cityDataClone', cityDataClone)
-        setCityData([...cityDataClone])
-        console.log('useEffect called')       
+        // call modified function for modified A
+        cityDataClone[currentCityIndex].dataModifiedA = response.data
+        // call modified function for modified B
+        cityDataClone[currentCityIndex].dataModifiedB = response.data
+        setCityData([...cityDataClone])        
+
       })      
     }
   
-  }, [currentCityIndex, cityData])
+  }, [currentCityIndex, cityData, weatherGuessOrder])
 
 
-  console.log('cityData', cityData)
-  // use useEffect to call render of data, automatically load one
-
-  // console.log('cityData[0].name', cityData[0].name)
+  // console.log('cityData', cityData)
+  
 
   // build array of random functions that slightly modify the weather fields
+
+
   // include fields: 
 
-  // 4 random types
-  // daily high weather by 3, daily high lower by 2, 
+  // 4 functions to randomize data
+  // 1) daily high weather by increase by 3, daily high increase by 1, humidity, add 5%
+  // 2) decrease daily low, delay sunset by 3 minutes
+  // 3) decrease daily low by 2, increase daily high by 4, reduce humidity
+  // 4) move sunrise/sunset earlier in the day by a few minutes, lower daily high by 3 degrees
+
+
+  // END GOAL, display weather cards for user to guess in a random order
+  // console.log('weatherGuessOrder', weatherGuessOrder)
+  // console.log('currentCityIndex', currentCityIndex)
 
 
   // console.log('currentCityIndex', currentCityIndex)
@@ -248,9 +260,10 @@ export default function WeatherProject() {
           <h3 className='text-2xl tracking-wide'>Guess The Correct Weather</h3>
           {/* grid layout for user options */}
           <div className='grid grid-cols-3 justify-evenly justify-items-center py-14'>
-            <WeatherCard />
-            <WeatherCard />
-            <WeatherCard />
+            { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
+              return <WeatherCard key={guessIndex} guessType={guessType} cityData={cityData} currentCityIndex={currentCityIndex} />
+            }) : null} 
+            
           </div>
         </div>        
 

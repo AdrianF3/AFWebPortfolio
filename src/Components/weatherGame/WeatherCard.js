@@ -11,9 +11,28 @@ export default function WeatherCard(props) {
     // daily low temperature
     // humidity
 
+    // set currentData, based on the guess type
+    let weatherCardData = {}
+
+    switch (props.guessType) {
+        case 'defualt':
+            weatherCardData = props.cityData[props.currentCityIndex].data
+            break;
+        case 'modifiedA':
+            weatherCardData = props.cityData[props.currentCityIndex].dataModifiedA            
+            break;
+        case 'modifiedB':
+            weatherCardData = props.cityData[props.currentCityIndex].dataModifiedB                
+            break;    
+        default:
+            weatherCardData = props.cityData[props.currentCityIndex].data
+            break;
+    }
 
 
 
+    // console.log('props', props)
+    console.log('weatherCardData', weatherCardData)
 
 
     return (
@@ -22,15 +41,15 @@ export default function WeatherCard(props) {
         <div>
             {/* title */}
             <div>
-                <h4>Card Title</h4>
+                <h4>{weatherCardData.city.name}</h4>
             </div>
 
             {/* sunrise/sunset progress bar */}            
             <div>
-                <p>Time of Day: ##:##</p>
+                <p className='text-xs text-slate-600'>Population: {weatherCardData.city.population}</p>
                 <div className='flex flex-row justify-evenly'>
-                    <span>sunrise</span>
-                    <span>sunset</span>
+                    <span>Sunrise: { Date(weatherCardData.city.sunrise)}</span>
+                    <span>Sunset { Date(weatherCardData.city.sunset)}</span>
                 </div>
 
             </div>
