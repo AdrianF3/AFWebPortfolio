@@ -8,7 +8,6 @@ import CityStatus from '../components/weatherGame/CityStatus'
 export default function WeatherProject() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
   let weatherGuessOrderMemo = useMemo(() => shuffleArray(weatherGuessOrder), [weatherGuessOrder])
-    // [ 'default', 'modifiedA', 'modifiedB']
 
   
   const [ isLoadingData, setIsLoadingData ] = useState(false)
@@ -53,71 +52,72 @@ export default function WeatherProject() {
     lat: '34.05',
     lon: '-118.24',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'Dallas',
     lat: '32.77',
     lon: '96.79',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 6),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+
   },{ 
     name: 'Chicago',
     lat: '41.87',
     lon: '87.62',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'Miami',
     lat: '25.77',
     lon: '-80.19',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'Boston',
     lat: '42.35',
     lon: '-71.06',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'San Francisco',
     lat: '37.77',
     lon: '-122.41',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'Las Vegas',
     lat: '36.16',
     lon: '-115.14',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'Honolulu',
     lat: '21.30',
     lon: '-157.85',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'Denver',
     lat: '39.73',
     lon: '-104.98',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   },{ 
     name: 'New York',
     lat: '40.71',
     lon: '-74.00',
     data: null,
-    dataModifiedA: null,
-    dataModifiedB: null
+    randNumA: Math.floor( Math.random() * 5),
+    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
   }]
 )  
 
@@ -151,9 +151,7 @@ export default function WeatherProject() {
         // deep clone of the existing cityData
         let cityDataClone = JSON.parse(JSON.stringify(cityData))
         // update the data for currently selected city        
-        cityDataClone[currentCityIndex].data = response.data        
-        cityDataClone[currentCityIndex].dataModifiedA = response.data
-        cityDataClone[currentCityIndex].dataModifiedB = response.data        
+        cityDataClone[currentCityIndex].data = response.data             
         setCityData([...cityDataClone])                
       })      
     }
@@ -164,7 +162,7 @@ export default function WeatherProject() {
   
   // console.log('weatherGuessOrder', weatherGuessOrder)
   // console.log('currentCityIndex', currentCityIndex)
-  // console.log('cityData[currentCityIndex]', cityData[currentCityIndex])
+  console.log('cityData[currentCityIndex]', cityData[currentCityIndex])
 
 
   return (<>
@@ -248,7 +246,7 @@ export default function WeatherProject() {
             {/* grid layout for user options IF data loaded, otherwise display loading div */}
             <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-4 px-4 py-14'>
               { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
-                return <WeatherCard key={guessIndex} guessIndex={guessIndex} guessType={guessType} cityData={cityData} currentCityIndex={currentCityIndex} />
+                return <WeatherCard key={guessIndex} guessIndex={guessIndex} guessType={guessType} cityData={cityData} setCityData={setCityData} currentCityIndex={currentCityIndex} />
               }) : null }               
               {/* button to submit guess */}
               <div className='flex justify-center pt-10 pb-8'>
