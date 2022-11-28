@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import axios from 'axios';
@@ -6,9 +6,12 @@ import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
 
 export default function WeatherProject() {
-  // let weatherGuessOrder = [ 'default', 'modifiedA', 'modifiedB']
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
+  let weatherGuessOrderMemo = useMemo(() => shuffleArray(weatherGuessOrder), [weatherGuessOrder])
+    // [ 'default', 'modifiedA', 'modifiedB']
+
   
+  const [ isLoadingData, setIsLoadingData ] = useState(false)
   const [ gameData, setGameData ] = useState({
     score: 0,
     userGuesses: [
@@ -118,11 +121,7 @@ export default function WeatherProject() {
   }]
 )  
 
-  // CAN I REFACTOR TO IMPROVE OR REMOVE THIS
-  // if current city index < 9, reset to 0
-  // if (currentCityIndex > 9) {
-  //   setCurrentCityIndex(0)
-  // }
+  
   
   // create an array, limited to 3 positions, saving the keys, default, modifiedA, and modifiedB
   function shuffleArray(array) {
@@ -133,6 +132,7 @@ export default function WeatherProject() {
 }
   // attempt using useEffect
   useEffect(() => {
+    setIsLoadingData(true)
 
     // setWeatherGuessOrder( shuffleArray(weatherGuessOrder) )
     shuffleArray(weatherGuessOrder)
@@ -144,48 +144,28 @@ export default function WeatherProject() {
     // console.log('use effect called')
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
-      let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1`
+      let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1&units=imperial`
       // console.log('apiURL', apiURL)
       axios.get(apiURL)
-      .then((response) => {        
-        console.log('response', response)
+      .then((response) => {            
         // deep clone of the existing cityData
         let cityDataClone = JSON.parse(JSON.stringify(cityData))
-        // update the data for currently selected city
-        cityDataClone[currentCityIndex].data = response.data
-        // call modified function for modified A
+        // update the data for currently selected city        
+        cityDataClone[currentCityIndex].data = response.data        
         cityDataClone[currentCityIndex].dataModifiedA = response.data
-        // call modified function for modified B
-        cityDataClone[currentCityIndex].dataModifiedB = response.data
-        setCityData([...cityDataClone])        
-
+        cityDataClone[currentCityIndex].dataModifiedB = response.data        
+        setCityData([...cityDataClone])                
       })      
     }
+    setIsLoadingData(false)
   
   }, [currentCityIndex, cityData, weatherGuessOrder])
-
-
-  // console.log('cityData', cityData)
   
-
-  // build array of random functions that slightly modify the weather fields
-
-
-  // include fields: 
-
-  // 4 functions to randomize data
-  // 1) daily high weather by increase by 3, daily high increase by 1, humidity, add 5%
-  // 2) decrease daily low, delay sunset by 3 minutes
-  // 3) decrease daily low by 2, increase daily high by 4, reduce humidity
-  // 4) move sunrise/sunset earlier in the day by a few minutes, lower daily high by 3 degrees
-
-
-  // END GOAL, display weather cards for user to guess in a random order
+  
   // console.log('weatherGuessOrder', weatherGuessOrder)
   // console.log('currentCityIndex', currentCityIndex)
+  // console.log('cityData[currentCityIndex]', cityData[currentCityIndex])
 
-
-  // console.log('currentCityIndex', currentCityIndex)
 
   return (<>
     <HeaderNavigation/>
@@ -193,7 +173,7 @@ export default function WeatherProject() {
       {/* Page Title & Description */}      
       <div className=''>
         {/* Upper Header Section */}
-        <div className='flex flex-row justify-evenly bg-slate-400 p-4'>
+        <div className='flex flex-col md:flex-row justify-evenly bg-slate-400 p-4'>
           <div className='w-8/12 p-4'>
             <h2 className='text-2xl'>Weather Project</h2>
             <p className='py-2'>
@@ -234,7 +214,7 @@ export default function WeatherProject() {
       {/* List of citites & city info  */}
       <div className='p-4'>
         <h3 className='text-2xl'>Cities & Status:</h3>
-        <div className='grid grid-cols-3 md:grid-cols-5 justify-items-center gap-4 py-4'>
+        <div className='grid grid-cols-2 md:grid-cols-5 justify-items-center gap-4 py-4'>
           { cityData.map((city, cityIndex) => <>
           <div className='w-40'>
                 {/* {city.name} */}
@@ -255,26 +235,37 @@ export default function WeatherProject() {
 
       {/* GUESSING SECTION */}
       <section>
-        {/* area to guess which weather card is correct */}
-        <div className=''>
-          <h3 className='text-2xl tracking-wide'>Guess The Correct Weather</h3>
-          {/* grid layout for user options */}
-          <div className='grid grid-cols-3 justify-evenly justify-items-center py-14'>
-            { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
-              return <WeatherCard key={guessIndex} guessType={guessType} cityData={cityData} currentCityIndex={currentCityIndex} />
-            }) : null} 
-            
+        { isLoadingData ? <>
+          <div className='flex flex-col w-max h-52 m-auto'>
+            <div className='bg-slate-200 border-b-2 border-sky-800 rounded-full animate-spin h-10 w-10 m-auto'>
+            </div>
+              <p className='m-auto'>Loading Data...</p>
           </div>
-        </div>        
+        </> : <>
+          {/* area to guess which weather card is correct */}
+          <div className=''>
+            <h3 className='text-2xl tracking-wide'>Guess The Correct Weather</h3>
+            {/* grid layout for user options IF data loaded, otherwise display loading div */}
+            <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-4 px-4 py-14'>
+              { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
+                return <WeatherCard key={guessIndex} guessIndex={guessIndex} guessType={guessType} cityData={cityData} currentCityIndex={currentCityIndex} />
+              }) : null }               
+              {/* button to submit guess */}
+              <div className='flex justify-center pt-10 pb-8'>
+                <div className='py-8 px-16 border-2 border-slate-700 border-dashed rounded-xl'>
+                  <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
+                    Submit My Guess
+                  </button>
+                </div>
+              </div>            
+            </div>
 
-        {/* button to submit guess */}
-        <div className='flex justify-center pt-10 pb-8'>
-          <div className='py-8 px-16 border-2 border-slate-700 border-dashed rounded-xl'>
-            <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
-              Submit My Guess
-            </button>
-          </div>
-        </div>
+
+
+          </div>        
+        </>}
+        
+
 
       </section>      
 
