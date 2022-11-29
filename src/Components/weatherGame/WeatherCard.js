@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { WiThermometer } from "react-icons/wi";
+import { WiThermometer, WiHumidity, WiCloud, WiCloudyGusts, WiCloudyWindy } from "react-icons/wi";
 
 export default function WeatherCard(props) {
-    let clonedData = Object.assign({}, props.cityData[props.currentCityIndex].data)
 
     const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
 
@@ -11,7 +10,7 @@ export default function WeatherCard(props) {
             status: 'SET',
             modified: false,
             cityName: props.cityData[props.currentCityIndex].name,
-            population: props.cityData[props.currentCityIndex].population,
+            population: props.cityData[props.currentCityIndex].data.city.population,
             sunrise: props.cityData[props.currentCityIndex].data.city.sunrise,
             sunset: props.cityData[props.currentCityIndex].data.city.sunset,
             currentTemp: props.cityData[props.currentCityIndex].data.list[0].main.temp,
@@ -44,44 +43,62 @@ export default function WeatherCard(props) {
                 }))                                
                 break;
             case 2:
-                    
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))    
                 break;
             case 3:
-                        
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))    
                 break;
             case 4:
-                            
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))            
                 break;
             case 5:
-                                
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))                 
                 break;
             case 6:
-                                    
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))                   
                 break;
             case 7:
-                                        
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))                        
                 break;
             case 8:
-                                            
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))                           
                 break;
             case 9:
-                                                
-                break;
-                                                
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true
+                }))                              
+                break;                                                
             default:
                 // default is same as case 1
                 break;
         }
                                                                                                         
     }
-    
-        // set currentData, based on the guess type which is shuffeled whenever a new city is selected
-    // let weatherCardData = {}
+            
 
-    switch (props.guessType) {
-        case 'defualt':
-            // weatherCardData = props.cityData[props.currentCityIndex].data
-            break;
+    switch (props.guessType) {        
         case 'modifiedA':
             
             if (!weatherCardState.modified) {
@@ -91,14 +108,13 @@ export default function WeatherCard(props) {
         case 'modifiedB':
             if (!weatherCardState.modified) {
                 modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
-            }
-            // weatherCardData = modifyWeatherData(props.cityData[props.currentCityIndex].dataModifiedB)            
+            }                     
             break;    
         default:
-            // weatherCardData = props.cityData[props.currentCityIndex].data
+            // don't manipulate data
             break;
     }
-        // console.log('weatherCardData', weatherCardData)            
+        
 
 
     
@@ -108,45 +124,65 @@ export default function WeatherCard(props) {
     // console.log('weatherCardData', weatherCardData)
     // console.log('props.guessType', props.guessType)
 
-    const formatTimeDate = ( dt ) => {
-        let date = new Date(dt * 1000)
-        let dateString = date.toLocaleDateString("en-US")
-        let timeString = date.toLocaleTimeString("en-US")
-        
-        return ` ${timeString} - ${dateString} ` 
+    const formatTime = ( dt ) => {
+        let date = new Date(dt * 1000)        
+        let timeString = date.toLocaleTimeString("en-US")        
+        return timeString
     }
 
 
     return (
     <section className='border-2 border-sky-400 bg-sky-300/50 p-8 rounded-lg shadow-2xl'>
-
-        <div>
-            {/* title */}
-            <div>
-                <p>Guess# {props.guessIndex}</p>
+        {/* title */}
+        <div className='relative -top-12 -left-10 bg-sky-400 rounded-xl'>
+            <h3 className='text-xl text-center'>{weatherCardState.cityName} - Guess # {props.guessIndex + 1}</h3>
+        </div>
+        <div className='flex mt-0'>
+            <p className='text-xs text-slate-600'>Population: {weatherCardState.population}</p>
+        </div>
+        <div className='flex flex-col justify-evenly'>
+            <div>                
                 <h4>{weatherCardState.cityName} {props.guessType} A:{props.cityData[props.currentCityIndex].randNumA} B:{props.cityData[props.currentCityIndex].randNumB}</h4>
             </div>
 
             {/* sunrise/sunset progress bar */}            
-            <div>
-                <p className='text-xs text-slate-600'>Population: {weatherCardState.population}</p>
-                <div className='flex flex-row justify-evenly'>                    
-                    <span>Sunrise: { formatTimeDate(weatherCardState.sunrise)}</span>
-                    <span>Sunset { formatTimeDate(weatherCardState.sunset)}</span>
+            <div className='flex flex-col items-center py-2'>
+                <div className='flex flex-col '>         
+                    <p>Sunrise: { formatTime(weatherCardState.sunrise)}</p>
                 </div>
-                
-
+                <div className='flex flex-col'>         
+                    <p>Sunset { formatTime(weatherCardState.sunset)}</p>
+                </div>        
             </div>
 
             {/* weather description & details */}
-            <div className='flex flex-col'>
-                {/* <WiThermometer/> */} 
-                <p>current weather{weatherCardState.currentTemp}</p>
-                <p>feels like: {weatherCardState.feelsLike}</p>
-                <p>Cloudiness: {weatherCardState.clouds}</p>
-                <p>humidity{weatherCardState.humidity}</p>
-                <p>Winds/Gust: {weatherCardState.wind} / {weatherCardState.gust}</p>                
-                <p>Description: {weatherCardState.description}</p>
+            <div className='flex flex-col pt-4'>                
+                <div className='flex flex-row justify-evenly'>
+                    <p>Cloudiness: {weatherCardState.clouds}%</p>
+                    <WiCloud size={28} />
+                </div>
+                <div className='flex flex-row justify-evenly'>
+                    <p>Humidity: {weatherCardState.humidity}%</p>
+                    <WiHumidity size={28} />
+
+                </div>
+                <div className='flex flex-row justify-evenly'>
+                    <p>Winds: {weatherCardState.wind}<span className='text-xs text-slate-600 italic'>m/s</span> </p>
+                    <WiCloudyWindy size={28} />
+                </div>
+                <div className='flex flex-row justify-evenly'>
+                    <p>Gusts: {weatherCardState.gust}<span className='text-xs text-slate-600 italic'>m/s</span> </p>                
+                    <WiCloudyGusts size={28} />
+                </div>
+                <div className='flex flex-row justify-evenly'>
+                    <p>Current Temp: {weatherCardState.currentTemp}</p>
+                    <WiThermometer size={28}/> 
+                </div>
+                <div className='flex flex-row justify-evenly pb-4'>
+                    <p className='text-xs text-slate-600 italic'>
+                        feels like {weatherCardState.feelsLike} with {weatherCardState.description} conditions 
+                    </p>                    
+                </div>
 
 
             </div>
