@@ -8,6 +8,7 @@ import CityStatus from '../components/weatherGame/CityStatus'
 export default function WeatherProject() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
   let weatherGuessOrderMemo = useMemo(() => shuffleArray(weatherGuessOrder), [weatherGuessOrder])
+  const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
 
   
   const [ isLoadingData, setIsLoadingData ] = useState(false)
@@ -15,9 +16,6 @@ export default function WeatherProject() {
     score: 0,
     userGuesses: [
       {
-        guessed: 'correct'
-      },
-      {
         guessed: null
       },
       {
@@ -33,9 +31,6 @@ export default function WeatherProject() {
         guessed: null
       },
       {
-        guessed: 'incorrect'
-      },
-      {
         guessed: null
       },
       {
@@ -44,8 +39,15 @@ export default function WeatherProject() {
       {
         guessed: null
       },
+      {
+        guessed: null
+      },
+      {
+        guessed: null
+      }
     ]
   })
+
   const [ currentCityIndex, setCurrentCityIndex ] = useState(0)
   const [ cityData, setCityData ] = useState([{
     name: 'Los Angeles',
@@ -57,7 +59,7 @@ export default function WeatherProject() {
   },{ 
     name: 'Dallas',
     lat: '32.77',
-    lon: '96.79',
+    lon: '-96.79',
     data: null,
     randNumA: Math.floor( Math.random() * 6),
     randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
@@ -65,7 +67,7 @@ export default function WeatherProject() {
   },{ 
     name: 'Chicago',
     lat: '41.87',
-    lon: '87.62',
+    lon: '-87.62',
     data: null,
     randNumA: Math.floor( Math.random() * 5),
     randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
@@ -129,16 +131,44 @@ export default function WeatherProject() {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-}
+  }
+
+
+  const handleUserSelectGuess = ( guessIndex ) => {
+    setCurrentlySelectedGuess(weatherGuessOrder[guessIndex])
+    if (weatherGuessOrder[guessIndex] === 'default') {
+      console.log('correct answer')
+    } else {
+      console.log('incorrect answer')
+    }
+  }
+
+  const submitUserGuess = () => {
+    console.log('submit guess called')
+    if (currentlySelectedGuess === 'default') {
+      console.log('gameData', gameData)
+      setGameData( gameData => ({
+        ...gameData, 
+        score: (gameData.score + 1),
+        // userGuesses[currentCityIndex].guessed: 'correct'
+      }))
+    }
+
+  }
+
+  const handleNewCity = (cityIndex) => {
+    setCurrentCityIndex(cityIndex) 
+    setCurrentlySelectedGuess(null)
+  }
+
+
   // attempt using useEffect
   useEffect(() => {
     setIsLoadingData(true)
 
-    // setWeatherGuessOrder( shuffleArray(weatherGuessOrder) )
-    shuffleArray(weatherGuessOrder)
     
-
-
+    shuffleArray(weatherGuessOrder)
+  
     // if weather data for current city not already loaded, 
 
     // console.log('use effect called')
@@ -232,8 +262,8 @@ export default function WeatherProject() {
                   cityIndex={cityIndex}
                   gameData={gameData}
                   setGameData={setGameData}
-                  currentCityIndex={currentCityIndex}
-                  setCurrentCityIndex={setCurrentCityIndex}
+                  currentCityIndex={currentCityIndex} setCurrentCityIndex={setCurrentCityIndex}
+                  handleNewCity={handleNewCity}
                 />              
           </div>
           </>) }
@@ -258,7 +288,7 @@ export default function WeatherProject() {
                 <h3 className='text-2xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
               </div>
 
-                <div className='flex justify-center w-1/2 m-auto'>
+                <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
                   <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
                     Submit My Guess
                   </button>
@@ -269,7 +299,14 @@ export default function WeatherProject() {
             {/* grid layout for user options IF data loaded, otherwise display loading div */}
             <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-8 md:gap-2 px-4 py-10'>
               { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
-                return <WeatherCard key={guessIndex} guessIndex={guessIndex} guessType={guessType} cityData={cityData} setCityData={setCityData} currentCityIndex={currentCityIndex} />
+                return <WeatherCard 
+                  key={guessIndex} 
+                  guessIndex={guessIndex} guessType={guessType} 
+                  cityData={cityData} setCityData={setCityData} 
+                  currentCityIndex={currentCityIndex} 
+                  currentlySelectedGuess={currentlySelectedGuess} setCurrentlySelectedGuess={setCurrentlySelectedGuess}  
+                  handleUserSelectGuess={handleUserSelectGuess}
+                />
               }) : null }               
             </div>          
           </div>        

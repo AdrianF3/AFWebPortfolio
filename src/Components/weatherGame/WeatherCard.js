@@ -4,7 +4,7 @@ import { WiThermometer, WiHumidity, WiCloud, WiCloudyGusts, WiCloudyWindy } from
 export default function WeatherCard(props) {
 
     const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
-
+    const [ cardSelected, setCardSelected ] = useState(null)
     if (weatherCardState.status === 'PENDING') {
         const returnStateObject = {
             status: 'SET',
@@ -129,9 +129,14 @@ export default function WeatherCard(props) {
         return timeString
     }
 
+    console.log('props.currentlySelectedGuess', props.currentlySelectedGuess)
+    console.log('cardSelected', cardSelected)
 
     return (
-    <section className='border-2 border-sky-400 bg-sky-300/50 p-8 rounded-lg shadow-2xl'>
+    <section 
+        className={`border-2 border-sky-400 p-8 rounded-lg shadow-2xl ${props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50' }`}
+        onClick={() => props.handleUserSelectGuess(props.guessIndex)}
+    >
         {/* title */}
         <div className='relative -top-12 -left-10 bg-sky-400 rounded-xl p-2'>
             <h3 className='text-xl text-center'>{weatherCardState.cityName} - Guess # {props.guessIndex + 1}</h3>
@@ -139,7 +144,7 @@ export default function WeatherCard(props) {
         <div className='flex flex-col justify-evenly'>
             {/* sunrise/sunset progress bar */}            
             <div className='flex flex-col items-center py-2'>
-                <div className='flex flex-col '>         
+                <div className='flex flex-col '>         wea
                     <p>Sunrise: { formatTime(weatherCardState.sunrise)}</p>
                 </div>
                 <div className='flex flex-col'>         
@@ -172,7 +177,7 @@ export default function WeatherCard(props) {
                 </div>
                 <div className='flex flex-row justify-evenly pb-4'>
                     <p className='text-xs text-slate-600 italic'>
-                        feels like {weatherCardState.feelsLike} with {weatherCardState.description} conditions 
+                        feels like {weatherCardState.feelsLike}, described as <span className='italic'>'{weatherCardState.description}'</span>
                     </p>                    
                 </div>
             </div>

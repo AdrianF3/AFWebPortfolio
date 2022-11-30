@@ -7,7 +7,7 @@ export default function CityStatus(props) {
   // onClick load the index of the city into currentCityIndex state 
   // selected = blue
   // guessed correct
-  // guessed incorrect
+  // guessed incorrec
 
   // determine border& background color 
   let borderColor = 'border-slate-600 bg-sky-300/30'
@@ -38,10 +38,10 @@ export default function CityStatus(props) {
   return (<>
     <section 
       className={`flex flex-col m-1 md:m-2 items-center text-center ${borderColor} border-2 shadow-xl rounded-xl`}
-      onClick={() => props.setCurrentCityIndex(props.cityIndex)}
+      onClick={() => props.handleNewCity(props.cityIndex)}
     >
       {/* guessed status */}
-      <div className='relative'>
+      <div className='relative -right-12 bg-slate-100 border-2 border-slate-400 p-1 rounded-full -top-4'>
         {guessedSymbol}
       </div>
 
