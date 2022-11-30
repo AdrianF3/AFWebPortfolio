@@ -9,8 +9,7 @@ export default function WeatherCard(props) {
         const returnStateObject = {
             status: 'SET',
             modified: false,
-            cityName: props.cityData[props.currentCityIndex].name,
-            population: props.cityData[props.currentCityIndex].data.city.population,
+            cityName: props.cityData[props.currentCityIndex].name,            
             sunrise: props.cityData[props.currentCityIndex].data.city.sunrise,
             sunset: props.cityData[props.currentCityIndex].data.city.sunset,
             currentTemp: props.cityData[props.currentCityIndex].data.list[0].main.temp,
@@ -134,17 +133,10 @@ export default function WeatherCard(props) {
     return (
     <section className='border-2 border-sky-400 bg-sky-300/50 p-8 rounded-lg shadow-2xl'>
         {/* title */}
-        <div className='relative -top-12 -left-10 bg-sky-400 rounded-xl'>
+        <div className='relative -top-12 -left-10 bg-sky-400 rounded-xl p-2'>
             <h3 className='text-xl text-center'>{weatherCardState.cityName} - Guess # {props.guessIndex + 1}</h3>
-        </div>
-        <div className='flex mt-0'>
-            <p className='text-xs text-slate-600'>Population: {weatherCardState.population}</p>
-        </div>
+        </div>        
         <div className='flex flex-col justify-evenly'>
-            <div>                
-                <h4>{weatherCardState.cityName} {props.guessType} A:{props.cityData[props.currentCityIndex].randNumA} B:{props.cityData[props.currentCityIndex].randNumB}</h4>
-            </div>
-
             {/* sunrise/sunset progress bar */}            
             <div className='flex flex-col items-center py-2'>
                 <div className='flex flex-col '>         
@@ -183,8 +175,6 @@ export default function WeatherCard(props) {
                         feels like {weatherCardState.feelsLike} with {weatherCardState.description} conditions 
                     </p>                    
                 </div>
-
-
             </div>
         </div>
     </section>
