@@ -163,6 +163,9 @@ export default function WeatherProject() {
   }
 
   // const apiKey ='186bd501fb99a25eb3920a4deee082d1'
+  const baseURL = window.location.href
+  console.log(baseURL)
+
 
   // attempt using useEffect
   useEffect(() => {
@@ -177,31 +180,36 @@ export default function WeatherProject() {
     // console.log('use effect called')
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
-      let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&units=imperial&appid=${key}`
+      let apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&units=imperial&appid=${key}`
       console.log('apiURL', apiURL)
       
-      // axios.get(apiURL)
-      // .then((response) => {           
-      //   console.log('response', response) 
-      //   response.headers.set()
-      //   // deep clone of the existing cityData
-      //   let cityDataClone = JSON.parse(JSON.stringify(cityData))
-      //   // update the data for currently selected city        
-      //   cityDataClone[currentCityIndex].data = response.data             
-      //   setCityData([...cityDataClone])                
-      // }) 
+      // axios.get(apiURL, {"headers": {""} })
+      axios({
+        method: 'get',
+        url: apiURL,
+      withCredentials: false,
+      })
+      .then((response) => {           
+        console.log('response', response) 
+        response.headers.set()
+        // deep clone of the existing cityData
+        let cityDataClone = JSON.parse(JSON.stringify(cityData))
+        // update the data for currently selected city        
+        cityDataClone[currentCityIndex].data = response.data             
+        setCityData([...cityDataClone])                
+      }) 
 
-      try {
-        fetch(apiURL).then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          let cityDataClone = JSON.parse(JSON.stringify(cityData))
-          cityDataClone[currentCityIndex].data = data
-          setCityData(cityDataClone)
-        })
-      } catch (error) {
-        console.log('thats an oops')
-      }     
+      // try {
+      //   fetch(apiURL).then((response) => response.json())
+      //   .then((data) => {
+      //     console.log(data)
+      //     let cityDataClone = JSON.parse(JSON.stringify(cityData))
+      //     cityDataClone[currentCityIndex].data = data
+      //     setCityData(cityDataClone)
+      //   })
+      // } catch (error) {
+      //   console.log('thats an oops')
+      // }     
     }
     setIsLoadingData(false)
   
