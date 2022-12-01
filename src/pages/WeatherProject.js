@@ -7,8 +7,9 @@ import CityStatus from '../components/weatherGame/CityStatus'
 
 export default function WeatherProject() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
-  let weatherGuessOrderMemo = useMemo(() => shuffleArray(weatherGuessOrder), [weatherGuessOrder])
+  // let weatherGuessOrderMemo = useMemo(() => shuffleArray(weatherGuessOrder), [weatherGuessOrder])
   const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
+  // const [ cardSelected, setCardSelected ] = useState(null)
 
   
   const [ isLoadingData, setIsLoadingData ] = useState(false)
@@ -134,66 +135,86 @@ export default function WeatherProject() {
   }
 
 
-  const handleUserSelectGuess = ( guessIndex ) => {
-    setCurrentlySelectedGuess(weatherGuessOrder[guessIndex])
-    if (weatherGuessOrder[guessIndex] === 'default') {
-      console.log('correct answer')
-    } else {
-      console.log('incorrect answer')
-    }
-  }
+  const handleUserSelectGuess = ( guessIndex ) => { setCurrentlySelectedGuess(weatherGuessOrder[guessIndex]) }
 
   const submitUserGuess = () => {
-    console.log('submit guess called')
-    if (currentlySelectedGuess === 'default') {
-      console.log('gameData', gameData)
-      setGameData( gameData => ({
-        ...gameData, 
-        score: (gameData.score + 1),
-        // userGuesses[currentCityIndex].guessed: 'correct'
-      }))
+    let tempUserGuesses = [...gameData.userGuesses]
+    if (currentlySelectedGuess !== null) {
+      if (currentlySelectedGuess === 'default') {      
+        tempUserGuesses[currentCityIndex] = { ...tempUserGuesses[currentCityIndex], guessed: 'correct'}
+        setGameData( gameData => ({
+          ...gameData, 
+          score: (gameData.score + 1),
+          userGuesses: tempUserGuesses
+        }))
+      } else { 
+        tempUserGuesses[currentCityIndex] = { ...tempUserGuesses[currentCityIndex], guessed: 'incorrect'}      
+        setGameData( gameData => ({
+        ...gameData,
+        userGuesses:tempUserGuesses
+      })) }      
     }
-
   }
 
   const handleNewCity = (cityIndex) => {
     setCurrentCityIndex(cityIndex) 
+    shuffleArray(weatherGuessOrder)
     setCurrentlySelectedGuess(null)
   }
 
+  // const apiKey ='186bd501fb99a25eb3920a4deee082d1'
 
   // attempt using useEffect
   useEffect(() => {
     setIsLoadingData(true)
 
     
-    shuffleArray(weatherGuessOrder)
+    // shuffleArray(weatherGuessOrder)
   
     // if weather data for current city not already loaded, 
 
+    let key = process.env.REACT_APP_API_KEY
     // console.log('use effect called')
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
-      let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&appid=186bd501fb99a25eb3920a4deee082d1&units=imperial`
-      // console.log('apiURL', apiURL)
-      axios.get(apiURL)
-      .then((response) => {            
-        // deep clone of the existing cityData
-        let cityDataClone = JSON.parse(JSON.stringify(cityData))
-        // update the data for currently selected city        
-        cityDataClone[currentCityIndex].data = response.data             
-        setCityData([...cityDataClone])                
-      })      
+      let apiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&units=imperial&appid=${key}`
+      console.log('apiURL', apiURL)
+      
+      // axios.get(apiURL)
+      // .then((response) => {           
+      //   console.log('response', response) 
+      //   response.headers.set()
+      //   // deep clone of the existing cityData
+      //   let cityDataClone = JSON.parse(JSON.stringify(cityData))
+      //   // update the data for currently selected city        
+      //   cityDataClone[currentCityIndex].data = response.data             
+      //   setCityData([...cityDataClone])                
+      // }) 
+
+      try {
+        fetch(apiURL).then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          let cityDataClone = JSON.parse(JSON.stringify(cityData))
+          cityDataClone[currentCityIndex].data = data
+          setCityData(cityDataClone)
+        })
+      } catch (error) {
+        console.log('thats an oops')
+      }     
     }
     setIsLoadingData(false)
   
-  }, [currentCityIndex, cityData, weatherGuessOrder])
+  }, [currentCityIndex, cityData])
   
   
   // console.log('weatherGuessOrder', weatherGuessOrder)
   // console.log('currentCityIndex', currentCityIndex)
-  console.log('cityData[currentCityIndex]', cityData[currentCityIndex])
-
+  // console.log('cityData[currentCityIndex]', cityData[currentCityIndex])
+  // console.log('currentlySelectedGuess', currentlySelectedGuess)
+  // console.log('gameData', gameData)
+  // console.log('process.env.REACT_APP_API_KEY', process.env.REACT_APP_API_KEY)
+  // console.log('key', key)
 
   return (<>
     <HeaderNavigation/>
@@ -287,12 +308,13 @@ export default function WeatherProject() {
               <div className='flex justify-center w-1/2 m-auto'>
                 <h3 className='text-2xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
               </div>
-
+                {gameData.userGuesses[currentCityIndex].guessed !== null ? <div><p>You've already guessed</p></div> : 
                 <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
                   <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
                     Submit My Guess
                   </button>
                 </div>
+                }
               
 
             </div>
@@ -306,6 +328,7 @@ export default function WeatherProject() {
                   currentCityIndex={currentCityIndex} 
                   currentlySelectedGuess={currentlySelectedGuess} setCurrentlySelectedGuess={setCurrentlySelectedGuess}  
                   handleUserSelectGuess={handleUserSelectGuess}
+                  // cardSelected={cardSelected}
                 />
               }) : null }               
             </div>          

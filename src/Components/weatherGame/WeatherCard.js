@@ -4,7 +4,6 @@ import { WiThermometer, WiHumidity, WiCloud, WiCloudyGusts, WiCloudyWindy } from
 export default function WeatherCard(props) {
 
     const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
-    const [ cardSelected, setCardSelected ] = useState(null)
     if (weatherCardState.status === 'PENDING') {
         const returnStateObject = {
             status: 'SET',
@@ -129,8 +128,11 @@ export default function WeatherCard(props) {
         return timeString
     }
 
-    console.log('props.currentlySelectedGuess', props.currentlySelectedGuess)
-    console.log('cardSelected', cardSelected)
+    // console.log('props.currentlySelectedGuess', props.currentlySelectedGuess)
+    // console.log('props.cardSelected', props.cardSelected)
+    // console.log('props', props)
+    // console.log('props.guessType', props.guessType)
+    // console.log('props.', props.)
 
     return (
     <section 
@@ -139,12 +141,16 @@ export default function WeatherCard(props) {
     >
         {/* title */}
         <div className='relative -top-12 -left-10 bg-sky-400 rounded-xl p-2'>
-            <h3 className='text-xl text-center'>{weatherCardState.cityName} - Guess # {props.guessIndex + 1}</h3>
+            <div className='flex flex-col'>
+                <p className='text-xs text-slate-600 italic'>Option {props.guessIndex + 1}</p>
+                <h3 className='text-xl text-center'>{weatherCardState.cityName}</h3>
+
+            </div>
         </div>        
         <div className='flex flex-col justify-evenly'>
             {/* sunrise/sunset progress bar */}            
-            <div className='flex flex-col items-center py-2'>
-                <div className='flex flex-col '>         wea
+            <div className='flex flex-col items-center -mt-8'>
+                <div className='flex flex-col'>
                     <p>Sunrise: { formatTime(weatherCardState.sunrise)}</p>
                 </div>
                 <div className='flex flex-col'>         
@@ -175,8 +181,8 @@ export default function WeatherCard(props) {
                     <p>Current Temp: {weatherCardState.currentTemp}</p>
                     <WiThermometer size={28}/> 
                 </div>
-                <div className='flex flex-row justify-evenly pb-4'>
-                    <p className='text-xs text-slate-600 italic'>
+                <div className='flex flex-row justify-evenly pt-2'>
+                    <p className='text-xs text-center text-slate-600 italic'>
                         feels like {weatherCardState.feelsLike}, described as <span className='italic'>'{weatherCardState.description}'</span>
                     </p>                    
                 </div>
