@@ -198,18 +198,7 @@ export default function WeatherProject() {
         cityDataClone[currentCityIndex].data = response.data             
         setCityData([...cityDataClone])                
       }) 
-
-      // try {
-      //   fetch(apiURL).then((response) => response.json())
-      //   .then((data) => {
-      //     console.log(data)
-      //     let cityDataClone = JSON.parse(JSON.stringify(cityData))
-      //     cityDataClone[currentCityIndex].data = data
-      //     setCityData(cityDataClone)
-      //   })
-      // } catch (error) {
-      //   console.log('thats an oops')
-      // }     
+      
     }
     setIsLoadingData(false)
   
@@ -327,7 +316,8 @@ export default function WeatherProject() {
 
             </div>
             {/* grid layout for user options IF data loaded, otherwise display loading div */}
-            <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-8 md:gap-2 px-4 py-10'>
+            {/* <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-8 md:gap-2 px-4 py-10'> */}
+            <div className='flex whitespace-nowrap overflow-x-auto gap-4 snap-x scroll-px-4'> 
               { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
                 return <WeatherCard 
                   key={guessIndex} 
