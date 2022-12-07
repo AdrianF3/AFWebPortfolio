@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}  />
         <Route path='weather' element={<WeatherProject />}  />
-        <Route path='ytcontroller' element={<YouTubeController />}  />      
+        {/* <Route path='ytcontroller' element={<YouTubeController />}  />       */}
         <Route path='billsplit' element={<BillSplit />}  />      
 
       </Routes>      

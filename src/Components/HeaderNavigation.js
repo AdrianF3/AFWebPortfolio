@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 
-export default function HeaderNavigation() {
+export default function HeaderNavigation(props) {
     const [isMobileMenuOpen,
         setIsMobileMenuOpen] = useState(false)
     const [isPortfolioOpen,
@@ -9,12 +9,8 @@ export default function HeaderNavigation() {
 
     const defaultMenu = (
         <div className='hidden md:flex flex-row gap-4 md:mr-4 my-auto'>
-            <NavLink to='/'>
-                <p className=''>Home</p>
-            </NavLink>
-            <NavLink to=''>
-                <p>Get In Touch</p>
-            </NavLink>
+            <p onClick={props.handleScrollToBottom}>Get In Touch</p>
+
             <div className='flex flex-col justify-center text-center'>
                 <button
                     onClick={() => {
@@ -33,11 +29,8 @@ export default function HeaderNavigation() {
                             </NavLink>
                             <NavLink to='/billsplit'>
                                 <p className=''>Bill Splitter</p>
-                            </NavLink>
-                            <NavLink to='/ytcontroller'>
-                                <p>YouTube Controller</p>
-                            </NavLink>
-                            <NavLink to=''>
+                            </NavLink>                            
+                            <NavLink to='https://EctorGrow.com'>
                                 <p>Ector Grow</p>
                             </NavLink>
                         </ul>
@@ -48,9 +41,10 @@ export default function HeaderNavigation() {
 
     const mobileMenu = (
         <div className='flex flex-col justify-center text-center gap-2 py-2'>
-            <NavLink to='/'>
+            {/* <NavLink to='/'>
                 <p className=''>Home</p>
-            </NavLink>
+            </NavLink> */}
+            {/* <a href='' target='_blank' /> */}
             <NavLink to=''>
                 <p>Get In Touch</p>
             </NavLink>

@@ -77,7 +77,7 @@ export default function PortfolioDescriptions() {
       </div>
 
 
-      <div className="flex items-start col-span-1">
+      {/* <div className="flex items-start col-span-1">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
           <i className='material-icons'>play_arrow</i>
         </span>
@@ -91,7 +91,7 @@ export default function PortfolioDescriptions() {
             Quaerat, saepe?
           </p>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex items-start col-span-1">
         <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
@@ -99,7 +99,7 @@ export default function PortfolioDescriptions() {
         </span>
 
         <div className="ml-4">
-          <h2 className="text-lg font-bold">Multi Step Form</h2>
+          <h2 className="text-lg font-bold">Roommate Bill Splitter</h2>
 
           <p className="mt-1 text-sm text-gray-300">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Error

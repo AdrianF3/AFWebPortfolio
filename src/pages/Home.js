@@ -5,15 +5,16 @@ import Header from '../components/home/Header'
 import PreviousEmployers from '../components/home/PreviousEmployers'
 import HeaderNavigation from '../components/HeaderNavigation'
 import PortfolioDescriptions from '../components/home/PortfolioDescriptions'
-
+import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 
 
 export default function Home() {
+
   return (
     <section>
         {/* Header / Welcome Area */}
           {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}                    
-          <HeaderNavigation />
+          <HeaderNavigation handleScrollToBottom={handleScrollToBottom} />
           <Header />             
         {/* Skills Brief Description of expereince */}        
         {/* Developer Experience & Projects */}

@@ -8,6 +8,7 @@ import TransactionDisplay from '../components/billSplit/TransactionDisplay'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import { useBillSplitApp } from '../hooks/useBillSplitApp'
+import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 
 export default function BillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
@@ -88,7 +89,7 @@ export default function BillSplit() {
       setTransactionModal={setTransactionModal}
     /> : null}
     
-    <HeaderNavigation/>
+    <HeaderNavigation handleScrollToBottom={handleScrollToBottom}/>
     <section>
       {/* Page Title and Description */}
       <div className=''>
