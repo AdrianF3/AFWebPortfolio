@@ -4,14 +4,14 @@ import githubSVG from '../images/githubMinisvg.svg'
 
 export default function ContactSection() {
     return (
-        <section className="text-gray-600 body-font relative p-4">
+        <section className="flex flex-col text-gray-600 body-font justify-items-center p-4">
             <div
-                className="container px-5 py-24 mx-auto border-cyan-900 border-4 bg-cyan-900/30 rounded-xl">
+                className="container mx-auto px-2 py-24 border-cyan-900 border-4 bg-cyan-900/30 rounded-xl">
 
                 <div className="flex flex-col text-center w-full mb-8">
                     <h2 className='tracking-widest text-4xl uppercase'>Adrian Fregoso</h2>
                     <p className="leading-normal my-5">
-                        <span className='tracking-wider font-bold underline underline-offset-3'>Denver, Colorado</span>
+                        <span className='tracking-wider text-2xl font-bold underline underline-offset-3'>Denver, Colorado</span>
                     </p>
                     <div>
                         <button className='p-3 bg-cyan-700 rounded-xl text-white text-xl text-wider'>
@@ -42,15 +42,18 @@ export default function ContactSection() {
 
             </div>
             {/* lower footer tags */}
-            <div className='flex flex-row w-8/12 mx-auto justify-center py-4'>
-                <p>Adrian Fregoso | 2022 | V1 | 
-                    <a 
-                        className='font-medium ml-1'
-                        href='https://github.com/AdrianF3/AFWebPortfolio' 
-                        target='_blank' 
-                        rel='noreferrer'> 
-                    GitHub Repository for this website</a>
+            <div className='flex flex-col w-8/12 mx-auto justify-center text-center py-4'>
+                <p>
+                    Adrian Fregoso | 2022 | V1  
                 </p>                                
+                <a 
+                    className='font-medium ml-1'
+                    href='https://github.com/AdrianF3/AFWebPortfolio' 
+                    target='_blank' 
+                    rel='noreferrer'
+                > 
+                    GitHub Repo for this website
+                </a>
 
             </div>
 

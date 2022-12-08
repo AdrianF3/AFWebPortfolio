@@ -5,7 +5,7 @@ import etgMini from '../../images/etgLogoWhiteBG.svg'
 
 export default function ETGExplainer() {
   return (
-    <section className="text-gray-600 body-font border-4 border-green-300 m-2 rounded-xl bg-green-300/20">
+    <section className="m-20 text-gray-600 body-font border-4 border-green-300 rounded-xl bg-green-300/20">
         <div className="container px-5 py-24 mx-auto flex flex-col md:flex-row justify-evenly m-2">
             <div className='w-10/12 md:w-3/12 m-auto drop-shadow-2xl'>                
                 <img

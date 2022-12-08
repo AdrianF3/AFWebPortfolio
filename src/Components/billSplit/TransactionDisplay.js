@@ -24,7 +24,7 @@ export default function TransactionDisplay(props) {
         </div>
         
         {/* table section */}
-        <div className='grid grid-cols-5 mx-auto justify-items-center overflow-auto'>
+        <div className='grid grid-cols-5 mx-auto gap-4 justify-items-center overflow-x-scroll'>
           {/* Row 1 - Descriptions */}
           <div className=''>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>

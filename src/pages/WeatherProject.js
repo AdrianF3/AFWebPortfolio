@@ -202,16 +202,7 @@ export default function WeatherProject() {
     }
     setIsLoadingData(false)
   
-  }, [currentCityIndex, cityData])
-  
-  
-  // console.log('weatherGuessOrder', weatherGuessOrder)
-  // console.log('currentCityIndex', currentCityIndex)
-  // console.log('cityData[currentCityIndex]', cityData[currentCityIndex])
-  // console.log('currentlySelectedGuess', currentlySelectedGuess)
-  // console.log('gameData', gameData)
-  // console.log('process.env.REACT_APP_API_KEY', process.env.REACT_APP_API_KEY)
-  // console.log('key', key)
+  }, [currentCityIndex, cityData])  
 
   return (<>
     <HeaderNavigation/>
@@ -317,7 +308,7 @@ export default function WeatherProject() {
             </div>
             {/* grid layout for user options IF data loaded, otherwise display loading div */}
             {/* <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-8 md:gap-2 px-4 py-10'> */}
-            <div className='flex whitespace-nowrap overflow-x-auto gap-4 snap-x scroll-px-4'> 
+            <div className='flex whitespace-nowrap overflow-x-scroll gap-4 snap-x'> 
               { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
                 return <WeatherCard 
                   key={guessIndex} 

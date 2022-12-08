@@ -126,21 +126,14 @@ export default function WeatherCard(props) {
         let timeString = date.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit'})        
         return timeString
     }
-    
-    // console.log('weatherCardData', weatherCardData)
-    // console.log('props.currentlySelectedGuess', props.currentlySelectedGuess)
-    // console.log('props.cardSelected', props.cardSelected)
-    // console.log('props', props)
-    // console.log('props.guessType', props.guessType)
-    // console.log('props.', props.)
 
     return (
     <section 
-        className={`flex flex-col snap-center border-2 border-sky-400 p-8 rounded-lg shadow-2xl m-4 ${props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50' }`}
+        className={`flex flex-col snap-center snap-always min-w-full border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50' }`}
         onClick={() => props.handleUserSelectGuess(props.guessIndex)}
     >
         {/* title */}
-        <div className='relative -top-12 -left-10 bg-sky-400 rounded-xl p-2'>
+        <div className='relative -top-12 md:-left-10 bg-sky-400 rounded-xl p-2'>
             <div className='flex flex-col'>
                 <p className='text-xs text-slate-600 italic'>Option {props.guessIndex + 1}</p>
                 <h3 className='text-xl text-center'>{weatherCardState.cityName}</h3>
