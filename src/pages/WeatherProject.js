@@ -1,20 +1,20 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState, useRef } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import axios from 'axios';
 import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
+import LoadingDiv from '../components/weatherGame/LoadingDiv';
 
 export default function WeatherProject() {
-  const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
-  // let weatherGuessOrderMemo = useMemo(() => shuffleArray(weatherGuessOrder), [weatherGuessOrder])
+  const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])  
   const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
-  // const [ cardSelected, setCardSelected ] = useState(null)
+  const loadingRef = useRef(true)
 
   
-  const [ isLoadingData, setIsLoadingData ] = useState(false)
   const [ gameData, setGameData ] = useState({
     score: 0,
+    guesses: 0,
     userGuesses: [
       {
         guessed: null
@@ -145,12 +145,14 @@ export default function WeatherProject() {
         setGameData( gameData => ({
           ...gameData, 
           score: (gameData.score + 1),
+          guesses: (gameData.guesses + 1),
           userGuesses: tempUserGuesses
         }))
       } else { 
         tempUserGuesses[currentCityIndex] = { ...tempUserGuesses[currentCityIndex], guessed: 'incorrect'}      
         setGameData( gameData => ({
-        ...gameData,
+          ...gameData,
+          guesses: (gameData.guesses + 1),
         userGuesses:tempUserGuesses
       })) }      
     }
@@ -163,44 +165,45 @@ export default function WeatherProject() {
   }
 
   // const apiKey ='186bd501fb99a25eb3920a4deee082d1'
-  const baseURL = window.location.href
-  console.log(baseURL)
-
+  // const baseURL = window.location.href
+  // console.log(baseURL)
 
   // attempt using useEffect
   useEffect(() => {
-    setIsLoadingData(true)
-
+    // toggleIsLoading(loadingData)
+    // loadingData ? loadingData = false : loadingData = true
+    loadingRef.current ? loadingRef.current = false : loadingRef.current = true
+    
     
     // shuffleArray(weatherGuessOrder)
-  
+    
     // if weather data for current city not already loaded, 
-
+    
     let key = process.env.REACT_APP_API_KEY
     // console.log('use effect called')
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
       let apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&units=imperial&appid=${key}`
-      console.log('apiURL', apiURL)
-      
-      // axios.get(apiURL, {"headers": {""} })
+      // console.log('apiURL', apiURL)
+    
       axios({
         method: 'get',
         url: apiURL,
-      withCredentials: false,
+        withCredentials: false,
       })
       .then((response) => {           
-        console.log('response', response) 
-        response.headers.set()
+        // console.log('response', response) 
+  
         // deep clone of the existing cityData
         let cityDataClone = JSON.parse(JSON.stringify(cityData))
         // update the data for currently selected city        
         cityDataClone[currentCityIndex].data = response.data             
         setCityData([...cityDataClone])                
+        loadingRef.current = false
       }) 
       
     }
-    setIsLoadingData(false)
+    
   
   }, [currentCityIndex, cityData])  
 
@@ -253,7 +256,7 @@ export default function WeatherProject() {
           <div className='m-0 px-4 py-8 text-center'>
             <h4 className='text-xl'>Your Current Score</h4>
             <div className='bg-emerald-800 text-white p-1 mx-4 rounded-xl'>
-              <p className='p-1 font-medium'>Guessed {gameData.score} of 10 correctly</p>
+              <p className='p-1 font-medium'>{gameData.score} of {gameData.guesses} guessed correctly</p>
             </div>
           </div>
         </div>
@@ -282,33 +285,27 @@ export default function WeatherProject() {
 
       {/* GUESSING SECTION */}
       <section>
-        { isLoadingData ? <>
-          <div className='flex flex-col w-max h-96 m-auto'>
-            <div className='bg-slate-200 border-b-2 border-sky-800 rounded-full animate-spin h-10 w-10 m-auto'>
-            </div>
-              <p className='m-auto'>Loading Data...</p>
-          </div>
-        </> : <>
+        { loadingRef.current ? <LoadingDiv /> : <>
           {/* area to guess which weather card is correct */}
           <div className='p-4'>
-            <div className='flex flex-row justify-evenly'>
-              
+            <div className='flex flex-row justify-evenly py-8'>             
+
               <div className='flex justify-center w-1/2 m-auto'>
                 <h3 className='text-2xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
               </div>
-                {gameData.userGuesses[currentCityIndex].guessed !== null ? <div><p>You've already guessed</p></div> : 
-                <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
-                  <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
-                    Submit My Guess
-                  </button>
-                </div>
-                }
-              
 
+              {gameData.userGuesses[currentCityIndex].guessed !== null ? <div><p>You've already guessed</p></div> : 
+              <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
+                <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
+                  Submit My Guess
+                </button>
+              </div> }
+
+              
             </div>
-            {/* grid layout for user options IF data loaded, otherwise display loading div */}
-            {/* <div className='grid grid-cols-1 md:grid-cols-3 justify-evenly justify-items-center gap-8 md:gap-2 px-4 py-10'> */}
-            <div className='flex whitespace-nowrap overflow-x-scroll gap-4 snap-x'> 
+
+            {/* grid layout for user options IF data loaded, otherwise display loading div */}            
+            <div className='flex whitespace-nowrap overflow-x-scroll md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center md:py-8 bg-slate-400/30 rounded-xl px-2'> 
               { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
                 return <WeatherCard 
                   key={guessIndex} 

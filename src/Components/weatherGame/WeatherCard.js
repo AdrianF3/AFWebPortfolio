@@ -129,7 +129,7 @@ export default function WeatherCard(props) {
 
     return (
     <section 
-        className={`flex flex-col snap-center snap-always min-w-full border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50' }`}
+        className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50' }`}
         onClick={() => props.handleUserSelectGuess(props.guessIndex)}
     >
         {/* title */}
