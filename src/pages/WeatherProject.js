@@ -199,8 +199,8 @@ export default function WeatherProject() {
         // update the data for currently selected city        
         cityDataClone[currentCityIndex].data = response.data             
         setCityData([...cityDataClone])                
-        loadingRef.current = false
       }) 
+      loadingRef.current = false
       
     }
     
