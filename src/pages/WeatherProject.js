@@ -55,72 +55,72 @@ export default function WeatherProject() {
     lat: '34.05',
     lon: '-118.24',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'Dallas',
     lat: '32.77',
     lon: '-96.79',
     data: null,
-    randNumA: Math.floor( Math.random() * 6),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
 
   },{ 
     name: 'Chicago',
     lat: '41.87',
     lon: '-87.62',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'Miami',
     lat: '25.77',
     lon: '-80.19',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'Boston',
     lat: '42.35',
     lon: '-71.06',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'San Francisco',
     lat: '37.77',
     lon: '-122.41',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'Las Vegas',
     lat: '36.16',
     lon: '-115.14',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'Honolulu',
     lat: '21.30',
     lon: '-157.85',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'Denver',
     lat: '39.73',
     lon: '-104.98',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   },{ 
     name: 'New York',
     lat: '40.71',
     lon: '-74.00',
     data: null,
-    randNumA: Math.floor( Math.random() * 5),
-    randNumB: Math.floor( Math.random() * (10 - 5) + 1) + 5
+    randNumA: ( Math.floor( Math.random() * 3) + 1),
+    randNumB: ( Math.floor( Math.random() * 3) + 1),
   }]
 )  
 
@@ -206,7 +206,7 @@ export default function WeatherProject() {
     
   
   }, [currentCityIndex, cityData])  
-
+  console.log('cityData', cityData)
   return (<>
     <HeaderNavigation/>
     <section>

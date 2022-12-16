@@ -24,7 +24,7 @@ export default function WeatherCard(props) {
 
     
     
-    
+    console.log('weatherCardState', weatherCardState)
     
     // function to modify and return weather data with randomized modifications
     const modifyWeatherData = ( randNum ) => {        
@@ -33,92 +33,129 @@ export default function WeatherCard(props) {
         
         switch (randNum) {
             case 1:
-                // increase currentTemp 2, 
+                //  fields modified: currentTemp,  humidity, windspeed
+                let fakeCurrentTemp = weatherCardState.currentTemp + 2
+                let fakeHumidity = weatherCardState.humidity
+                let fakeWind = weatherCardState.wind        
+                // modify humidity
+                if (fakeHumidity >= 5) {
+                    fakeHumidity = ( fakeHumidity - 3 )                    
+                    console.log('fakeHumidity', fakeHumidity)
+                } else {
+                    fakeHumidity = ( fakeHumidity + 2 )
+                    console.log('fakeHumidity', fakeHumidity)
+                }
+                // modify wind
+                if (fakeWind >= 3 ) {
+                    fakeWind = Math.round( fakeWind - 2 )
+                } else {
+                    fakeWind = ( fakeWind + 3 )
+                }
+
+                // update state with modified values
                 setWeatherCardState( weatherCardState => ({
                     ...weatherCardState,
-                    currentTemp: ( weatherCardState.currentTemp + 2),
-                    modified: true
+                    currentTemp: fakeCurrentTemp,
+                    humidity: fakeHumidity,
+                    wind: fakeWind,
+                    modified: true,
+                    modifiedCase: 1
                 }))                                
                 break;
             case 2:
+                // fields modified: cloudiness, gusts, current temp
+                let fakeClouds = weatherCardState.clouds
+                let fakeGusts = weatherCardState.gusts
+                let fakeCurrentTemp2 = weatherCardState.currentTemp
+                // modify clouds
+                if (fakeClouds >= 10 && fakeClouds > 89) {
+                    fakeClouds = ( fakeClouds + 10 )
+                } else {
+                    fakeClouds = ( fakeClouds + 4 )
+                }
+                // modify gusts
+                if (fakeGusts >= 10 && fakeGusts > 20) {
+                    fakeGusts = ( fakeGusts + 2 )
+                } else {
+                    fakeGusts = ( fakeGusts + 1 )
+                }
+                // modify current temp
+                if (fakeCurrentTemp2 >= 50 && fakeCurrentTemp2 < 90) {
+                    fakeCurrentTemp2 = ( fakeCurrentTemp2 + 5 )
+                } else {
+                    fakeCurrentTemp2 = ( fakeCurrentTemp2 - 7 )
+                }
+                //  update state with modified values
                 setWeatherCardState( weatherCardState => ({
                     ...weatherCardState,                    
-                    modified: true
+                    clouds: fakeClouds,
+                    guests: fakeGusts,
+                    currentTemp: fakeCurrentTemp2,
+                    modified: true,
+                    modifiedCase: 2
                 }))    
                 break;
             case 3:
+                // fields modified: humidity, winds, currentTemp
+                let fakeHumidity3 = weatherCardState.humidity
+                let fakeWind3 = weatherCardState.wind
+                let currentTemp3 = ( weatherCardState.currentTemp + 4 )
+                // modify humidity
+                if (fakeHumidity3 > 25) {
+                    fakeHumidity3 = ( fakeHumidity3 - 4 )
+                } else {
+                    fakeHumidity3 = ( fakeHumidity3 + 7 )
+                }
+                // modify wind
+                if (fakeWind3 >= 10 ) {
+                    fakeWind3 = ( fakeWind3 + 2 )
+                } else {
+                    fakeWind3 = ( fakeWind3 + 5 )
+                }
+                // Update state with modified values
                 setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
+                    ...weatherCardState,  
+                    humidity: fakeHumidity3,
+                    wind: fakeWind3,
+                    currentTemp: currentTemp3,
+                    modified: true,
+                    modifiedCase: 3
                 }))    
                 break;
-            case 4:
-                setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
-                }))            
-                break;
-            case 5:
-                setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
-                }))                 
-                break;
-            case 6:
-                setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
-                }))                   
-                break;
-            case 7:
-                setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
-                }))                        
-                break;
-            case 8:
-                setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
-                }))                           
-                break;
-            case 9:
-                setWeatherCardState( weatherCardState => ({
-                    ...weatherCardState,                    
-                    modified: true
-                }))                              
-                break;                                                
+                                                     
             default:
-                // default is same as case 1
+                // save error in modified, change no values
+                console.log('error - should provied for this randNum')
+                setWeatherCardState( weatherCardState => ({
+                    ...weatherCardState,                    
+                    modified: true,
+                    modifiedCase: 'default'
+                }))   
                 break;
         }
                                                                                                         
     }
             
-
-    switch (props.guessType) {        
-        case 'modifiedA':
-            
-            if (!weatherCardState.modified) {
-                modifyWeatherData(props.cityData[props.currentCityIndex].randNumA)
-            }
-            break;
-        case 'modifiedB':
-            if (!weatherCardState.modified) {
-                modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
-            }                     
-            break;    
-        default:
-            // don't manipulate data
-            break;
+    if (weatherCardState.status === 'SET') {
+        switch (props.guessType) {        
+            case 'modifiedA':
+                if (!weatherCardState.modified) {
+                    modifyWeatherData(props.cityData[props.currentCityIndex].randNumA)
+                }
+                break;
+            case 'modifiedB':
+                if (!weatherCardState.modified) {
+                    modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
+                }                     
+                break;    
+            default:
+                // don't manipulate data
+                break;
+        }        
     }
         
 
 
-    
-    
-
-    
     
     
     const formatTime = ( dt ) => {
@@ -137,6 +174,7 @@ export default function WeatherCard(props) {
             <div className='flex flex-col'>
                 <p className='text-xs text-slate-600 italic'>Option {props.guessIndex + 1}</p>
                 <h3 className='text-xl text-center'>{weatherCardState.cityName}</h3>
+                <h3 className='text-xl text-center'>{weatherCardState.modifiedCase}</h3>
 
             </div>
         </div>        

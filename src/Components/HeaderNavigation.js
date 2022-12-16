@@ -55,9 +55,9 @@ export default function HeaderNavigation(props) {
             <NavLink to='/billsplit'>
                 <p className=''>Bill Splitter</p>
             </NavLink>
-            <NavLink to='/ytcontroller'>
+            {/* <NavLink to='/ytcontroller'>
                 <p>YouTube Controller</p>
-            </NavLink>
+            </NavLink> */}
             <NavLink to=''>
                 <p>Ector Grow</p>
             </NavLink>
