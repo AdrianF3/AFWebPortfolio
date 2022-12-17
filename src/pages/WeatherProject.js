@@ -7,7 +7,7 @@ import CityStatus from '../components/weatherGame/CityStatus'
 import LoadingDiv from '../components/weatherGame/LoadingDiv';
 
 export default function WeatherProject() {
-  const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])  
+  const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
   const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
   const loadingRef = useRef(true)
 
@@ -160,40 +160,32 @@ export default function WeatherProject() {
 
   const handleNewCity = (cityIndex) => {
     setCurrentCityIndex(cityIndex) 
-    shuffleArray(weatherGuessOrder)
-    setCurrentlySelectedGuess(null)
+    // shuffleArray(weatherGuessOrder)    
+    setCurrentlySelectedGuess(null)      
   }
 
-  // const apiKey ='186bd501fb99a25eb3920a4deee082d1'
-  // const baseURL = window.location.href
-  // console.log(baseURL)
+  
 
   // attempt using useEffect
-  useEffect(() => {
-    // toggleIsLoading(loadingData)
-    // loadingData ? loadingData = false : loadingData = true
+  useEffect(() => {    
     loadingRef.current ? loadingRef.current = false : loadingRef.current = true
     
     
-    // shuffleArray(weatherGuessOrder)
+    shuffleArray(weatherGuessOrder)
     
     // if weather data for current city not already loaded, 
     
-    let key = process.env.REACT_APP_API_KEY
-    // console.log('use effect called')
+    let key = process.env.REACT_APP_API_KEY    
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
-      let apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&units=imperial&appid=${key}`
-      // console.log('apiURL', apiURL)
+      let apiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityData[currentCityIndex].lat}&lon=${cityData[currentCityIndex].lon}&units=imperial&appid=${key}`      
     
       axios({
         method: 'get',
         url: apiURL,
         withCredentials: false,
       })
-      .then((response) => {           
-        // console.log('response', response) 
-  
+      .then((response) => {                   
         // deep clone of the existing cityData
         let cityDataClone = JSON.parse(JSON.stringify(cityData))
         // update the data for currently selected city        
@@ -204,9 +196,16 @@ export default function WeatherProject() {
       
     }
     
+    loadingRef.current = false
   
-  }, [currentCityIndex, cityData])  
-  console.log('cityData', cityData)
+  }, [currentCityIndex, cityData, weatherGuessOrder])  
+  
+
+
+  console.log('loadingRef.current', loadingRef.current)
+  console.log('weatherGuessOrder', weatherGuessOrder)
+  console.log('currentCityIndex', currentCityIndex)
+
   return (<>
     <HeaderNavigation/>
     <section>
@@ -275,7 +274,7 @@ export default function WeatherProject() {
                   gameData={gameData}
                   setGameData={setGameData}
                   currentCityIndex={currentCityIndex} setCurrentCityIndex={setCurrentCityIndex}
-                  handleNewCity={handleNewCity}
+                  handleNewCity={handleNewCity}                  
                 />              
           </div>
           </>) }
@@ -306,14 +305,16 @@ export default function WeatherProject() {
 
             {/* grid layout for user options IF data loaded, otherwise display loading div */}            
             <div className='flex whitespace-nowrap overflow-x-scroll md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center md:py-8 bg-slate-400/30 rounded-xl px-2'> 
-              { weatherGuessOrder && cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
+              {  cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
                 return <WeatherCard 
                   key={guessIndex} 
                   guessIndex={guessIndex} guessType={guessType} 
                   cityData={cityData} setCityData={setCityData} 
-                  currentCityIndex={currentCityIndex} 
+                  currentCityIndex={currentCityIndex}
+                  currentCityData = { cityData[currentCityIndex] }
                   currentlySelectedGuess={currentlySelectedGuess} setCurrentlySelectedGuess={setCurrentlySelectedGuess}  
                   handleUserSelectGuess={handleUserSelectGuess}
+                  gameData={gameData}
                   // cardSelected={cardSelected}
                 />
               }) : null }               

@@ -4,27 +4,29 @@ import { WiThermometer, WiHumidity, WiCloud, WiCloudyGusts, WiCloudyWindy } from
 export default function WeatherCard(props) {
 
     const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
-    if (weatherCardState.status === 'PENDING') {
+    console.log('props', props)
+    if (weatherCardState.status === 'PENDING' ) {
+    // if (weatherCardState.status === 'PENDING' || weatherCardState.name !== props.currentCityData.name) {
         const returnStateObject = {
             status: 'SET',
             modified: false,
-            cityName: props.cityData[props.currentCityIndex].name,            
-            sunrise: props.cityData[props.currentCityIndex].data.city.sunrise,
-            sunset: props.cityData[props.currentCityIndex].data.city.sunset,
-            currentTemp: props.cityData[props.currentCityIndex].data.list[0].main.temp,
-            feelsLike: props.cityData[props.currentCityIndex].data.list[0].main.feels_like,
-            clouds: props.cityData[props.currentCityIndex].data.list[0].clouds.all,
-            humidity: props.cityData[props.currentCityIndex].data.list[0].main.humidity,
-            wind: props.cityData[props.currentCityIndex].data.list[0].wind.speed,
-            gust: props.cityData[props.currentCityIndex].data.list[0].wind.gust,
-            description: props.cityData[props.currentCityIndex].data.list[0].weather[0].description            
+            cityName: props.currentCityData.name,            
+            sunrise: props.currentCityData.data.city.sunrise,
+            sunset: props.currentCityData.data.city.sunset,
+            currentTemp: props.currentCityData.data.list[0].main.temp,
+            feelsLike: props.currentCityData.data.list[0].main.feels_like,
+            clouds: props.currentCityData.data.list[0].clouds.all,
+            humidity: props.currentCityData.data.list[0].main.humidity,
+            wind: props.currentCityData.data.list[0].wind.speed,
+            gust: props.currentCityData.data.list[0].wind.gust,
+            description: props.currentCityData.data.list[0].weather[0].description            
         }
         setWeatherCardState(returnStateObject)
     }
 
     
     
-    console.log('weatherCardState', weatherCardState)
+    
     
     // function to modify and return weather data with randomized modifications
     const modifyWeatherData = ( randNum ) => {        
@@ -39,11 +41,9 @@ export default function WeatherCard(props) {
                 let fakeWind = weatherCardState.wind        
                 // modify humidity
                 if (fakeHumidity >= 5) {
-                    fakeHumidity = ( fakeHumidity - 3 )                    
-                    console.log('fakeHumidity', fakeHumidity)
+                    fakeHumidity = ( fakeHumidity - 3 )                                        
                 } else {
-                    fakeHumidity = ( fakeHumidity + 2 )
-                    console.log('fakeHumidity', fakeHumidity)
+                    fakeHumidity = ( fakeHumidity + 2 )                    
                 }
                 // modify wind
                 if (fakeWind >= 3 ) {
@@ -154,9 +154,11 @@ export default function WeatherCard(props) {
         }        
     }
         
+    console.log('props.guessType', props.guessType)
+    console.log('props.currentCityData', props.currentCityData)
+    const bgColor = props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50'
 
-
-    
+    // if user has gussed, override bg color with correct or incorrect color
     
     const formatTime = ( dt ) => {
         let date = new Date(dt * 1000)        
@@ -166,7 +168,7 @@ export default function WeatherCard(props) {
 
     return (
     <section 
-        className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50' }`}
+        className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${ bgColor }`}
         onClick={() => props.handleUserSelectGuess(props.guessIndex)}
     >
         {/* title */}
