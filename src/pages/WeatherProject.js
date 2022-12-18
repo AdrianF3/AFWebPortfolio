@@ -9,7 +9,7 @@ import LoadingDiv from '../components/weatherGame/LoadingDiv';
 export default function WeatherProject() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
   const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
-  const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
+  // const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
   const loadingRef = useRef(true)
 
   
@@ -165,21 +165,21 @@ export default function WeatherProject() {
     setCurrentCityIndex(cityIndex)  
     //  reset user guess
     setCurrentlySelectedGuess(null)    
-    const returnStateObject = {
-      status: 'SET',
-      modified: false,
-      cityName: cityData[cityIndex].name,            
-      sunrise: cityData[cityIndex].data.city.sunrise,
-      sunset: cityData[cityIndex].data.city.sunset,
-      currentTemp: cityData[cityIndex].data.list[0].main.temp,
-      feelsLike: cityData[cityIndex].data.list[0].main.feels_like,
-      clouds: cityData[cityIndex].data.list[0].clouds.all,
-      humidity: cityData[cityIndex].data.list[0].main.humidity,
-      wind: cityData[cityIndex].data.list[0].wind.speed,
-      gust: cityData[cityIndex].data.list[0].wind.gust,
-      description: cityData[cityIndex].data.list[0].weather[0].description            
-  }
-  setWeatherCardState(returnStateObject)
+  //   const returnStateObject = {
+  //     status: 'SET',
+  //     modified: false,
+  //     cityName: cityData[cityIndex].name,            
+  //     sunrise: cityData[cityIndex].data.city.sunrise,
+  //     sunset: cityData[cityIndex].data.city.sunset,
+  //     currentTemp: cityData[cityIndex].data.list[0].main.temp,
+  //     feelsLike: cityData[cityIndex].data.list[0].main.feels_like,
+  //     clouds: cityData[cityIndex].data.list[0].clouds.all,
+  //     humidity: cityData[cityIndex].data.list[0].main.humidity,
+  //     wind: cityData[cityIndex].data.list[0].wind.speed,
+  //     gust: cityData[cityIndex].data.list[0].wind.gust,
+  //     description: cityData[cityIndex].data.list[0].weather[0].description            
+  // }
+  // setWeatherCardState(returnStateObject)
 
   }
 
@@ -333,7 +333,7 @@ export default function WeatherProject() {
                   currentlySelectedGuess={currentlySelectedGuess} setCurrentlySelectedGuess={setCurrentlySelectedGuess}  
                   handleUserSelectGuess={handleUserSelectGuess}
                   gameData={gameData}    
-                  weatherCardState={weatherCardState} setWeatherCardState={setWeatherCardState}
+                  // weatherCardState={weatherCardState} setWeatherCardState={setWeatherCardState}
                 />
               }) : <LoadingDiv/> }               
             </div>          
