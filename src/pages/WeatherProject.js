@@ -9,6 +9,7 @@ import LoadingDiv from '../components/weatherGame/LoadingDiv';
 export default function WeatherProject() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
   const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
+  const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
   const loadingRef = useRef(true)
 
   
@@ -132,11 +133,13 @@ export default function WeatherProject() {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+    return array
   }
 
-
+  // when user selects a weather card
   const handleUserSelectGuess = ( guessIndex ) => { setCurrentlySelectedGuess(weatherGuessOrder[guessIndex]) }
 
+  // when user submits their guess
   const submitUserGuess = () => {
     let tempUserGuesses = [...gameData.userGuesses]
     if (currentlySelectedGuess !== null) {
@@ -159,9 +162,25 @@ export default function WeatherProject() {
   }
 
   const handleNewCity = (cityIndex) => {
-    setCurrentCityIndex(cityIndex) 
-    // shuffleArray(weatherGuessOrder)    
-    setCurrentlySelectedGuess(null)      
+    setCurrentCityIndex(cityIndex)  
+    //  reset user guess
+    setCurrentlySelectedGuess(null)    
+    const returnStateObject = {
+      status: 'SET',
+      modified: false,
+      cityName: cityData[cityIndex].name,            
+      sunrise: cityData[cityIndex].data.city.sunrise,
+      sunset: cityData[cityIndex].data.city.sunset,
+      currentTemp: cityData[cityIndex].data.list[0].main.temp,
+      feelsLike: cityData[cityIndex].data.list[0].main.feels_like,
+      clouds: cityData[cityIndex].data.list[0].clouds.all,
+      humidity: cityData[cityIndex].data.list[0].main.humidity,
+      wind: cityData[cityIndex].data.list[0].wind.speed,
+      gust: cityData[cityIndex].data.list[0].wind.gust,
+      description: cityData[cityIndex].data.list[0].weather[0].description            
+  }
+  setWeatherCardState(returnStateObject)
+
   }
 
   
@@ -169,9 +188,10 @@ export default function WeatherProject() {
   // attempt using useEffect
   useEffect(() => {    
     loadingRef.current ? loadingRef.current = false : loadingRef.current = true
+    console.log('useEffect Called')
     
     
-    shuffleArray(weatherGuessOrder)
+    setWeatherGuessOrder(shuffleArray(weatherGuessOrder))
     
     // if weather data for current city not already loaded, 
     
@@ -202,8 +222,7 @@ export default function WeatherProject() {
   
 
 
-  console.log('loadingRef.current', loadingRef.current)
-  console.log('weatherGuessOrder', weatherGuessOrder)
+  console.log('loadingRef.current', loadingRef.current)  
   console.log('currentCityIndex', currentCityIndex)
 
   return (<>
@@ -304,20 +323,19 @@ export default function WeatherProject() {
             </div>
 
             {/* grid layout for user options IF data loaded, otherwise display loading div */}            
-            <div className='flex whitespace-nowrap overflow-x-scroll md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center md:py-8 bg-slate-400/30 rounded-xl px-2'> 
+            <div className='flex whitespace-nowrap overflow-x-scroll md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center md:py-8 bg-slate-400/30 rounded-xl px-2'>               
               {  cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
                 return <WeatherCard 
                   key={guessIndex} 
                   guessIndex={guessIndex} guessType={guessType} 
                   cityData={cityData} setCityData={setCityData} 
-                  currentCityIndex={currentCityIndex}
-                  currentCityData = { cityData[currentCityIndex] }
+                  currentCityIndex={currentCityIndex}                  
                   currentlySelectedGuess={currentlySelectedGuess} setCurrentlySelectedGuess={setCurrentlySelectedGuess}  
                   handleUserSelectGuess={handleUserSelectGuess}
-                  gameData={gameData}
-                  // cardSelected={cardSelected}
+                  gameData={gameData}    
+                  weatherCardState={weatherCardState} setWeatherCardState={setWeatherCardState}
                 />
-              }) : null }               
+              }) : <LoadingDiv/> }               
             </div>          
           </div>        
         </>}
