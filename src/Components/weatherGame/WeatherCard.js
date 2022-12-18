@@ -31,13 +31,10 @@ export default function WeatherCard(props) {
     }
     
     if (props.weatherCardState.cityName !== props.cityData[props.currentCityIndex].name) {
-        console.log('reset trigerred')
+        // console.log('reset trigerred')
         resetData()
     }
-    // useEffect(() => {
-    //     console.log('use effect called')
-        
-    // }, [resetData, props.cityData, props.currentCityIndex, weatherCardState.name])
+    
     
     // function to modify and return weather data with randomized modifications
     const modifyWeatherData = ( randNum ) => {        
@@ -151,11 +148,13 @@ export default function WeatherCard(props) {
         switch (props.guessType) {        
             case 'modifiedA':
                 if (!props.weatherCardState.modified) {
+                    console.log('modifiedA')
                     modifyWeatherData(props.cityData[props.currentCityIndex].randNumA)
                 }
                 break;
             case 'modifiedB':
                 if (!props.weatherCardState.modified) {
+                    console.log('modifiedB')
                     modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
                 }                     
                 break;    
@@ -165,17 +164,27 @@ export default function WeatherCard(props) {
         }        
     }
         
-    // console.log('props.guessType', props.guessType)
-    // console.log('props.currentCityData', props.currentCityData)
-    const bgColor = props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50'
+    // assign bgColor - if user has already guessed, update background colors to display correct answer
+    let bgColor = props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50'
+    if ( props.gameData.userGuesses[props.currentCityIndex].guessed === 'correct' || props.gameData.userGuesses[props.currentCityIndex].guessed === 'incorrect') {
+        
+        if (props.guessType === 'default') {
+            bgColor = 'bg-emerald-400/80 border-2 border-emerald-800'
+        } else {
+            bgColor = 'bg-rose-400/80 border-2 border-rose-800'
+        }
 
-    // if user has gussed, override bg color with correct or incorrect color
+    }
+    
     
     const formatTime = ( dt ) => {
         let date = new Date(dt * 1000)        
         let timeString = date.toLocaleTimeString("en-US", { hour: '2-digit', minute: '2-digit'})        
         return timeString
     }
+
+
+    console.log('props.weatherCardState', props.weatherCardState)
 
     return (
     <section 
@@ -188,6 +197,7 @@ export default function WeatherCard(props) {
                 <p className='text-xs text-slate-600 italic'>Option {props.guessIndex + 1}</p>
                 <h3 className='text-xl text-center'>{props.weatherCardState.cityName}</h3>
                 <h3 className='text-xl text-center'>{props.weatherCardState.modifiedCase}</h3>
+                <h3 className='text-xl text-center'>{props.guessType}</h3>
 
             </div>
         </div>        

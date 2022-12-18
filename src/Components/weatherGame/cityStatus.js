@@ -46,7 +46,7 @@ export default function CityStatus(props) {
       </div>
 
 
-        <div className='text-xl pb-1'>
+        <div className='text-xl pb-1 '>
           <p>{props.cityData[props.cityIndex].name}</p>
         </div>        
     </section>
