@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import axios from 'axios';
@@ -6,7 +6,7 @@ import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
 import LoadingDiv from '../components/weatherGame/LoadingDiv';
 
-export default function WeatherProject() {
+export default function WeatherGame() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
   const [ currentlySelectedGuess, setCurrentlySelectedGuess ] = useState(null)
   // const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
@@ -138,6 +138,7 @@ export default function WeatherProject() {
 
   // when user selects a weather card
   const handleUserSelectGuess = ( guessIndex ) => { setCurrentlySelectedGuess(weatherGuessOrder[guessIndex]) }
+  // const handleUserSelectGuess = ( guessIndex ) => { setCurrentlySelectedGuess(guessIndex) }
 
   // when user submits their guess
   const submitUserGuess = () => {
@@ -163,23 +164,10 @@ export default function WeatherProject() {
 
   const handleNewCity = (cityIndex) => {
     setCurrentCityIndex(cityIndex)  
+    // reshuffle weather cards
+    setWeatherGuessOrder(shuffleArray(weatherGuessOrder))    
     //  reset user guess
     setCurrentlySelectedGuess(null)    
-  //   const returnStateObject = {
-  //     status: 'SET',
-  //     modified: false,
-  //     cityName: cityData[cityIndex].name,            
-  //     sunrise: cityData[cityIndex].data.city.sunrise,
-  //     sunset: cityData[cityIndex].data.city.sunset,
-  //     currentTemp: cityData[cityIndex].data.list[0].main.temp,
-  //     feelsLike: cityData[cityIndex].data.list[0].main.feels_like,
-  //     clouds: cityData[cityIndex].data.list[0].clouds.all,
-  //     humidity: cityData[cityIndex].data.list[0].main.humidity,
-  //     wind: cityData[cityIndex].data.list[0].wind.speed,
-  //     gust: cityData[cityIndex].data.list[0].wind.gust,
-  //     description: cityData[cityIndex].data.list[0].weather[0].description            
-  // }
-  // setWeatherCardState(returnStateObject)
 
   }
 
@@ -187,14 +175,12 @@ export default function WeatherProject() {
 
   // attempt using useEffect
   useEffect(() => {    
-    loadingRef.current ? loadingRef.current = false : loadingRef.current = true
-    console.log('useEffect Called')
+    // was previously using ternary, think it makes more sense to just set to true while in useEffect
+    // loadingRef.current ? loadingRef.current = false : loadingRef.current = true
+    loadingRef.current = true    
+
     
-    
-    setWeatherGuessOrder(shuffleArray(weatherGuessOrder))
-    
-    // if weather data for current city not already loaded, 
-    
+    // if weather data for current city not already loaded,     
     let key = process.env.REACT_APP_API_KEY    
     // **  research better way to check against null
     if (cityData[currentCityIndex].data == null) {
@@ -212,18 +198,15 @@ export default function WeatherProject() {
         cityDataClone[currentCityIndex].data = response.data             
         setCityData([...cityDataClone])                
       }) 
-      loadingRef.current = false
       
+      // ** test omitting, ends up being redundant I think
+      loadingRef.current = false      
     }
     
     loadingRef.current = false
   
   }, [currentCityIndex, cityData, weatherGuessOrder])  
   
-
-
-  console.log('loadingRef.current', loadingRef.current)  
-  console.log('currentCityIndex', currentCityIndex)
 
   return (<>
     <HeaderNavigation/>
@@ -244,8 +227,7 @@ export default function WeatherProject() {
                 <li>useRef : </li>
                 <li></li>
               </ul>
-            </div>      
-            {/* <div><button className='p-2 bg-sky-400 rounded-xl' onClick={() => retrieveWeatherData()}>Click To Test Data</button></div>       */}
+            </div>                  
           </div>
           <div className='border-2 border-dashed p-4 mt-6'>
             <h4 className='text-xl uppercase'>Instructions:</h4>
@@ -288,12 +270,12 @@ export default function WeatherProject() {
           <div className='w-40'>                
                 <CityStatus
                   key={`${cityIndex}-cityStatus`}
-                  cityData={cityData}
+                  city={city}                
                   cityIndex={cityIndex}
-                  gameData={gameData}
-                  setGameData={setGameData}
-                  currentCityIndex={currentCityIndex} setCurrentCityIndex={setCurrentCityIndex}
-                  handleNewCity={handleNewCity}                  
+                  gameData={gameData}                
+                  currentCityIndex={currentCityIndex}
+                  handleNewCity={handleNewCity}
+                  currentGuessStatus={gameData.userGuesses[cityIndex].guessed}                  
                 />              
           </div>
           </>) }
@@ -307,7 +289,6 @@ export default function WeatherProject() {
           {/* area to guess which weather card is correct */}
           <div className='p-4'>
             <div className='flex flex-row justify-evenly py-8'>             
-
               <div className='flex justify-center w-1/2 m-auto'>
                 <h3 className='text-2xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
               </div>
@@ -324,7 +305,7 @@ export default function WeatherProject() {
 
             {/* grid layout for user options IF data loaded, otherwise display loading div */}            
             <div className='flex whitespace-nowrap overflow-x-scroll md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center md:py-8 bg-slate-400/30 rounded-xl px-2'>               
-              {  cityData[currentCityIndex].data !== null ? weatherGuessOrder.map((guessType, guessIndex) => {                
+              {  ( cityData[currentCityIndex].data !== null & !loadingRef.current ) ? weatherGuessOrder.map((guessType, guessIndex) => {                
                 return <WeatherCard 
                   key={guessIndex} 
                   guessIndex={guessIndex} guessType={guessType} 
@@ -332,8 +313,7 @@ export default function WeatherProject() {
                   currentCityIndex={currentCityIndex}                  
                   currentlySelectedGuess={currentlySelectedGuess} setCurrentlySelectedGuess={setCurrentlySelectedGuess}  
                   handleUserSelectGuess={handleUserSelectGuess}
-                  gameData={gameData}    
-                  // weatherCardState={weatherCardState} setWeatherCardState={setWeatherCardState}
+                  gameData={gameData}                      
                 />
               }) : <LoadingDiv/> }               
             </div>          

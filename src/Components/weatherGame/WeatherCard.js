@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import { WiThermometer, WiHumidity, WiCloud, WiCloudyGusts, WiCloudyWindy } from "react-icons/wi";
 
 export default function WeatherCard(props) {
 
-    const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})
-    // console.log('props', props)
+    const [ weatherCardState, setWeatherCardState ] = useState({ status: 'PENDING', modified: false})    
     
     const resetData = () => {
         const returnStateObject = {
@@ -24,14 +23,13 @@ export default function WeatherCard(props) {
         setWeatherCardState(returnStateObject)
     }
     
-    
+    // properly update state data
     if (weatherCardState.status === 'PENDING' ) {
-    // // if (weatherCardState.status === 'PENDING' || weatherCardState.name !== props.currentCityData.name) {
         resetData()
     }
     
-    if (weatherCardState.cityName !== props.cityData[props.currentCityIndex].name) {
-        // console.log('reset trigerred')
+    // triggers an update to state/rerenders with new data
+    if (weatherCardState.cityName !== props.cityData[props.currentCityIndex].name) {        
         resetData()
     }
     
@@ -39,8 +37,7 @@ export default function WeatherCard(props) {
     // function to modify and return weather data with randomized modifications
     const modifyWeatherData = ( randNum ) => {        
               
-        // switch statement, comparing random number, in each case, modify 3-5 values of current card
-        
+        // switch statement, comparing random number, in each case, modify 3 values of current card        
         switch (randNum) {
             case 1:
                 //  fields modified: currentTemp,  humidity, windspeed
@@ -147,14 +144,12 @@ export default function WeatherCard(props) {
     if (weatherCardState.status === 'SET') {
         switch (props.guessType) {        
             case 'modifiedA':
-                if (!weatherCardState.modified) {
-                    console.log('modifiedA')
+                if (!weatherCardState.modified) {                    
                     modifyWeatherData(props.cityData[props.currentCityIndex].randNumA)
                 }
                 break;
             case 'modifiedB':
-                if (!weatherCardState.modified) {
-                    console.log('modifiedB')
+                if (!weatherCardState.modified) {                    
                     modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
                 }                     
                 break;    

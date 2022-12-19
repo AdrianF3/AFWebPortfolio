@@ -3,17 +3,12 @@ import { MdCheckCircle, MdCancel, MdPanoramaFishEye } from "react-icons/md";
 
 export default function CityStatus(props) {
 
-  const currentGuessStatus = props.gameData.userGuesses[props.cityIndex].guessed
-  // onClick load the index of the city into currentCityIndex state 
-  // selected = blue
-  // guessed correct
-  // guessed incorrec
-
+  
   // determine border& background color 
   let borderColor = 'border-slate-600 bg-sky-300/30'
   let guessedSymbol = null
 
-  switch (currentGuessStatus) {
+  switch (props.currentGuessStatus) {
     case 'correct':
       borderColor = 'border-emerald-600 bg-emerald-200/30'
       guessedSymbol = <MdCheckCircle color='green' size={20} />
@@ -29,7 +24,7 @@ export default function CityStatus(props) {
   }
 
   // set border color for currently selected city, overrides switch above
-  if (props.gameData.userGuesses[props.cityIndex].guessed === null && props.cityIndex === props.currentCityIndex) {
+  if (props.currentGuessStatus === null && props.cityIndex === props.currentCityIndex) {
     borderColor = 'border-sky-600 animate-pulse'
   }
 
@@ -47,7 +42,7 @@ export default function CityStatus(props) {
 
 
         <div className='text-xl pb-1 '>
-          <p>{props.cityData[props.cityIndex].name}</p>
+          <p>{props.city.name}</p>
         </div>        
     </section>
   </>)
