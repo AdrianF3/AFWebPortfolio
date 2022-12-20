@@ -225,12 +225,12 @@ export default function WeatherCard(props) {
                     <WiCloudyGusts size={28} />
                 </div>
                 <div className='flex flex-row justify-evenly'>
-                    <p>Current Temp: {weatherCardState.currentTemp}</p>
+                    <p>Current Temp: {weatherCardState.currentTemp}<span className='text-xs text-slate-600 italic'>&deg;F</span></p>
                     <WiThermometer size={28}/> 
                 </div>
                 <div className='flex flex-row justify-evenly pt-2'>
                     <p className='text-xs text-center text-slate-600 italic'>
-                        feels like {weatherCardState.feelsLike}, described as <span className='italic'>'{weatherCardState.description}'</span>
+                        feels like {weatherCardState.feelsLike}<span className='text-xs text-slate-600 italic'>&deg;F</span>, described as <span className='italic'>'{weatherCardState.description}'</span>
                     </p>                    
                 </div>
             </div>
