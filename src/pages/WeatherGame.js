@@ -51,6 +51,8 @@ export default function WeatherGame() {
   })
 
   const [ currentCityIndex, setCurrentCityIndex ] = useState(0)
+  
+
   const [ cityData, setCityData ] = useState([{
     name: 'Los Angeles',
     lat: '34.05',
@@ -215,14 +217,14 @@ export default function WeatherGame() {
       <div className=''>
         {/* Upper Header Section */}
         <div className='flex flex-col md:flex-row justify-evenly bg-slate-400 p-4'>
-          <div className='md:w-8/12 p-4'>
-            <h2 className='text-2xl'>My Take on the Classic <span className='italic underline underline-offset-2'>'Weather Project'</span></h2>
+          <div className='md:w-10/12 p-4'>
+            <h2 className='text-2xl underline underline-offset-2'>My Take on the Classic <span className='italic'>'Weather Project'</span></h2>
             <p className='py-2'>
               In order to do something a little different - I used the OpenWeather API to build a simple game where users guess between the correct and modified versions of the weather. 
             </p>
             <p className='py-2'>
-              I use <span className='font-bold'>Axios</span> to fetch the data, and use <span className='font-bold'>useState</span>, <span className='font-bold'>useRef</span> & <span className='font-bold'>useEffect</span>
-              to implement the logic behind the game.
+              I used <span className='font-bold'>Axios</span> to fetch the data, and used the <span className='font-bold'>useState</span>, <span className='font-bold'>useRef</span> & <span className='font-bold'>useEffect</span> hooks
+               to implement the logic controlling the game.
             </p>            
           </div>          
         </div>        
@@ -239,15 +241,18 @@ export default function WeatherGame() {
           {/* Game Instructions */}
           <div className='flex flex-col md:w-1/3 justify-center'>
             <p className='pt-4 mx-auto center py-4 text-center px-4'>
-              <span className='block font-medium text-lg'>How To Play:</span> For each of the 10 US cities listed below, three differnt versions of the weather will be displayed. Guess which version has the correct weather for that city.              
+              <span className='block font-medium text-lg'>How To Play:</span> For each of the 10 US cities listed below, three differnt versions of the weather will be displayed. 
             </p>          
+            <p className='mx-auto text-center px-4'>
+              Guess which version has the correct weather for that city.              
+            </p>
           </div>
 
         {/* Display Current Score */}
         <div className='flex flex-col md:flex-row justify-center'>          
           <div className='m-auto px-4 py-8 text-center'>
             <h4 className='text-xl'>Your Current Score</h4>
-            <div className='bg-emerald-800 text-white p-1 mx-4 rounded-xl'>
+            <div className='bg-green-700 text-white p-1 mx-4 rounded-xl'>
               <p className='p-1 font-medium'>{gameData.score} of {gameData.guesses} cities guessed correctly</p>
             </div>
           </div>
@@ -264,12 +269,12 @@ export default function WeatherGame() {
             <div className='flex flex-col md:py-8 bg-slate-400/30 rounded-xl px-2'>
               <div className='flex flex-row justify-evenly py-8'>             
                 <div className='flex justify-center w-1/2 m-auto'>
-                  <h3 className='text-2xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
+                  <h3 className='text-3xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
                 </div>
 
-                {gameData.userGuesses[currentCityIndex].guessed !== null ? <div><p>You've already guessed</p></div> : 
+                {gameData.userGuesses[currentCityIndex].guessed !== null ? <div className='flex justify-center w-1/2 m-auto'><p>Your guess was {gameData.userGuesses[currentCityIndex].guessed}</p></div> : 
                 <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
-                  <button className='p-2 bg-sky-800/30 rounded-xl shadow-2xl'>
+                  <button className='rounded-lg px-4 py-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-green-100 duration-300'>
                     Submit My Guess
                   </button>
                 </div> }              
@@ -295,7 +300,7 @@ export default function WeatherGame() {
 
       {/* List of citites & city info  */}
       <div className='p-4'>
-        <h3 className='text-2xl text-center md:text-left tracking-wide'>Cities & Status:</h3>
+        <h3 className='text-2xl text-center md:text-left md:pl-10 tracking-wide'>Cities & Status:</h3>
         <div className='grid grid-cols-2 md:grid-cols-5 justify-items-center gap-6 py-4'>
           { cityData.map((city, cityIndex) => <>
           <div className='w-40'>                
@@ -318,7 +323,7 @@ export default function WeatherGame() {
         <div className='flex flex-col justify-center border-b-2 border-slate-700/50 mx-20 mb-10'>          
           <div className='m-auto px-4 py-8 text-center'>
             <h4 className='text-xl'>Your Current Score</h4>
-            <div className='bg-emerald-800 text-white p-1 mx-4 rounded-xl'>
+            <div className='bg-green-700 text-white p-1 mx-4 rounded-xl'>
               <p className='p-1 font-medium'>{gameData.score} of {gameData.guesses} cities guessed correctly</p>
             </div>
           </div>

@@ -45,16 +45,20 @@ export default function WeatherCard(props) {
                 let fakeHumidity = weatherCardState.humidity
                 let fakeWind = weatherCardState.wind        
                 // modify humidity
-                if (fakeHumidity >= 5) {
+                if (fakeHumidity >= 15) {
                     fakeHumidity = ( fakeHumidity - 3 )                                        
                 } else {
-                    fakeHumidity = ( fakeHumidity + 2 )                    
+                    if (fakeHumidity <= 95) {
+                        fakeHumidity = ( fakeHumidity + 2 )                                            
+                    } else {
+                        fakeHumidity = ( fakeHumidity - 5)
+                    }
                 }
                 // modify wind
                 if (fakeWind >= 3 ) {
                     fakeWind = Math.round( fakeWind - 2 )
                 } else {
-                    fakeWind = ( fakeWind + 3 )
+                    fakeWind = Math.round( fakeWind + 3 )
                 }
 
                 // update state with modified values
@@ -94,7 +98,7 @@ export default function WeatherCard(props) {
                 setWeatherCardState( weatherCardState => ({
                     ...weatherCardState,                    
                     clouds: fakeClouds,
-                    guests: fakeGusts,
+                    gust: fakeGusts,
                     currentTemp: fakeCurrentTemp2,
                     modified: true,
                     modifiedCase: 2
@@ -113,9 +117,9 @@ export default function WeatherCard(props) {
                 }
                 // modify wind
                 if (fakeWind3 >= 10 ) {
-                    fakeWind3 = ( fakeWind3 + 2 )
+                    fakeWind3 = Math.round( fakeWind3 + 2 )
                 } else {
-                    fakeWind3 = ( fakeWind3 + 5 )
+                    fakeWind3 = Math.round( fakeWind3 + 5 )
                 }
                 // Update state with modified values
                 setWeatherCardState( weatherCardState => ({
@@ -149,8 +153,16 @@ export default function WeatherCard(props) {
                 }
                 break;
             case 'modifiedB':
-                if (!weatherCardState.modified) {                    
-                    modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
+                if (!weatherCardState.modified) {      
+                    if (props.cityData[props.currentCityIndex].randNumA === props.cityData[props.currentCityIndex].randNumB) {
+                        let randNum = ( Math.floor( Math.random() * 3) + 1)
+                        while (props.cityData[props.currentCityIndex].randNumA === randNum) {
+                            randNum = ( Math.floor( Math.random() * 3) + 1)
+                        }                        
+                        modifyWeatherData(randNum)                
+                    } else {
+                        modifyWeatherData(props.cityData[props.currentCityIndex].randNumB)                
+                    }                    
                 }                     
                 break;    
             default:
@@ -161,8 +173,7 @@ export default function WeatherCard(props) {
         
     // assign bgColor - if user has already guessed, update background colors to display correct answer
     let bgColor = props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50'
-    if ( props.gameData.userGuesses[props.currentCityIndex].guessed === 'correct' || props.gameData.userGuesses[props.currentCityIndex].guessed === 'incorrect') {
-        
+    if ( props.gameData.userGuesses[props.currentCityIndex].guessed === 'correct' || props.gameData.userGuesses[props.currentCityIndex].guessed === 'incorrect') {        
         if (props.guessType === 'default') {
             bgColor = 'bg-emerald-400/80 border-2 border-emerald-800'
         } else {
@@ -189,9 +200,6 @@ export default function WeatherCard(props) {
             <div className='flex flex-col'>
                 <p className='text-xs text-slate-600 italic'>Option {props.guessIndex + 1}</p>
                 <h3 className='text-xl text-center'>{weatherCardState.cityName}</h3>
-                <h3 className='text-xl text-center'>{weatherCardState.modifiedCase}</h3>
-                <h3 className='text-xl text-center'>{props.guessType}</h3>
-
             </div>
         </div>        
         <div className='flex flex-col justify-evenly'>

@@ -26,7 +26,7 @@ export default function PortfolioDescriptions() {
 
           <div className="ml-4">
             <h2 className="text-lg font-bold">Ector Grow</h2>
-
+            <p className='text-xs text-slate-200 pb-4'>EctorGrow.com</p>
             <p className="mt-1 text-sm text-gray-300">
               This website is currently a <span className='italic'>live</span> project I use to learn, practice and implement new concepts, practices & features. More Info below...
             </p>
@@ -43,12 +43,10 @@ export default function PortfolioDescriptions() {
         </span>
 
         <div className="ml-4">
-          <h2 className="text-lg font-bold">Weather Project</h2>
-
+          <h2 className="text-lg font-bold">Weather Game</h2>
+          <p className='text-xs text-slate-200 pb-4'>AFWebDev.com/weather</p>
           <p className="mt-1 text-sm text-gray-300">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-            cumque tempore est ab possimus quisquam reiciendis tempora animi!
-            Quaerat, saepe?
+            My twist on the classic Weather API protfolio project - I created a simple game that gives the user 10 chances to guess the correct weather for a U.S. city.
           </p>
         </div>
       </div>   
@@ -64,7 +62,7 @@ export default function PortfolioDescriptions() {
 
           <div className="ml-4">
             <h2 className="text-lg font-bold">Roommate Bill Splitter</h2>
-
+            <p className='text-xs text-slate-200 pb-4'>AFWebDev.com/billsplit</p>
             <p className="mt-1 text-sm text-gray-300">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               cumque tempore est ab possimus quisquam reiciendis tempora animi!

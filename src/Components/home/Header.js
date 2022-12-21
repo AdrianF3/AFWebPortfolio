@@ -83,6 +83,32 @@ export default function Header() {
                 </div>                                                                                                                                        
             </div>            
         </div>
+
+        {/* Begin Learning Tech Stack */}
+        <div className="max-w-screen-xl mx-auto pt-16 -mt-4 border-2 border-t-0 border-white/90 p-4 rounded-xl rounded-t-none">
+            <div className='absolute -mt-14 -ml-8 bg-white rounded-xl drop-shadow-xl'>
+                <h2 className='text-2xl font-bold sm:text-3xl text-cyan-800 p-2'>Tech I am Learning & Implementing</h2>
+            </div>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-5 lg:grid-cols-4 text-white justify-evenly pt-8">
+                <div className=''>
+                    <img className='object-cover object-center h-10 m-auto' src={htmlSVG} alt='React' />
+                    <p>HTML 5</p>
+                    
+                </div>
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={cssSVG} alt='React' />
+                    <p>CSS 3</p>
+                </div>                
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={jsonSVG} alt='React' />
+                    <p>JSON</p>
+                </div>
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={gaSVG} alt='React' />
+                    <p>Google Analytics</p>
+                </div>   
+            </div>
+        </div>
     </div>
 </section>
 </>  )
