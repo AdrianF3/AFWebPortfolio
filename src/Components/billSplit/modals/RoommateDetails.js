@@ -11,13 +11,12 @@ export default function RoommateDetails(props) {
         <div className='flex flex-col'>
             <p>Total Paid {props.currentDetails.totalPaid}</p>                    
             <h4 className='underline underline-offset-2 pt-2'>Who {props.currentDetails.name} Owes</h4>
-            {props.currentDetails.owes.details.length > 0 ? props.currentDetails.owes.details.map((roommate, index) => {
-                // roommate.name === 'CURRENT_USER' ? return : null
+            {props.currentDetails.owes.details.length > 0 ? props.currentDetails.owes.details.map((roommate, index) => {                
                 if (roommate.name === 'CURRENT_USER') {
                     return null
                 }
                 return <p>{roommate.name}: {roommate.amount}</p>
-            }) : null}
+            }) : <p>{props.currentDetails.name} doesn't owe anyone</p>}
         </div>                     
     </section>
     </>)

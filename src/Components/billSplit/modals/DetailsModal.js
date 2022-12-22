@@ -26,8 +26,7 @@ export default function DetailsModal(props) {
 
 
   return ( <>    
-      <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>    
-    
+      <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>        
         <section className='flex flex-col bg-white rounded-t-2xl rounded-b-lg'> 
           {/* close button for upper right corner */}  
           <div 
@@ -41,21 +40,18 @@ export default function DetailsModal(props) {
           <div className='flex flex-col items-center w-fit h-fit'>
 
             {props.detailModal[1] === 'roommate' ? <RoommateDetails currentDetails={currentDetails} /> : null}
-            {props.detailModal[1] === 'transaction' ? <TransactionDetails currentDetails={currentDetails} /> : null}
+            {props.detailModal[1] === 'transaction' ? <TransactionDetails currentDetails={currentDetails} /> : null}                                        
               
-              
-              
-              
-              <div className='flex flex-row gap-2 p-4'>
-                
-                <AFPortfolioBtn
-                  btnText='Cancel'
-                  type='cancel'
-                  function={() => props.setDetailModal(false)}
-                  />
-              </div>
-          </div> 
-        </section>
+            <div className='flex flex-row gap-2 p-4'>              
+              <AFPortfolioBtn
+                btnText='Cancel'
+                type='cancel'
+                function={() => props.setDetailModal(false)}
+                />
+            </div>
+          
+        </div> 
       </section>
-      </>)
-    }
+    </section>
+  </>)
+}

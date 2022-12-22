@@ -18,53 +18,7 @@ export default function RoommateBillSplit() {
 
   // Load billSplitApp state and reducer functions
   const { billSplitData, billSplitDispatch } = useBillSplitApp()
-  
 
-  // Move to helper function that reducer can call - used after adding, deleting or editing a transaction
-  const processTransactions = () => {    
-    // Clone Transactions Array
-
-    // Order Transactions Chronologically by date
-
-    // Create new, temporary roommates array, to hold updateded data -> after looping 
-    // through all transactions, this array will be the new roommates array saved to state
-    
-    // Loop through transactionData, calculating what is owed & what has been paid, up to that transaction
-    
-      // for each transaction ->
-        // if type is bill
-        
-          // - find index of roommate who paid, update paid by totalPaid
-          // - loop through each debt in owedBy array -> 
-            // - for each debt, find index of the roommate by matching roommateName -> 
-              // then update that roommates owes.details to properly reflect that they owe
-              // the paidBy user, their owes amount
-
-        // else if type is roommatePayemnt
-
-          // find index of roommate who paid, update paid by totalPaid
-            // loop through each payment in debtPaid array ->
-              // for each payment, find index in paidBy users paid.details array and 
-              // increment the amount paid          
-
-
-    // END LOOPRING THROUGH ALL TRANSACTION DATA
-
-    
-
-    // return two objects 
-      // - the cloned transactions array that is now sorted by date
-      // - the new roommatesArray with updated financial totals
-    
-
-
-  }
-
-  
-  
-
-  
-// console.log(billSplitData)
 
   return (<>
     {/* Display Add Roommate Modal */}
@@ -108,7 +62,6 @@ export default function RoommateBillSplit() {
         </p>        
       </div>
 
-
       {/* Roommate Table Display */}
       <RoommateDisplay
         billSplitData={billSplitData}
@@ -118,8 +71,6 @@ export default function RoommateBillSplit() {
         currentlyAddingRoommates={currentlyAddingRoommates}
         setCurrentlyAddingRoommates={setCurrentlyAddingRoommates}
       />
-
-
       
       {/* Payments & Transactions Display */}
       <TransactionDisplay
