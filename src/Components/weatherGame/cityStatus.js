@@ -32,7 +32,8 @@ export default function CityStatus(props) {
 
   return (<>
     <section 
-      className={`flex flex-col m-1 md:m-2 items-center text-center ${borderColor} border-2 shadow-xl rounded-xl rounded-tr-3xl rounded-bl-3xl`}
+      className={`flex flex-col m-1 md:m-2 items-center text-center ${borderColor} border-2 shadow-xl rounded-xl rounded-tr-3xl rounded-bl-3xl
+      active:bg-blue-400 active:scale-90`}
       onClick={() => props.handleNewCity(props.cityIndex)}
     >
       {/* guessed status */}

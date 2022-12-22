@@ -6,16 +6,15 @@ import etgMini from '../../images/etgLogoWhiteBG.svg'
 export default function ETGExplainer() {
   return (
     <section className="m-20 text-gray-600 body-font border-4 border-green-300 rounded-xl bg-green-300/20">
-        <div className="container px-5 py-24 mx-auto flex flex-col md:flex-row justify-evenly m-2">
-            <div className='w-10/12 md:w-3/12 m-auto drop-shadow-2xl'>                
+        <div className="container px-5 py-24 mx-auto flex flex-col justify-evenly m-2">
+            <div className='w-10/12 md:w-3/12 m-auto drop-shadow-2xl py-10'>                
                 <img
                     className='' 
                     src={etgMini} 
                     alt='Ector Grow Logo' 
                 />
             </div>
-            <div className='w-8/12 m-auto'>
-                {/* <h2 className="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">EctorGrow.com</h2> */}
+            <div className='w-8/12 m-auto'>                
                 <div>
                     <p className="leading-relaxed py-2 text-base">
                         This website started as a side project for my personal use, which turned into a project I worked on for my portfolio and is now a small, but growing community of personal, at home cannabis growers. 
@@ -36,8 +35,10 @@ export default function ETGExplainer() {
                     </p>
                         
                 </div>
-                <div className="flex flex-col md:flex-row justify-evenly py-4 gap-4">
-                    <div className='border-2 border-emerald-800 p-2 rounded-xl'>
+                
+                {/* Ector Grow Demo Info & Link */}
+                <div className="flex flex-col md:flex-row justify-center py-10 gap-4">
+                    <div className='border-2 border-emerald-800 p-2 rounded-xl mx-auto'>
                         <p className='flex justify-center underline underline-offset-2'>Demo Account Info</p> 
                         <p><span className='font-bold'>Email:</span> email@email.com</p>
                         <p><span className='font-bold'>Password:</span> 123456</p>

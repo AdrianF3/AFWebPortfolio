@@ -19,9 +19,9 @@ export default function PortfolioDescriptions() {
     >
       {/* EctorGrow Section */}
       <a href='https://EctorGrow.com' target='_blank' rel='noreferrer'>
-        <div className="flex p-2 items-start col-span-1 hover:scale-125 transition-all duration-150 hover:-translate-y-8">
+        <div className="flex items-start col-span-1 hover:scale-125 transition-all duration-150 hover:-translate-y-8">
           <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
-            <img className='h-10' src={etgMini} alt='Ector Grow logo'/>
+            <img className='h-8 scale-150' src={etgMini} alt='Ector Grow logo'/>
           </span>
 
           <div className="ml-4">

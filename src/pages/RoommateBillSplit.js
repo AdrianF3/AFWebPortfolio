@@ -10,7 +10,7 @@ import HeaderNavigation from '../components/HeaderNavigation'
 import { useBillSplitApp } from '../hooks/useBillSplitApp'
 import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 
-export default function BillSplit() {
+export default function RoommateBillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
   const [ transactionModal, setTransactionModal ] = useState(false)
   const [ detailModal, setDetailModal ] = useState(false)

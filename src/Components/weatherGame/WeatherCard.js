@@ -46,12 +46,12 @@ export default function WeatherCard(props) {
                 let fakeWind = weatherCardState.wind        
                 // modify humidity
                 if (fakeHumidity >= 15) {
-                    fakeHumidity = ( fakeHumidity - 3 )                                        
+                    fakeHumidity = Math.round( fakeHumidity - 3 )                                        
                 } else {
                     if (fakeHumidity <= 95) {
-                        fakeHumidity = ( fakeHumidity + 2 )                                            
+                        fakeHumidity = Math.round( fakeHumidity + 2 )                                            
                     } else {
-                        fakeHumidity = ( fakeHumidity - 5)
+                        fakeHumidity = Math.round( fakeHumidity - 5)
                     }
                 }
                 // modify wind
@@ -74,25 +74,29 @@ export default function WeatherCard(props) {
             case 2:
                 // fields modified: cloudiness, gusts, current temp
                 let fakeClouds = weatherCardState.clouds
-                let fakeGusts = weatherCardState.gusts
+                let fakeGusts = weatherCardState.gust
                 let fakeCurrentTemp2 = weatherCardState.currentTemp
                 // modify clouds
-                if (fakeClouds >= 10 && fakeClouds > 89) {
-                    fakeClouds = ( fakeClouds + 10 )
+                if (fakeClouds <= 89 && fakeClouds > 10) {
+                    fakeClouds = Math.round( fakeClouds + 7 )
+                } else if (fakeClouds < 10 && fakeClouds > 4) {
+                    fakeClouds = ( fakeClouds - 4 )
+                } else if ( fakeClouds === 100) {
+                    fakeClouds = 98
                 } else {
-                    fakeClouds = ( fakeClouds + 4 )
+                    fakeClouds = 3
                 }
                 // modify gusts
                 if (fakeGusts >= 10 && fakeGusts > 20) {
-                    fakeGusts = ( fakeGusts + 2 )
+                    fakeGusts = Math.round( fakeGusts + 2 )
                 } else {
-                    fakeGusts = ( fakeGusts + 1 )
+                    fakeGusts = Math.round( fakeGusts + 1 )
                 }
                 // modify current temp
                 if (fakeCurrentTemp2 >= 50 && fakeCurrentTemp2 < 90) {
-                    fakeCurrentTemp2 = ( fakeCurrentTemp2 + 5 )
+                    fakeCurrentTemp2 = Math.round( fakeCurrentTemp2 + 5 )
                 } else {
-                    fakeCurrentTemp2 = ( fakeCurrentTemp2 - 7 )
+                    fakeCurrentTemp2 = Math.round( fakeCurrentTemp2 - 7 )
                 }
                 //  update state with modified values
                 setWeatherCardState( weatherCardState => ({
@@ -111,9 +115,9 @@ export default function WeatherCard(props) {
                 let currentTemp3 = ( weatherCardState.currentTemp + 4 )
                 // modify humidity
                 if (fakeHumidity3 > 25) {
-                    fakeHumidity3 = ( fakeHumidity3 - 4 )
+                    fakeHumidity3 = Math.round( fakeHumidity3 - 4 )
                 } else {
-                    fakeHumidity3 = ( fakeHumidity3 + 7 )
+                    fakeHumidity3 = Math.round( fakeHumidity3 + 7 )
                 }
                 // modify wind
                 if (fakeWind3 >= 10 ) {
@@ -192,7 +196,8 @@ export default function WeatherCard(props) {
 
     return (
     <section 
-        className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${ bgColor }`}
+        className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${ bgColor } 
+        hover:-skew-y-2 active:scale-90 active:bg-emerald-500`}
         onClick={() => props.handleUserSelectGuess(props.guessIndex)}
     >
         {/* title */}

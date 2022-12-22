@@ -5,6 +5,7 @@ import axios from 'axios';
 import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
 import LoadingDiv from '../components/weatherGame/LoadingDiv';
+import GameStatus from '../components/weatherGame/GameStatus';
 
 export default function WeatherGame() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
@@ -249,16 +250,8 @@ export default function WeatherGame() {
           </div>
 
         {/* Display Current Score */}
-        <div className='flex flex-col md:flex-row justify-center'>          
-          <div className='m-auto px-4 py-8 text-center'>
-            <h4 className='text-xl'>Your Current Score</h4>
-            <div className='bg-green-700 text-white p-1 mx-4 rounded-xl'>
-              <p className='p-1 font-medium'>{gameData.score} of {gameData.guesses} cities guessed correctly</p>
-            </div>
-          </div>
-        </div>
-      </div>          
-
+        <GameStatus gameData={gameData} />
+      </div>
       {/* GUESSING SECTION */}
       <section>
         { loadingRef.current ? <LoadingDiv /> : <>
@@ -274,7 +267,7 @@ export default function WeatherGame() {
 
                 {gameData.userGuesses[currentCityIndex].guessed !== null ? <div className='flex justify-center w-1/2 m-auto'><p>Your guess was {gameData.userGuesses[currentCityIndex].guessed}</p></div> : 
                 <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
-                  <button className='rounded-lg px-4 py-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-green-100 duration-300'>
+                  <button className='rounded-lg px-4 py-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-green-100 duration-300 active:scale-90 active:bg-green-900'>
                     Submit My Guess
                   </button>
                 </div> }              
@@ -300,7 +293,7 @@ export default function WeatherGame() {
 
       {/* List of citites & city info  */}
       <div className='p-4'>
-        <h3 className='text-2xl text-center md:text-left md:pl-10 tracking-wide'>Cities & Status:</h3>
+        <h3 className='text-2xl text-center md:text-left md:pl-10 tracking-wide'>Cities & Guess Status</h3>
         <div className='grid grid-cols-2 md:grid-cols-5 justify-items-center gap-6 py-4'>
           { cityData.map((city, cityIndex) => <>
           <div className='w-40'>                
@@ -321,15 +314,7 @@ export default function WeatherGame() {
 
       {/* Display Current Score */}
         <div className='flex flex-col justify-center border-b-2 border-slate-700/50 mx-20 mb-10'>          
-          <div className='m-auto px-4 py-8 text-center'>
-            <h4 className='text-xl'>Your Current Score</h4>
-            <div className='bg-green-700 text-white p-1 mx-4 rounded-xl'>
-              <p className='p-1 font-medium'>{gameData.score} of {gameData.guesses} cities guessed correctly</p>
-            </div>
-          </div>
-          <div className='m-auto px-4 py-8 text-center'>
-            <h4 className='text-2xl tracking-wider'>THANKS FOR PLAYING</h4>            
-          </div>
+          <GameStatus gameData={gameData} />
         </div>
 
 
