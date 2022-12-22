@@ -229,7 +229,7 @@ export default function AddEditTransactionModal(props) {
 
 
     return ( <>    
-        <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>    
+        <section className='w-screen h-screen fixed flex flex-col overflow-scroll justify-center items-center bg-cyan-600/80 z-10'>    
       
           <section className='flex flex-col px-10 bg-white rounded-t-2xl rounded-b-lg'> 
             {/* close button for upper right corner */}  
