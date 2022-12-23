@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
 import DatePicker from 'react-datepicker'
 
@@ -70,10 +70,6 @@ export default function AddEditTransactionModal(props) {
 
     tempSaveObject.financialDetails = tempFinanceDetails
     
-    
-    // newTransactionObject * the index to replace
-    console.log('ABOUT TO ADD THIS TRANSACTION')
-    console.log('tempSaveObject', tempSaveObject)
     
     // SAVING DATA
     
@@ -216,23 +212,16 @@ export default function AddEditTransactionModal(props) {
       return <option key={index} value={roommate.name} >{roommate.name}</option> 
     } )
 
-
-    // console.log('roommatesChecked', roommatesChecked)
-    // console.log('props', props)
-    // console.log('transactionObject', transactionObject)
-    // console.log(roommateAmounts)
-    // console.log('roommateAmounts', roommateAmounts)
-    // console.log('roommatesSplit', roommatesSplit)
+ 
     
 
 
 
 
-    return ( <>    
-        <section className='w-screen h-screen fixed flex flex-col overflow-scroll justify-center items-center bg-cyan-600/80 z-10'>    
-      
-          <section className='flex flex-col px-10 bg-white rounded-t-2xl rounded-b-lg'> 
-            {/* close button for upper right corner */}  
+    return ( <>            
+        <section className={`w-screen h-screen fixed flex justify-center items-center z-20`}>
+        <section className="flex flex-col w-min h-4/5 justify-center items-center mx-2 rounded-md bg-white shadow-lg p-2 overflow-scroll">   
+          {/* close button for upper right corner */}  
             <div 
               className='flex flex-row h-10 w-10'
               onClick={() => props.setTransactionModal(false)}
@@ -241,7 +230,7 @@ export default function AddEditTransactionModal(props) {
             </div>
       
             {/* Main Section Of Modal */}
-            <div className='flex flex-col items-center w-fit h-fit'>
+            <div className='flex flex-col items-center'>
                 
                 <div>
                   {props.transactionModal[1] === 'ADD' ? <h3>Add Transaction</h3> : <h3>Edit Transaction</h3>}
@@ -250,10 +239,9 @@ export default function AddEditTransactionModal(props) {
                 
                 {/* form section */}
                 <section>
-                  <div className="w-full bg-zinc-50">
-                    <div className="flex flex-col items-center pt-6 sm:justify-center sm:pt-0">
-                      {/* <div className="w-full overflow-hidden bg-white p-8 shadow-sm dark:bg-gray-800 sm:max-w-md sm:rounded-lg"> */}
-                      <div className="w-full overflow-hidden p-8 shadow-sm sm:max-w-md sm:rounded-lg">
+                  <div className=" bg-zinc-50">
+                    <div className="flex flex-col items-center pt-6 sm:justify-center sm:pt-0">                      
+                      <div className="p-8 shadow-sm sm:max-w-md sm:rounded-lg">
                         
 
                         <form>
@@ -286,7 +274,7 @@ export default function AddEditTransactionModal(props) {
                                   ...transactionObject,
                                   type: 'bill'
                                 }))}
-                                checked={transactionObject.type === 'bill' ? true : false}
+                                defaultChecked={transactionObject.type === 'bill' ? true : false}
                                 // defaultChecked
                               />
 

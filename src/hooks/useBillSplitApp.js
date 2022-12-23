@@ -110,7 +110,7 @@ const processTransactions = ( paramState ) => {
     // to get a value that is either negative, positive, or zero.
     return new Date(a.date) - new Date(b.date);
   })
-  console.log('tempTransactions', tempTransactions)
+  // console.log('tempTransactions', tempTransactions)
 
   // Create new, temporary roommates array, to hold updateded data -> after looping 
   // through all transactions, this array will be the new roommates array saved to state
@@ -127,7 +127,7 @@ const processTransactions = ( paramState ) => {
     }
     
   }
-  console.log(tempRoommatesArray)
+  
   
   // for each transaction ->
   paramState.transactions.forEach(transaction => {  
@@ -175,29 +175,34 @@ const processTransactions = ( paramState ) => {
     // ** FOR TYPE ROOMMATE PAYMENT **
     if (transaction.type === 'roommatePayment') {
       // loop through the financialDetails array, match the name to the name in tempRoommates array
-      transaction.financialDetails.forEach(roommateRecord => {
+      transaction.financialDetails.forEach(roommateRecord => {              
         // console.log('roommateRecord', roommateRecord)
-        // console.log('transaction', transaction)
-        // find index of name in tempRoommates Array
-
-        // ** need to have index or name of the user who paid - refactor to use transaction object instead of using the roommate record, which didn't have enough info
-        // using the new data - should update the user who paid to lower their owes balance - won't update since this will continue to show the total paid by each roommate
-        // also use the line below to work on updating the roommate[index]owes.details value properly
-
-        let tempRoommateObject = { name: nameOfRoommateWhoPaid }
-
-        
-        let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
-        let indexOfRoommateDetails = tempRoommatesArray[indexOfRoommateWhoPaid].owes.details.findIndex(roommate => roommate.name === roommateRecord.name)
-        
-        tempRoommatesArray[indexOfRoommateWhoPaid].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total - roommateRecord.amount) 
-        console.log('tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails]', tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails])
-        if (indexOfRoommateDetails !== -1) {
-          tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] = (tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] - roommateRecord.amount)            
-          // console.log('tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails]', tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails])          
-        } else {
-          tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] = (0 - roommateRecord.amount)            
-          // console.log('tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails]', tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails])          
+        if (roommateRecord.amount > 0) {
+          // console.log('transaction', transaction)
+          // ** need to have index or name of the user who paid - refactor to use transaction object instead of using the roommate record, which didn't have enough info
+          // using the new data - should update the user who paid to lower their owes balance - won't update since this will continue to show the total paid by each roommate
+          // also use the line below to work on updating the roommate[index]owes.details value properly
+  
+          
+          console.log('tempRoommatesArray', tempRoommatesArray)                
+          
+          let tempRoommateObject = tempRoommatesArray[tempRoommatesArray.findIndex(roommate => roommate.name === transaction.paidBy)]
+          // console.log('tempRoommateObject', tempRoommateObject)                                
+          let indexOfRoommatePaidBack = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
+          // console.log('indexOfRoommatePaidBack', indexOfRoommatePaidBack)
+          
+          // reduce the amount owed by the roommate who paid 
+          // console.log('tempRoommateObject.owes.details[indexOfRoommatePaidBack]', tempRoommateObject.owes.details[indexOfRoommatePaidBack])
+          if (tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount !== undefined) {
+            tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount = ( tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount - roommateRecord.amount)          
+          }
+          // reduce the total amount owed for the roommate who paid
+          tempRoommateObject.owes.total = ( tempRoommateObject.owes.total - roommateRecord.amount)
+          // console.log('tempRoommateObject', tempRoommateObject)
+  
+          tempRoommatesArray[tempRoommatesArray.findIndex(roommate => roommate.name === transaction.paidBy)] = tempRoommateObject
+          // console.log('tempRoommatesArray', tempRoommatesArray)        
+          
         }
         
       })          
@@ -255,7 +260,7 @@ const billSplitAppReducer = ( billSplitData, action) => {
             clonedState.transactions[indexOfTransaction] = action.transactionToReplace
             clonedState = processTransactions( clonedState )            
             return clonedState
-          case 'LOAD_DUMMY_DATA':
+        case 'LOAD_DUMMY_DATA':
             let dummyDataToSave = processTransactions(dummyData)
             return dummyDataToSave
         default:  
