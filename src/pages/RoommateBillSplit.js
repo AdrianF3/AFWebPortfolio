@@ -19,7 +19,7 @@ export default function RoommateBillSplit() {
   // Load billSplitApp state and reducer functions
   const { billSplitData, billSplitDispatch } = useBillSplitApp()
 
-
+  console.log('billSplitData', billSplitData)
   return (<>
     {/* Display Add Roommate Modal */}
     {addRoommateModal ? <AddRoommateModal 

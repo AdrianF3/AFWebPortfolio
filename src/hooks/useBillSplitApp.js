@@ -176,20 +176,28 @@ const processTransactions = ( paramState ) => {
     if (transaction.type === 'roommatePayment') {
       // loop through the financialDetails array, match the name to the name in tempRoommates array
       transaction.financialDetails.forEach(roommateRecord => {
+        // console.log('roommateRecord', roommateRecord)
+        // console.log('transaction', transaction)
         // find index of name in tempRoommates Array
-        console.log('called')
+
+        // ** need to have index or name of the user who paid - refactor to use transaction object instead of using the roommate record, which didn't have enough info
+        // using the new data - should update the user who paid to lower their owes balance - won't update since this will continue to show the total paid by each roommate
+        // also use the line below to work on updating the roommate[index]owes.details value properly
+
+        let tempRoommateObject = { name: nameOfRoommateWhoPaid }
+
+        
         let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
         let indexOfRoommateDetails = tempRoommatesArray[indexOfRoommateWhoPaid].owes.details.findIndex(roommate => roommate.name === roommateRecord.name)
         
         tempRoommatesArray[indexOfRoommateWhoPaid].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total - roommateRecord.amount) 
-        console.log('tempRoommatesArray[indexOfRoommate]', tempRoommatesArray[indexOfRoommate])
-        console.log('roommateRecord', roommateRecord)
-        console.log('tempRoommatesArray', tempRoommatesArray)
+        console.log('tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails]', tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails])
         if (indexOfRoommateDetails !== -1) {
           tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] = (tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] - roommateRecord.amount)            
-          console.log('called')
+          // console.log('tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails]', tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails])          
         } else {
           tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails] = (0 - roommateRecord.amount)            
+          // console.log('tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails]', tempRoommatesArray[indexOfRoommateWhoPaid].owes.details[indexOfRoommateDetails])          
         }
         
       })          

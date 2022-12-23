@@ -1,6 +1,8 @@
 import React from 'react'
 
 export default function RoommateDetails(props) {
+console.log('props.currentDetails.owes.details', props.currentDetails.owes.details)
+
   return (<>
     <section className='px-4 text-center'>            
         {/* Title Section */}
