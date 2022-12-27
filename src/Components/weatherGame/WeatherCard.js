@@ -112,7 +112,7 @@ export default function WeatherCard(props) {
                 // fields modified: humidity, winds, currentTemp
                 let fakeHumidity3 = weatherCardState.humidity
                 let fakeWind3 = weatherCardState.wind
-                let currentTemp3 = ( weatherCardState.currentTemp + 4 )
+                let currentTemp3 = Math.round( weatherCardState.currentTemp + 4 )
                 // modify humidity
                 if (fakeHumidity3 > 25) {
                     fakeHumidity3 = Math.round( fakeHumidity3 - 4 )
@@ -197,7 +197,7 @@ export default function WeatherCard(props) {
     return (
     <section 
         className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${ bgColor } 
-        hover:-skew-y-2 active:scale-90 active:bg-emerald-500`}
+        md:hover:-skew-y-2 active:scale-90 active:bg-emerald-500 `}
         onClick={() => props.handleUserSelectGuess(props.guessIndex)}
     >
         {/* title */}

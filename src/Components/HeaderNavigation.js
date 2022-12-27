@@ -40,7 +40,7 @@ export default function HeaderNavigation(props) {
     )
 
     const mobileMenu = (
-        <div className='flex flex-col justify-center text-center gap-2 py-2'>
+        <div className='flex flex-col justify-center text-center gap-2 py-2 text-xs'>
             {/* <NavLink to='/'>
                 <p className=''>Home</p>
             </NavLink> */}
@@ -64,48 +64,42 @@ export default function HeaderNavigation(props) {
         </div>
     )
 
-    // https://tailwindcomponents.com/component/navbar-hamburger-menu-for-ecommerce
-    // console.log('isMobileMenuOpen', isMobileMenuOpen)
+    return ( <> 
+        <div className="flex flex-wrap place-items-center h-fit ">
+            <section className="relative mx-auto">
+                {/* <!-- navbar --> */}
+                <nav className="flex justify-between bg-gray-900 text-white w-screen">
+                    <div className="py-6 flex justify-center w-9/12">                    
+                        <NavLink to='/'>
+                            <h3
+                                className='text-2xl p-2 tracking-wider uppercase m-auto text-center'>
+                                Adrian Fregoso
+                            </h3>
+                        </NavLink>
 
-    return ( <> <div className="flex flex-wrap place-items-center h-fit ">
-        <section className="relative mx-auto">
-            {/* <!-- navbar --> */}
-            <nav className="flex justify-between bg-gray-900 text-white w-screen">
-                <div className="py-6 flex justify-between w-full">
-                    {/* <a className="text-3xl font-bold font-heading px-5" href="#">
-                    </a> */}
-                    <NavLink to='/'>
-                        <h3
-                            className='text-2xl p-2 tracking-wider uppercase m-auto md:ml-10 text-center'>
-                            Adrian Fregoso
-                        </h3>
-                    </NavLink>
+                        {/* <!-- Nav Links --> */}
+                        {/* Full Display */}
+                        <div className='px-5'>
+                            {isMobileMenuOpen
+                                ? mobileMenu
+                                : defaultMenu}
+                        </div>
 
-                    {/* <!-- Nav Links --> */}
-                    {/* Full Display */}
-                    <div className='px-5'>
-                        {isMobileMenuOpen
-                            ? mobileMenu
-                            : defaultMenu}
                     </div>
-
-                </div>
-                {/* <!-- Open/Close Menu --> */}
-                <div
-                    className='md:hidden p-3 transition duration-150 ease-in-out'
-                    onClick={() => {
-                    isMobileMenuOpen
-                        ? setIsMobileMenuOpen(false)
-                        : setIsMobileMenuOpen(true)
-                }}>
-                    {!isMobileMenuOpen
-                        ? <i className='material-icons'>menu</i>
-                        : <i className='material-icons'>close</i>
-}
-                </div>
-            </nav>
-
-        </section>
-    </div> </>
-  )
+                    
+                    {/* <!-- Open/Close Menu --> */}
+                    
+                    <div
+                        className='md:hidden p-3 transition duration-150 ease-in-out my-auto w-3/12'
+                        onClick={() => {
+                        isMobileMenuOpen
+                            ? setIsMobileMenuOpen(false)
+                            : setIsMobileMenuOpen(true)
+                        }}>
+                        { !isMobileMenuOpen ? <i className='material-icons'>menu</i> : <i className='material-icons'>close</i> }
+                    </div>
+                </nav>
+            </section>
+        </div> 
+    </>)
 }
