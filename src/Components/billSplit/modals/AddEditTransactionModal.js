@@ -72,14 +72,14 @@ export default function AddEditTransactionModal(props) {
 
     tempSaveObject.financialDetails = tempFinanceDetails
     
-    console.log('tempSaveObject', tempSaveObject)
+    
     // SAVING DATA
     
-    // if adding a new transaction
-    // new transactionObject
+    // if adding a new transaction    
     if (props.transactionModal[1] === 'ADD') {
-      // pass to dispatch
+      // pass to dispatch      
       props.billSplitDispatch({type: 'ADD_TRANSACTION', transactionToSave: tempSaveObject})
+      
       props.setTransactionModal(false)
     }
     // if editing a transaction

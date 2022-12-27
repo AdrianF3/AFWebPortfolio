@@ -73,7 +73,7 @@ return (
                 btnText='Done Adding Roommates' 
                 function={() => props.setCurrentlyAddingRoommates(false)}
               /> : <AFPortfolioBtn 
-              btnText='Add at least two roommate to continue' 
+              btnText='Add at least two roommates to continue' 
               type='disabeled'              
             />
             }        

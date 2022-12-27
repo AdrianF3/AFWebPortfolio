@@ -183,8 +183,7 @@ const processTransactions = ( paramState ) => {
           // using the new data - should update the user who paid to lower their owes balance - won't update since this will continue to show the total paid by each roommate
           // also use the line below to work on updating the roommate[index]owes.details value properly
   
-          
-          console.log('tempRoommatesArray', tempRoommatesArray)                
+                                  
           
           let tempRoommateObject = tempRoommatesArray[tempRoommatesArray.findIndex(roommate => roommate.name === transaction.paidBy)]
           // console.log('tempRoommateObject', tempRoommateObject)                                
@@ -244,8 +243,23 @@ const billSplitAppReducer = ( billSplitData, action) => {
           }            
             return clonedState
         case 'ADD_TRANSACTION':          
-          clonedState.transactions.push(action.transactionToSave)
-          clonedState = processTransactions( clonedState )            
+          let transactionIDExists = clonedState.transactions.findIndex((transaction) => {            
+            let doesExist = false
+            if (transaction.transactionID === action.transactionToSave.transactionID) {
+              // do nothing
+              doesExist = true
+            } else {
+              doesExist = false
+            }            
+
+            return doesExist
+          })          
+          if (transactionIDExists > 0) {
+            // do nothing 
+          } else {
+            clonedState.transactions.push(action.transactionToSave)
+            clonedState = processTransactions( clonedState )            
+          }
           return clonedState
         case 'DELETE_TRANSACTION':
             // find index to delete by matching ID
