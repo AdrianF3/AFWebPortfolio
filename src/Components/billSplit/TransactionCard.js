@@ -4,31 +4,31 @@ import { moneyFormatter } from '../renderless/moneyFormatter'
 export default function TransactionCard(props) {
   return (
     <>        
-        <div className='min-w-min'>
+        <div className='px-10'>
             <p>
                 {props.transaction.date.toDateString()}
             </p>
         </div>        
         {/* Transaction Description */}
-        <div className='min-w-min'>
+        <div className='px-10'>
             <p>
                 {props.transaction.description}
             </p>
         </div>
         {/* Paid By (which roommate) */}
-        <div className='min-w-min'>
+        <div className='px-10'>
             <p>
                 {props.transaction.paidBy}
             </p>
         </div>
         {/* Total Paid Section */}
-        <div className='min-w-min'>
+        <div className='px-10'>
             <p>
                 {moneyFormatter.format( props.transaction.totalPaid)}
             </p>
         </div>
         {/* Edit Buttons */}
-        <div className='flex flex-row justify-evenly mx-auto md:gap-4'>
+        <div className='flex flex-row px-10 justify-evenly mx-auto md:gap-4'>
             <div>
                 <i 
                     className='material-icons'

@@ -7,12 +7,12 @@ export default function RoommateDisplay(props) {
 return (
     <>
     {/* Roommate Table Display */}
-    <section className='flex flex-col w-10/12 mx-auto bg-sky-600/20 p-4 rounded-xl'>
+    <section className='flex flex-col w-10/12 mx-auto bg-sky-600/20 p-4 pt-4 pb-10 rounded-xl'>
         <div className='-mt-8 -ml-6 bg-sky-600 w-fit p-2 rounded-xl my-4'>
-          <h4 className='texl-2xl font-bold uppercase text-white'>Roommates</h4>
+          <h4 className='texl-3xl font-bold uppercase text-white'>Roommates</h4>
         </div>
         {/* table section */}
-        <div className='grid grid-cols-4 text-sm justify-items-center'>
+        <div className='grid grid-cols-4 text-sm md:text-base justify-items-center pt-6'>
           {/* Row 1 - Descriptions */}
           <div>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
@@ -48,7 +48,7 @@ return (
         </div>
 
         {props.currentlyAddingRoommates ? 
-          <div className='flex flex-col md:flex-row justify-evenly pt-8 border-t-2 border-slate-800 gap-4'>
+          <div className='flex flex-col md:flex-row justify-evenly pt-14 border-t-2 border-slate-800 gap-4 drop-shadow-xl'>
             {/* Add Roommate Button - if less than 5 current roommates, otherwse display full message & disable button */}
             {props.billSplitData.roommates.length < 5 ? 
               <>
@@ -58,7 +58,7 @@ return (
                   function={props.setAddRoommateModal}
                   />
                   <AFPortfolioBtn 
-                  btnText='Load Dummy Data' 
+                  btnText='Load Generic Data' 
                   function={() => props.billSplitDispatch({ type: 'LOAD_DUMMY_DATA'}, props.setCurrentlyAddingRoommates(false))}
                   />
                 </div>

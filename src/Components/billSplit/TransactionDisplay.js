@@ -12,7 +12,7 @@ export default function TransactionDisplay(props) {
       {/* Payments & Transactions Display */}
       <section className={`flex flex-col w-10/12 bg-emerald-600/20 my-10 rounded-xl p-4 mx-auto py-8 ${props.currentlyAddingRoommates ? 'hidden' : null}`}>
         <div className='-mt-8 -ml-6 bg-emerald-600 w-fit p-2 rounded-xl my-4'>
-          <h4 className='texl-2xl font-bold uppercase text-white'>Payments &amp; Transactions</h4>
+          <h4 className='texl-3xl font-bold uppercase text-white'>Payments &amp; Transactions</h4>
         </div>
         <div className='flex flex-col md:flex-row justify-end justify-items-center gap-2'>
             <div className='flex pb-4'>
@@ -24,29 +24,29 @@ export default function TransactionDisplay(props) {
         </div>
         
         {/* table section */}
-        <div className='grid grid-cols-5 gap-4 text-sm justify-items-center overflow-x-scroll'>
+        <div className='grid grid-cols-5 space-x-2 divide-y-4 divide-green-600 md:divide-y-0 text-sm md:text-base justify-items-center text-center overflow-x-scroll'>
           {/* Row 1 - Descriptions */}
-          <div className='min-w-full p-4'>
+          <div className='px-10'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Date
             </p>
           </div>          
-          <div className='min-w-full p-4'>
+          <div className='px-10'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Description
             </p>
           </div>
-          <div className='min-w-full p-4'>
+          <div className='px-10'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Paid By
             </p>
           </div>
-          <div className='min-w-full p-4'>
+          <div className='px-10'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Amount
             </p>
           </div>
-          <div className='min-w-full p-4'>
+          <div className='px-10'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Actions
             </p>
