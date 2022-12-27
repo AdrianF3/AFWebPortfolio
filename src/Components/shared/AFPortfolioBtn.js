@@ -9,7 +9,7 @@ export default function AFPortfolioBtn(props) {
         bgColor = 'bg-amber-500 border-amber-800 md:hover:bg-amber-600'
     }
     if (props.type === 'cancel') {
-        bgColor = 'bg-amber-500 border-amber-800 md:hover:bg-amber-600'
+        bgColor = 'bg-yellow-100 border-amber-800 md:hover:bg-amber-600'
     }
 
     if (props.type === 'disabeled') {

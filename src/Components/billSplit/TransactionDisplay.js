@@ -24,34 +24,34 @@ export default function TransactionDisplay(props) {
         </div>
         
         {/* table section */}
-        <div className='grid grid-cols-5 mx-auto gap-4 justify-items-center overflow-x-scroll'>
+        <div className='grid grid-cols-5 gap-4 text-sm justify-items-center overflow-x-scroll'>
           {/* Row 1 - Descriptions */}
-          <div className=''>
+          <div className='min-w-full p-4'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Date
             </p>
           </div>          
-          <div className=''>
+          <div className='min-w-full p-4'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Description
             </p>
           </div>
-          <div className=''>
+          <div className='min-w-full p-4'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Paid By
             </p>
           </div>
-          <div className=''>
+          <div className='min-w-full p-4'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Amount
             </p>
           </div>
-          <div className=''>
+          <div className='min-w-full p-4'>
             <p className='uppercase tracking-wide underline underline-offset-2 pb-2'>
               Actions
             </p>
           </div>
-          {/* Rows 2+ generaed from array of transactions */}
+          {/* Rows 2+ generaed from array of transactions */}          
           {props.billSplitData.transactions.length > 0 ? props.billSplitData.transactions.map((transaction, transactionIndex) => 
             <TransactionCard 
                 transaction={transaction} 

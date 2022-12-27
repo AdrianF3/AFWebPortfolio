@@ -1,4 +1,5 @@
 import React from 'react'
+import { moneyFormatter } from '../../renderless/moneyFormatter'
 
 export default function TransactionDetails(props) {
     return ( <> <section className='flex flex-col p-4'>
@@ -43,7 +44,7 @@ export default function TransactionDetails(props) {
                 <div className='flex flex-col px-4'>
                     <p className='text-xl'>Total Paid:</p>
                     <p>
-                        ${props.currentDetails.totalPaid}
+                        {moneyFormatter.format(props.currentDetails.totalPaid)}
                     </p>
                 </div>
             </div>
@@ -58,14 +59,14 @@ export default function TransactionDetails(props) {
         <div className='flex flex-col items-center mx-auto'>
             <h3 className='underline underline-offset-2'>Roommaetes Who Owe {props.currentDetails.paidBy}</h3>
             {props.currentDetails.financialDetails.length > 0 ? props.currentDetails.financialDetails.map((roommateOwes, index) => {
-                return <p key={index}>{roommateOwes.name}: {roommateOwes.amount}</p>
+                return <p key={index}>{roommateOwes.name}: {moneyFormatter.format(roommateOwes.amount)}</p>
             }) : null}
         </div> : null}
         {props.currentDetails.type === 'roommatePayment' ? 
         <div className='flex flex-col items-center mx-auto'>
             <h3 className='underline underline-offset-2'>Roommates Who {props.currentDetails.paidBy} Paid</h3>
             {props.currentDetails.financialDetails.length > 0 ? props.currentDetails.financialDetails.map((roommatePaid, index) => {
-                return <p key={index}>{roommatePaid.name}: {roommatePaid.amount}</p>
+                return <p key={index}>{roommatePaid.name}: {moneyFormatter.format(roommatePaid.amount)}</p>
             }) : null}
         </div> : null}
 

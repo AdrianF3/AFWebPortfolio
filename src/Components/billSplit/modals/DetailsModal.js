@@ -27,13 +27,13 @@ export default function DetailsModal(props) {
 
   return ( <>    
       <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>        
-        <section className='flex flex-col bg-white rounded-t-2xl rounded-b-lg'> 
+        <section className='flex flex-col place-items-end bg-white rounded-t-2xl rounded-b-lg'> 
           {/* close button for upper right corner */}  
           <div 
-            className='flex flex-row h-10 w-10'
+            className='relative h-10 w-10 -top-6  rounded-full'
             onClick={() => props.setDetailModal(false)}
             >
-              <i className='material-icons relative -top-6 left-28 bg-red-400 md:hover:bg-red-600  p-2 m-1 text-sm font-bold rounded-xl'>close</i>
+              <i className='material-icons bg-red-400 md:hover:bg-red-600  p-2 m-1 text-sm font-bold rounded-xl'>close</i>
           </div>
     
           {/* Main Section Of Modal */}
@@ -44,7 +44,7 @@ export default function DetailsModal(props) {
               
             <div className='flex flex-row gap-2 p-4'>              
               <AFPortfolioBtn
-                btnText='Cancel'
+                btnText='Close'
                 type='cancel'
                 function={() => props.setDetailModal(false)}
                 />

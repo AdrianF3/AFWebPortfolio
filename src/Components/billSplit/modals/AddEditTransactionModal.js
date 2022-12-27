@@ -3,6 +3,7 @@ import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
 import DatePicker from 'react-datepicker'
 
 import "react-datepicker/dist/react-datepicker.css"
+import { moneyFormatter } from '../../renderless/moneyFormatter'
 
 export default function AddEditTransactionModal(props) {
   const [ transactionObject, setTransactionObject ] = useState(null)
@@ -55,6 +56,7 @@ export default function AddEditTransactionModal(props) {
   const handleSaveChanges = () => {
     // build new transactionObject
     let tempSaveObject = Object.assign({}, transactionObject)
+
     tempSaveObject.totalPaid = parseInt(tempSaveObject.totalPaid)
     let tempFinanceDetails = new Array(props.billSplitData.roommates.length).fill(0)
     
@@ -70,7 +72,7 @@ export default function AddEditTransactionModal(props) {
 
     tempSaveObject.financialDetails = tempFinanceDetails
     
-    
+    console.log('tempSaveObject', tempSaveObject)
     // SAVING DATA
     
     // if adding a new transaction
@@ -239,7 +241,7 @@ export default function AddEditTransactionModal(props) {
                 
                 {/* form section */}
                 <section>
-                  <div className=" bg-zinc-50">
+                  <div className="">
                     <div className="flex flex-col items-center pt-6 sm:justify-center sm:pt-0">                      
                       <div className="p-8 shadow-sm sm:max-w-md sm:rounded-lg">
                         
@@ -247,7 +249,7 @@ export default function AddEditTransactionModal(props) {
                         <form>
                           
                           <div>
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400"> Paid By </label>
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400"> Paid By </label>
                             
                             <select
                               defaultValue={transactionObject.paidBy}
@@ -261,7 +263,7 @@ export default function AddEditTransactionModal(props) {
                           </div>
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" >Transaction Type</label>
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" >Transaction Type</label>
                             
                             <div>
                               <input
@@ -312,7 +314,7 @@ export default function AddEditTransactionModal(props) {
                           
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Bill Total</label>
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" > {transactionObject.type === 'bill' ? 'Bill' : 'Payment' } Total</label>
 
                             <input 
                               // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
@@ -328,7 +330,7 @@ export default function AddEditTransactionModal(props) {
                           </div>                         
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Date </label>
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" > Date </label>
                             {transactionObject ? 
                             <DatePicker selected={transactionObject.date} onChange={(date) => {setTransactionObject( transactionObject => ({
                               ...transactionObject,
@@ -337,17 +339,15 @@ export default function AddEditTransactionModal(props) {
                           </div>
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" >
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" >
                               {transactionObject.type === 'bill' ? 'Owed By' : 'Paid To' }
                             </label>                            
-                            {props.billSplitData.roommates.map((roommate, index) => {
-
-
+                            {props.billSplitData.roommates.map((roommate, index) => {                              
                               return (<>                                
                                 <label htmlFor={roommate.name}>{roommate.name}</label>
                                 <input
                                   type='checkbox'
-                                  checked={roommatesChecked[index]}
+                                  defaultChecked={roommatesChecked[index]}
                                   name={roommate.name}
                                   value={roommate.name}                                  
                                   id={roommate.name}
@@ -355,12 +355,13 @@ export default function AddEditTransactionModal(props) {
                                   selected={roommatesChecked[index] ? true : false}                                  
                                   />
                               </>)
+
                             })}
                           </div>
 
                           {roommatesSplit >= 2 ? 
-                            <div className="mt-4">
-                              <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Evenly Split The Bill?</label>
+                            <div className="mt-4 bg-emerald-400/40 p-2 rounded-xl shadow-xl">
+                              <label className="block py-2 text-center text-md font-medium text-gray-900 dark:text-gray-400" > Evenly Split The Bill?</label>
 
                               <div>
                                 <input
@@ -411,10 +412,9 @@ export default function AddEditTransactionModal(props) {
                           }
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-800 dark:text-gray-400" > Description </label>
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" > Description </label>
 
-                            <textarea 
-                              // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
+                            <textarea                               
                               className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
                               id="password_confirmation"
                               type="textarea"
@@ -440,9 +440,12 @@ export default function AddEditTransactionModal(props) {
                 <section>
 
                   <div className='flex flex-col justify-evenly'>
-                    <h3 className='underline underline-offset-2'>
+                    <h3 className='underline underline-offset-2 text-center'>
                     {transactionObject.type === 'bill' ? `Owed to ${transactionObject.paidBy}` : `${transactionObject.paidBy } Paid:` }
                     </h3>
+                    <p className='text-center text-xs text-slate-700 italic pb-4'>
+                    {transactionObject.type === 'bill' ? `whats the poriton each roommate owes` : `how much are you paying each roommate` }
+                    </p>
                     {props.billSplitData.roommates.map((roommate, index) => {
                     if (roommatesChecked[index]) {
                       return (<>
@@ -475,7 +478,7 @@ export default function AddEditTransactionModal(props) {
                     {totalPaid > 0 ? 
                     <div>
                       <p>
-                        Total ${totalPaid}
+                        Total {moneyFormatter.format(totalPaid)}
                       </p>
                     </div> : null
                     }

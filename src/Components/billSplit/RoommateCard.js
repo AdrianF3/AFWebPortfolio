@@ -1,4 +1,5 @@
 import React from 'react'
+import { moneyFormatter } from '../renderless/moneyFormatter'
 
 export default function RoommateCard(props) {
     
@@ -13,13 +14,13 @@ export default function RoommateCard(props) {
     {/* Paid */}
     <div className=''>
         <p>
-            {props.roommate.totalPaid}
+            {moneyFormatter.format(props.roommate.totalPaid)}
         </p>
     </div>
     {/* Owes */}
     <div className=''>
         <p>
-            {props.roommate.owes.total}
+            {moneyFormatter.format(props.roommate.owes.total)}
         </p> 
     </div> 
     {/* Edit Buttons */}
