@@ -10,7 +10,7 @@ export default function PreviousEmployers() {
   <section className="text-gray-600 body-font bg-cyan-900 rounded-xl mx-4">
     <div className="container px-5 py-20 mx-auto">
       <div className='mb-8'>
-        <h2 className='text-white text-3xl font-bold sm:text-4xl tracking-wide'>
+        <h2 className='text-white text-3xl text-center font-bold sm:text-4xl tracking-wide'>
           Previous Employers
         </h2>
       </div>
@@ -18,7 +18,7 @@ export default function PreviousEmployers() {
 
         <div className="p-4 md:w-1/3">
           <div className="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img className="lg:h-48 md:h-36 w-auto object-contain m-auto" src={disneylandSVG} alt="Disneyland Resort Logo"/>
+            <img className="h-28 lg:h-48 md:h-36 w-auto object-contain m-auto" src={disneylandSVG} alt="Disneyland Resort Logo"/>
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Attractions Operator, Trainer &amp; Lead</h2>
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Disneyland Resort</h1>
@@ -39,7 +39,7 @@ export default function PreviousEmployers() {
 
         <div className="p-4 md:w-1/3">
           <div className="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img className="lg:h-48 md:h-36 w-auto object-contain pt-2 rounded-md m-auto" src={stratosphereSVG} alt="blog"/>
+            <img className="h-24 lg:h-48 md:h-36 w-auto object-contain p-2 mt-4 rounded-xl m-auto" src={stratosphereSVG} alt="blog"/>
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Tower Supervisor</h2>
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Stratosphere Hotel, Casino &amp; Tower</h1>
@@ -58,7 +58,7 @@ export default function PreviousEmployers() {
 
         <div className="p-4 md:w-1/3">
           <div className="h-full border-2 bg-gray-200 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-            <img className="lg:h-48 md:h-36 w-auto object-contain m-auto p-5" src={appleSVG} alt="blog"/>
+            <img className="h-32 lg:h-48 md:h-36 w-auto object-contain m-auto p-5" src={appleSVG} alt="blog"/>
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Operations Specalist</h2>
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Apple (retail)</h1>

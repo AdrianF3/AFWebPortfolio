@@ -5,7 +5,7 @@ import etgMini from '../../images/etgLogoWhiteBG.svg'
 
 export default function ETGExplainer() {
   return (
-    <section className="m-20 text-gray-600 body-font border-4 border-green-300 rounded-xl bg-green-300/20">
+    <section className="w-10/12 text-gray-600 body-font mx-auto my-10 border-4 border-green-300 rounded-xl bg-green-300/20">
         <div className="container px-5 py-24 mx-auto flex flex-col justify-evenly m-2">
             <div className='w-10/12 md:w-3/12 m-auto drop-shadow-2xl py-10'>                
                 <img
@@ -14,7 +14,7 @@ export default function ETGExplainer() {
                     alt='Ector Grow Logo' 
                 />
             </div>
-            <div className='w-8/12 m-auto'>                
+            <div className='w-full md:w-8/12 m-auto'>                
                 <div>
                     <p className="leading-relaxed py-2 text-base">
                         This website started as a side project for my personal use, which turned into a project I worked on for my portfolio and is now a small, but growing community of personal, at home cannabis growers. 

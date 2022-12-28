@@ -11,7 +11,7 @@ export default function HeaderNavigation(props) {
         <div className='hidden md:flex flex-row gap-4 md:mr-4 my-auto'>
             <p onClick={props.handleScrollToBottom}>Get In Touch</p>
 
-            <div className='flex flex-col justify-center text-center'>
+            <div className='flex flex-col justify-center py-2 text-center'>
                 <button
                     onClick={() => {
                     isPortfolioOpen
@@ -40,13 +40,9 @@ export default function HeaderNavigation(props) {
     )
 
     const mobileMenu = (
-        <div className='flex flex-col justify-center text-center gap-2 py-2 text-xs'>
-            {/* <NavLink to='/'>
-                <p className=''>Home</p>
-            </NavLink> */}
-            {/* <a href='' target='_blank' /> */}
+        <div className='flex flex-col justify-center text-center gap-2 py-2 mb-4 text-xs'>            
             <NavLink to=''>
-                <p>Get In Touch</p>
+                <p className=''>Get In Touch</p>
             </NavLink>
             <p className='font-bold uppercase border-b-2 border-white'>Portfolio Projects</p>
             <NavLink to='/weather'>
@@ -65,7 +61,7 @@ export default function HeaderNavigation(props) {
     )
 
     return ( <> 
-        <div className="flex flex-wrap place-items-center h-fit ">
+        <div className="flex flex-row place-items-center h-fit ">
             <section className="relative mx-auto">
                 {/* <!-- navbar --> */}
                 <nav className="flex justify-between bg-gray-900 text-white w-screen">
@@ -79,24 +75,33 @@ export default function HeaderNavigation(props) {
 
                         {/* <!-- Nav Links --> */}
                         {/* Full Display */}
+                        {/* <div className='px-5'>
+                            {isMobileMenuOpen
+                                ? mobileMenu
+                                : defaultMenu}
+                        </div> */}
+
+                    </div>
+                    
+                    {/* <!-- Open/Close Menu --> */}
+                    <div className='flex flex-col my-auto w-3/12'>
+                        <div
+                            className='md:hidden p-3 transition duration-150 ease-in-out m-auto'
+                            onClick={() => {
+                            isMobileMenuOpen
+                                ? setIsMobileMenuOpen(false)
+                                : setIsMobileMenuOpen(true)
+                            }}>
+                            { !isMobileMenuOpen ? <i className='material-icons'>menu</i> : <i className='material-icons'>close</i> }
+                        </div>
+
+                        {/* Full Display */}
                         <div className='px-5'>
                             {isMobileMenuOpen
                                 ? mobileMenu
                                 : defaultMenu}
                         </div>
 
-                    </div>
-                    
-                    {/* <!-- Open/Close Menu --> */}
-                    
-                    <div
-                        className='md:hidden p-3 transition duration-150 ease-in-out my-auto w-3/12'
-                        onClick={() => {
-                        isMobileMenuOpen
-                            ? setIsMobileMenuOpen(false)
-                            : setIsMobileMenuOpen(true)
-                        }}>
-                        { !isMobileMenuOpen ? <i className='material-icons'>menu</i> : <i className='material-icons'>close</i> }
                     </div>
                 </nav>
             </section>
