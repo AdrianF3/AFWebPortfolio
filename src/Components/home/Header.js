@@ -8,11 +8,12 @@ import gaSVG from '../../images/googleAnalytics.svg'
 import jsonSVG from '../../images/json.svg'
 import cssSVG from '../../images/css.svg'
 import htmlSVG from '../../images/html.svg'
-import nextJSSVG from '../../images/next-js.svg'
+// import nextJSSVG from '../../images/next-js.svg'
 import jestSVG from '../../images/jest-2.svg'
 import typescriptSVG from '../../images/typescript.svg'
 import framerMotionSVG from '../../images/framer-motion.svg'
 import gcpSVG from '../../images/google-cloud-1.svg'
+import nodeSVG from '../../images/nodejs-1.svg'
 
 
 
@@ -100,6 +101,10 @@ export default function Header() {
                 <h2 className='text-xl font-bold sm:text-2xl text-cyan-800 p-2'>Tech I am Learning & Implementing</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-5 lg:grid-cols-4 text-white justify-evenly pt-8">
+                <div>
+                    <img className='object-cover object-center h-10 m-auto' src={nodeSVG} alt='React' />
+                    <p>Node.js</p>
+                </div>   
                 <div className=''>
                     <img className='object-cover object-center h-10 m-auto' src={typescriptSVG} alt='React' />
                     <p>TypeScript</p>
@@ -113,10 +118,10 @@ export default function Header() {
                     <img className='object-cover object-center h-10 scale-150 m-auto' src={jestSVG} alt='React' />
                     <p>JEST</p>
                 </div>
-                <div>
-                    <img className='object-cover object-center h-10 m-auto' src={nextJSSVG} alt='React' />
-                    <p>Next</p>
-                </div>   
+            </div>
+            {/* explaing tech I am learning and development path */}
+            <div className='pt-8 text-white w-8/12 mx-auto'>
+                <p>My goal is to continue learning with the libraries/tools listed above and to focus specifically on the <span className='text-xl'>FERN</span> tech stack</p>
             </div>
         </div>
     </div>

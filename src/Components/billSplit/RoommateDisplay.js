@@ -3,6 +3,8 @@ import AFPortfolioBtn from '../shared/AFPortfolioBtn'
 import RoommateCard from './RoommateCard'
 
 export default function RoommateDisplay(props) {
+
+  
   
 return (
     <>

@@ -9,7 +9,7 @@ export default function HeaderNavigation(props) {
 
     const defaultMenu = (
         <div className='hidden md:flex flex-row gap-4 md:mr-4 my-auto'>
-            <p onClick={props.handleScrollToBottom}>Get In Touch</p>
+            <p className='my-auto' onClick={props.handleScrollToBottom}>Get In Touch</p>
 
             <div className='flex flex-col justify-center py-2 text-center'>
                 <button
