@@ -4,9 +4,10 @@ import githubSVG from '../images/githubMinisvg.svg'
 
 export default function ContactSection() {
     return (
-        <section className="flex flex-col text-gray-600 body-font justify-items-center p-4">
+        // <section className="text-gray-600 body-font justify-items-center p-4">
+        <section className="text-gray-600 body-font bg-cyan-900/30 border-cyan-900 border-4 rounded-xl mx-4 my-10">
             <div
-                className="container mx-auto px-2 py-24 border-cyan-900 border-4 bg-cyan-900/30 rounded-xl">
+                className="container mx-auto px-2 py-24 rounded-xl">
 
                 <div className="flex flex-col text-center w-full mb-8">
                     <h2 className='tracking-widest text-4xl uppercase'>Adrian Fregoso</h2>

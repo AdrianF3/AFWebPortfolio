@@ -271,9 +271,10 @@ export default function WeatherGame() {
                     Submit My Guess
                   </button>
                 </div> }              
+
               </div>
               
-              <div className='flex whitespace-nowrap overflow-x-scroll md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center'>
+              <div className='flex whitespace-nowrap overflow-x-scroll border-2 border-slate-500/10 rounded-xl p-2 md:overflow-auto gap-4 snap-x md:snap-none snap-mandatory md:justify-center z-10'>
                 {  ( cityData[currentCityIndex].data !== null & !loadingRef.current ) ? weatherGuessOrder.map((guessType, guessIndex) => {                
                   return <WeatherCard 
                     key={guessIndex} 
@@ -285,7 +286,12 @@ export default function WeatherGame() {
                     gameData={gameData}                      
                   />
                 }) : <LoadingDiv/> }               
-              </div>               
+              </div>
+
+
+              <div className='flex justify-center w-1/2 m-auto'>
+                  <h3 className='italic text-center md:text-left tracking-wide text-md md:text-xl pb-4'>click a card & submit your guess</h3>
+                </div>               
             </div>          
           </div>        
         </>}        

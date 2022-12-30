@@ -27,32 +27,32 @@ export default function ETGExplainer() {
                     </p>
 
                     {/* Begin collapsabile section */}
-                    <div class="space-y-4">
-                        <details class="group [&_summary::-webkit-details-marker]:hidden">
+                    <div className="space-y-4">
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
                             <summary
-                            class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"
+                            className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"
                             >
-                            <h2 class="font-medium text-gray-900">
+                            <h2 className="font-medium text-gray-900">
                                 User Feautres & Code Structure
                             </h2>
 
                             <svg
-                                class="ml-1.5 h-5 w-5 flex-shrink-0 transition duration-300 group-open:-rotate-180"
+                                className="ml-1.5 h-5 w-5 flex-shrink-0 transition-all duration-300 group-open:-rotate-180"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
                                 <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M19 9l-7 7-7-7"
                                 />
                             </svg>
                             </summary>
 
-                            <p class="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
+                            <p className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
                             With the tech stack above, I've used <span className='font-bold text-wide'>Firebase Authentication</span> for user account management, <span className='font-bold text-wide'>Firestore</span> to save data for user accounts, plant data, support requests &amp; social comments with other users.
                             <span className='font-bold text-wide'>Firebase Storage</span> to save user uploaded images, including profile thumbnails and images of the plants they grow.                                             
                             Users also have the ability to track their plants through several phases of growth, while documenting 
@@ -60,32 +60,32 @@ export default function ETGExplainer() {
                             </p>
                         </details>
 
-                        <details class="group [&_summary::-webkit-details-marker]:hidden">
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
                             <summary
-                            class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"
+                            className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"
                             >
-                            <h2 class="font-medium text-gray-900">
+                            <h2 className="font-medium text-gray-900">
                                 Explore the Demo
                             </h2>
 
                             <svg
-                                class="ml-1.5 h-5 w-5 flex-shrink-0 transition duration-300 group-open:-rotate-180"
+                                className="ml-1.5 h-5 w-5 flex-shrink-0 transition-all duration-300 group-open:-rotate-180"
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
                             >
                                 <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M19 9l-7 7-7-7"
                                 />
                             </svg>
                             </summary>
                             
                             <div className='px-4 leading-relaxed text-gray-700 bg-gray-200 rounded-b-xl'>
-                                <p class="text-gray-700 pt-10 -mt-4">
+                                <p className="text-gray-700 pt-10 -mt-4">
                                 I realize that not everyone is comfortable with cannabis, which is why I created a demo account that anyone can log in to wihtout seeing anything related to cannabis, but
                                 instead will be pictures of cute dogs, mostly my Corgi. 
                                 </p>
