@@ -145,7 +145,7 @@ const processTransactions = ( paramState ) => {
         let indexOfRoommate = tempRoommatesArray.findIndex(roommate => roommate.name === roommateRecord.name)
 
         // increase roommate owes total
-        tempRoommatesArray[indexOfRoommate].owes.total = ( tempRoommatesArray[indexOfRoommate].owes.total + roommateRecord.amount) 
+        tempRoommatesArray[indexOfRoommate].owes.total = ( parseInt(tempRoommatesArray[indexOfRoommate].owes.total) + parseInt(roommateRecord.amount) ) 
 
         // add record of who they owe what to the paid by user
         let tempRoommateObject = { name: nameOfRoommateWhoPaid }
@@ -157,7 +157,7 @@ const processTransactions = ( paramState ) => {
           // console.log('add total called')
           tempRoommateObject = {   
             ...tempRoommateObject,         
-            amount: ( tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateToUpdate].amount + roommateRecord.amount )
+            amount: ( parseInt(tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateToUpdate].amount) + parseInt(roommateRecord.amount) )
           }          
         } else {
           tempRoommateObject = {    
@@ -166,7 +166,7 @@ const processTransactions = ( paramState ) => {
           }
         }      
         
-        tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateWhoPaid] = tempRoommateObject      
+        tempRoommatesArray[indexOfRoommate].owes.details[indexOfRoommateWhoPaid] = tempRoommateObject
       })      
       // add the amount owed and update the totall.... probably wrong... bronces just lost and that sucks
       paramState.roommates = tempRoommatesArray    
@@ -192,15 +192,17 @@ const processTransactions = ( paramState ) => {
           
           // reduce the amount owed by the roommate who paid 
           // console.log('tempRoommateObject.owes.details[indexOfRoommatePaidBack]', tempRoommateObject.owes.details[indexOfRoommatePaidBack])
-          if (tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount !== undefined) {
+          if (tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount === undefined) {
+            // do nothing
+          } else {
             tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount = ( tempRoommateObject.owes.details[indexOfRoommatePaidBack].amount - roommateRecord.amount)          
+            // reduce the total amount owed for the roommate who paid
+            tempRoommateObject.owes.total = ( tempRoommateObject.owes.total - roommateRecord.amount)
+            // console.log('tempRoommateObject', tempRoommateObject)
+    
+            tempRoommatesArray[tempRoommatesArray.findIndex(roommate => roommate.name === transaction.paidBy)] = tempRoommateObject
+            // console.log('tempRoommatesArray', tempRoommatesArray)        
           }
-          // reduce the total amount owed for the roommate who paid
-          tempRoommateObject.owes.total = ( tempRoommateObject.owes.total - roommateRecord.amount)
-          // console.log('tempRoommateObject', tempRoommateObject)
-  
-          tempRoommatesArray[tempRoommatesArray.findIndex(roommate => roommate.name === transaction.paidBy)] = tempRoommateObject
-          // console.log('tempRoommatesArray', tempRoommatesArray)        
           
         }
         
@@ -253,13 +255,14 @@ const billSplitAppReducer = ( billSplitData, action) => {
             }            
 
             return doesExist
-          })          
+          })
+
           if (transactionIDExists > 0) {
             // do nothing 
           } else {
             clonedState.transactions.push(action.transactionToSave)
-            clonedState = processTransactions( clonedState )            
           }
+          clonedState = processTransactions( clonedState )            
           return clonedState
         case 'DELETE_TRANSACTION':
             // find index to delete by matching ID
@@ -268,6 +271,7 @@ const billSplitAppReducer = ( billSplitData, action) => {
             if (transactionIndexToDelete !== -1) {
               clonedState.transactions.splice(transactionIndexToDelete, 1)              
             }
+            clonedState = processTransactions( clonedState )   
             return clonedState    
         case 'EDIT_TRANSACTION':
             let indexOfTransaction = clonedState.transactions.findIndex((transaction => transaction.transactionID === action.transactionToReplace.transactionID))            

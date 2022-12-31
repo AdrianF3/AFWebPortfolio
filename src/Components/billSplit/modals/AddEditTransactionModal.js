@@ -48,7 +48,7 @@ export default function AddEditTransactionModal(props) {
       paidBy: props.billSplitData.roommates[0].name,
       totalPaid: 0,
       evenSplit: false,
-      description: '...bill description',
+      description: '...describe the bill',
       financialDetails: []
     })
   }
@@ -221,20 +221,20 @@ export default function AddEditTransactionModal(props) {
 
 
     return ( <>            
-        <section className={`w-screen h-screen fixed flex justify-center items-center z-20`}>
-        <section className="flex flex-col w-min h-4/5 justify-center items-center mx-2 rounded-md bg-white shadow-lg p-2 overflow-scroll">   
-          {/* close button for upper right corner */}  
+        <section className={`w-screen h-screen bg-slate-800/80 fixed flex flex-col justify-center items-center z-20`}>
             <div 
-              className='flex flex-row h-10 w-10'
+              className='relative h-10 w-10'
               onClick={() => props.setTransactionModal(false)}
               >
-                <i className='material-icons relative -top-6 left-44 bg-red-400 md:hover:bg-red-600  p-2 m-1 text-sm font-bold rounded-xl'>close</i>
+                <i className='material-icons absolute top-4 left-36 bg-red-400 md:hover:bg-red-600 p-2 m-1 text-sm font-bold rounded-full'>close</i>
             </div>
+        <section className="flex flex-col h-4/5 justify-center items-center mx-2 rounded-md bg-white shadow-lg p-2 overflow-scroll">   
+          {/* close button for upper right corner */}  
       
             {/* Main Section Of Modal */}
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center pt-10'>
                 
-                <div>
+                <div className='text-2xl'>
                   {props.transactionModal[1] === 'ADD' ? <h3>Add Transaction</h3> : <h3>Edit Transaction</h3>}
                   { transactionObject ? <p className='text-sm'>Transaction ID: {transactionObject.transactionID}</p> : null}
                 </div>
@@ -242,16 +242,16 @@ export default function AddEditTransactionModal(props) {
                 {/* form section */}
                 <section>
                   <div className="">
-                    <div className="flex flex-col items-center pt-6 sm:justify-center sm:pt-0">                      
-                      <div className="p-8 shadow-sm sm:max-w-md sm:rounded-lg">
-                        
-
+                    <div className="flex flex-col items-center pt-4 sm:justify-center sm:pt-0">                      
+                      <div className="p-8">
+                      
                         <form>
                           
                           <div>
                             <label className="block text-sm font-medium text-gray-900 dark:text-gray-400"> Paid By </label>
                             
                             <select
+                              className='p-2 rounded-xl w-full'
                               defaultValue={transactionObject.paidBy}
                               onChange={(e) => setTransactionObject( transactionObject => ({
                                 ...transactionObject, 
@@ -318,7 +318,7 @@ export default function AddEditTransactionModal(props) {
 
                             <input 
                               // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
-                              className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
+                              className="inline-block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
                               id="billTotal"
                               type="number" 
                               name="billTotal" 
@@ -342,7 +342,11 @@ export default function AddEditTransactionModal(props) {
                             <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" >
                               {transactionObject.type === 'bill' ? 'Owed By' : 'Paid To' }
                             </label>                            
-                            {props.billSplitData.roommates.map((roommate, index) => {                              
+                            {props.billSplitData.roommates.map((roommate, index) => {  
+                              
+                              if (roommate.name === transactionObject.paidBy) {
+                                return null
+                              } else {
                               return (<>                                
                                 <label htmlFor={roommate.name}>{roommate.name}</label>
                                 <input
@@ -355,6 +359,7 @@ export default function AddEditTransactionModal(props) {
                                   selected={roommatesChecked[index] ? true : false}                                  
                                   />
                               </>)
+                              }
 
                             })}
                           </div>
@@ -412,10 +417,10 @@ export default function AddEditTransactionModal(props) {
                           }
 
                           <div className="mt-4">
-                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400" > Description </label>
+                            <label className="block text-sm font-medium text-gray-900 dark:text-gray-400"> Description </label>
 
                             <textarea                               
-                              className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
+                              className="inline-block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
                               id="password_confirmation"
                               type="textarea"
                               name="password_confirmation" 

@@ -59,7 +59,13 @@ export default function TransactionDetails(props) {
         <div className='flex flex-col items-center mx-auto'>
             <h3 className='underline underline-offset-2'>Roommaetes Who Owe {props.currentDetails.paidBy}</h3>
             {props.currentDetails.financialDetails.length > 0 ? props.currentDetails.financialDetails.map((roommateOwes, index) => {
-                return <p key={index}>{roommateOwes.name}: {moneyFormatter.format(roommateOwes.amount)}</p>
+                if (props.currentDetails.paidBy === roommateOwes.name) {
+                    // do nothing
+                    return null
+                } else {
+                    return <p key={index}>{roommateOwes.name}: {moneyFormatter.format(roommateOwes.amount)}</p>
+
+                }
             }) : null}
         </div> : null}
         {props.currentDetails.type === 'roommatePayment' ? 

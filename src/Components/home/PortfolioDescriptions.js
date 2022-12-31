@@ -64,7 +64,7 @@ export default function PortfolioDescriptions() {
             <h2 className="text-lg font-bold">Roommate Bill Splitter</h2>
             <p className='text-xs text-slate-200 pb-4'>AFWebDev.com/billsplit</p>
             <p className="mt-1 text-sm text-gray-300">
-              I created a simple Bill Splitting orginization system that could be used by anyone to track bills, payments, expenses and importantly... who owes who and how much do they owe! 
+              I created a Bill Splitting tool that could be used to track bills, payments, expenses and importantly... who owes who and how much do they owe! 
             </p>
           </div>
         </div>
