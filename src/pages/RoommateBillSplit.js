@@ -9,6 +9,7 @@ import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
 import { useBillSplitApp } from '../hooks/useBillSplitApp'
 import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
+import { useKeyPress } from '../hooks/useKeyPress'
 
 export default function RoommateBillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
@@ -18,6 +19,21 @@ export default function RoommateBillSplit() {
 
   // Load billSplitApp state and reducer functions
   const { billSplitData, billSplitDispatch } = useBillSplitApp()
+
+
+  const closeModal = useKeyPress("Escape")
+
+  if (closeModal.keyPressed && addRoommateModal) {
+    setAddRoommateModal(false)
+  }
+  if (closeModal.keyPressed && transactionModal) {
+    setTransactionModal(false)
+  }
+  if (closeModal.keyPressed && detailModal) {
+    setDetailModal(false)
+  }
+
+
   
   return (<>
     {/* Display Add Roommate Modal */}

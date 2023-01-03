@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLockBodyModal } from '../../../hooks/useLockBodyModal'
 import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
 import RoommateDetails from './RoommateDetails'
 import TransactionDetails from './TransactionDetails'
@@ -23,6 +24,9 @@ export default function DetailsModal(props) {
       break
   }
   
+
+  // custom hook to prevent scrolling outside of modal
+  useLockBodyModal()
 
 
   return ( <>    

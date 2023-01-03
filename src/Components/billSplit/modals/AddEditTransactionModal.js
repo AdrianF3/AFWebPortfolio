@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker'
 
 import "react-datepicker/dist/react-datepicker.css"
 import { moneyFormatter } from '../../renderless/moneyFormatter'
+import { useLockBodyModal } from '../../../hooks/useLockBodyModal'
 
 export default function AddEditTransactionModal(props) {
   const [ transactionObject, setTransactionObject ] = useState(null)
@@ -203,6 +204,9 @@ export default function AddEditTransactionModal(props) {
       
     }
 
+    // custom hook to prevent scrolling outside of modal
+    useLockBodyModal()
+
 
     // temp fix -> issue was app not loading properly with null data, didn't want to implement conditional renders throughout
     if (!transactionObject) {
@@ -215,7 +219,6 @@ export default function AddEditTransactionModal(props) {
     } )
 
  
-    
 
 
 

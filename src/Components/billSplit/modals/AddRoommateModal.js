@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLockBodyModal } from '../../../hooks/useLockBodyModal'
 import AFPortfolioBtn from '../../shared/AFPortfolioBtn'
 
 export default function AddRoommateModal(props) {
@@ -42,7 +43,10 @@ export default function AddRoommateModal(props) {
       }
     }
     
-    console.log('props', props)
+    // console.log('props', props)
+
+    // custom hook to prevent scrolling outside of modal
+    useLockBodyModal()
     
   return ( <>
   <section className='w-screen h-screen fixed flex flex-col justify-center items-center bg-cyan-600/80 z-10'>    
