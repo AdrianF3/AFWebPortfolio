@@ -31,12 +31,12 @@ export default function ContactSection() {
                             <a href='tel:3102921219' target='_blank' rel='noreferrer'>(310) 292-1219</a>
                         </div>
                     </div>
-                    <div className='flex flex-row justify-center gap-4'>
-                        <a href='https://github.com/AdrianF3' target='_blank' rel='noreferrer'>
-                            <img className='h-10 m-auto' src={linkedInSVG} alt='LinkedIn'/>
-                        </a>
+                    <div className='flex flex-row justify-center gap-4'>                        
                         <a href='http://www.linkedin.com/in/adrian-fregoso' target='_blank' rel='noreferrer'>
-                            <img className='h-10 m-auto' src={githubSVG} alt='LinkedIn'/>
+                            <img className='h-10 m-auto' src={linkedInSVG} alt='LinkedIn'/>
+                        </a>                        
+                        <a href='https://github.com/AdrianF3' target='_blank' rel='noreferrer'>
+                            <img className='h-10 m-auto' src={githubSVG} alt='GitHub'/>
                         </a>
                     </div>
                 </div>

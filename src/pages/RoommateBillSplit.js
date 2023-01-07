@@ -10,6 +10,8 @@ import HeaderNavigation from '../components/HeaderNavigation'
 import { useBillSplitApp } from '../hooks/useBillSplitApp'
 import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 import { useKeyPress } from '../hooks/useKeyPress'
+import { useEffect } from 'react'
+import { handleScrollToTop } from '../components/renderless/handleScrollToTop'
 
 export default function RoommateBillSplit() {
   const [ addRoommateModal, setAddRoommateModal ] = useState(false)
@@ -32,6 +34,12 @@ export default function RoommateBillSplit() {
   if (closeModal.keyPressed && detailModal) {
     setDetailModal(false)
   }
+
+
+  // only run this useEffect once when page first loads
+  useEffect(() => {
+    handleScrollToTop()
+  }, [])
 
 
   

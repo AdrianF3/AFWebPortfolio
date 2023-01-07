@@ -6,6 +6,7 @@ import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
 import LoadingDiv from '../components/weatherGame/LoadingDiv';
 import GameStatus from '../components/weatherGame/GameStatus';
+import { handleScrollToTop } from '../components/renderless/handleScrollToTop';
 
 export default function WeatherGame() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
@@ -209,6 +210,12 @@ export default function WeatherGame() {
     loadingRef.current = false
   
   }, [currentCityIndex, cityData, weatherGuessOrder])  
+
+
+  // only run this useEffect when page first loads
+  useEffect(() => {
+    handleScrollToTop()
+  }, [])
   
 
   return (<>
