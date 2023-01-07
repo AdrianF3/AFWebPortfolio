@@ -28,12 +28,13 @@ export default function ETGExplainer() {
 
                     {/* Begin collapsabile section */}
                     <div className="space-y-4">
+                        {/* User Features */}
                         <details className="group [&_summary::-webkit-details-marker]:hidden">
                             <summary
                             className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"
                             >
                             <h2 className="font-medium text-gray-900">
-                                User Feautres & Code Structure
+                                User Feautres
                             </h2>
 
                             <svg
@@ -60,6 +61,40 @@ export default function ETGExplainer() {
                             </p>
                         </details>
 
+                        {/* Code Structure & Info */}
+                        <details className="group [&_summary::-webkit-details-marker]:hidden">
+                            <summary
+                            className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"
+                            >
+                            <h2 className="font-medium text-gray-900">
+                                Code Structure & Info
+                            </h2>
+
+                            <svg
+                                className="ml-1.5 h-5 w-5 flex-shrink-0 transition-all duration-300 group-open:-rotate-180"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 9l-7 7-7-7"
+                                />
+                            </svg>
+                            </summary>
+
+                            <p className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
+                            With the tech stack above, I've used <span className='font-bold text-wide'>Firebase Authentication</span> for user account management, <span className='font-bold text-wide'>Firestore</span> to save data for user accounts, plant data, support requests &amp; social comments with other users.
+                            <span className='font-bold text-wide'>Firebase Storage</span> to save user uploaded images, including profile thumbnails and images of the plants they grow.                                             
+                            Users also have the ability to track their plants through several phases of growth, while documenting 
+                            their results with imagees, custom notes &amp; the ability to comment & interact with another users plants in addition to getting helpful information amd the ability to customize nutrient schedules for their plants. 
+                            </p>
+                        </details>
+
+                        {/* Explore The Demo */}
                         <details className="group [&_summary::-webkit-details-marker]:hidden">
                             <summary
                             className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-gray-50 drop-shadow-xl"

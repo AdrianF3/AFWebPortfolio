@@ -22,7 +22,9 @@ export default function PreviousEmployers() {
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Attractions Operator, Trainer &amp; Lead</h2>
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Disneyland Resort</h1>
-              <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+              <p className="leading-relaxed mb-3">
+                Working as an Attractions Operator, Trainer and finally as a Lead in Disney's California Adventure.
+              </p>
               <div className="flex items-center flex-wrap ">
                 Anaheim, CA
                 <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
@@ -43,7 +45,9 @@ export default function PreviousEmployers() {
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Tower Supervisor</h2>
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Stratosphere Hotel, Casino &amp; Tower</h1>
-              <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+              <p className="leading-relaxed mb-3">
+                Working as a Supervisor for the Stratosphere Tower as well as spending some time at the Hotel Front desk.
+              </p>
               <div className="flex items-center flex-wrap">
                 Las Vegas, NV
                 <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
@@ -62,7 +66,9 @@ export default function PreviousEmployers() {
             <div className="p-6">
               <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">Operations Specalist</h2>
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">Apple (retail)</h1>
-              <p className="leading-relaxed mb-3">Photo booth fam kinfolk cold-pressed sriracha leggings jianbing microdosing tousled waistcoat.</p>
+              <p className="leading-relaxed mb-3">
+                Working with the Operations/Inventory Team &amp; assisting with sales and general support within the store.
+              </p>
               <div className="flex items-center flex-wrap ">
                 Lone Tree, CO
                 <span className="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
