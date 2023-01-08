@@ -6,7 +6,7 @@ import etgMini from '../../images/etgLogoWhiteBG.svg'
 export default function ETGExplainer() {
   return (
     <section className="w-10/12 text-gray-600 body-font mx-auto my-10 border-4 border-green-300 rounded-xl bg-green-300/20">
-        <div className="container px-5 py-2 mx-auto flex flex-col justify-evenly m-2">
+        <div className="container px-5 py-20 mx-auto flex flex-col justify-evenly m-2">
             <div className='w-10/12 md:w-3/12 m-auto drop-shadow-2xl py-10'>                
                 <img
                     className='' 
@@ -22,12 +22,16 @@ export default function ETGExplainer() {
             <div className='w-full md:w-8/12 m-auto'>                
                 <div>
                     <p className="leading-relaxed py-2 text-base">
-                        This website started as a side project for my personal use, which turned into a project I worked on for my portfolio and is now a small, but growing community of personal, at home cannabis growers. 
-                        This project has given me the experince of needing to consider all aspects of designing, developing and deploying a project, managaing the front-end, back-end, user experience, data management &amp; security.
+                        This website started as a side project for my personal use, which then become a project I worked on for my portfolio and a way to implement and practice what I was learning in Web Development. 
+                        During Fall of 2022 I decided to temporarily take a step back from this project in order to focus more on studying, working on my portfolio website and getting a developer role. 
+                    </p>
+                    <p className="leading-relaxed py-2 text-base">
+                        My goal is to continue developing this project in my spare time - with what I have learned over the past few months and with some redesigns I would like to implement, 
+                        I will most likely refactor this entire project using TypeScript, Framer Motion and Jest. 
                     </p>
 
                     {/* Begin collapsabile section */}
-                    <div className="space-y-4">
+                    <div className="space-y-8">
                         {/* User Features */}
                         <details className="group [&_summary::-webkit-details-marker]:hidden">
                             <summary
@@ -53,12 +57,18 @@ export default function ETGExplainer() {
                             </svg>
                             </summary>
 
-                            <p className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
-                            With the tech stack above, I've used <span className='font-bold text-wide'>Firebase Authentication</span> for user account management, <span className='font-bold text-wide'>Firestore</span> to save data for user accounts, plant data, support requests &amp; social comments with other users.
-                            <span className='font-bold text-wide'>Firebase Storage</span> to save user uploaded images, including profile thumbnails and images of the plants they grow.                                             
-                            Users also have the ability to track their plants through several phases of growth, while documenting 
-                            their results with imagees, custom notes &amp; the ability to comment & interact with another users plants in addition to getting helpful information amd the ability to customize nutrient schedules for their plants. 
-                            </p>
+                            <div className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
+                                <p>This tool was built to mentally offload the details and record keeping for users who grow their own personal cannabis.  This includes the ability to… </p>
+                                <ul>
+                                    <li>Create a log of events that describe a plants growth from seed through harvest. Including three different phases of growth</li>
+                                    <li>Create custom nutrient schedules, based on different plants or growth goals</li>
+                                    <li>Upload images with custom captions, describing plant growth or concerns</li>
+                                    <li>Users can comment on each others plants and their progress</li>
+                                    <li>Helpful information to support users with their plants growth</li>
+                                    <li>Publicly share your progress with other individuals online (no user account required)</li>
+                                </ul>
+                            </div>
+
                         </details>
 
                         {/* Code Structure & Info */}
@@ -86,12 +96,18 @@ export default function ETGExplainer() {
                             </svg>
                             </summary>
 
-                            <p className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
-                            With the tech stack above, I've used <span className='font-bold text-wide'>Firebase Authentication</span> for user account management, <span className='font-bold text-wide'>Firestore</span> to save data for user accounts, plant data, support requests &amp; social comments with other users.
-                            <span className='font-bold text-wide'>Firebase Storage</span> to save user uploaded images, including profile thumbnails and images of the plants they grow.                                             
-                            Users also have the ability to track their plants through several phases of growth, while documenting 
-                            their results with imagees, custom notes &amp; the ability to comment & interact with another users plants in addition to getting helpful information amd the ability to customize nutrient schedules for their plants. 
-                            </p>
+                            <div className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
+                                <p>This project was started once I felt comfortable with some of the basics of React - so at this point there is a lot I plan on refactoring/improving in the codes structure.</p>
+                                <ul>
+                                    <li>Currently users are authenticated using Firebase Authentication through Google Cloud Platform</li>
+                                    <li>User Data is stored in one of several Firestore Collections as well as several Firebase Storage "buckets" to store a users uploaded Plant images or Profile Thumbnails</li>
+                                    <li>I am using two Firebase Extensions to help handle some user account interactions - When a user deletes their account, their data across the different Firestore 
+                                        Collections and Storage "buckets" is also deleted. The other extension is called when a user registers an account, their information is shared with a Marketing Newsletter list</li>
+                                    <li>I have implemented Google Analytics for the obvious user metrics and analytical information</li>
+                                    <li>I have tried to avoid using a bunch of extra packages for most of the functionality - I am using React-Date-Picker & React-Image-File-Resizer, 
+                                        React-GA & React-Password-Checklist to help with some of the UI and Logic across the website</li>                                
+                                </ul>
+                            </div>
                         </details>
 
                         {/* Explore The Demo */}
@@ -121,8 +137,12 @@ export default function ETGExplainer() {
                             
                             <div className='px-4 leading-relaxed text-gray-700 bg-gray-200 rounded-b-xl'>
                                 <p className="text-gray-700 pt-10 -mt-4">
-                                I realize that not everyone is comfortable with cannabis, which is why I created a demo account that anyone can log in to wihtout seeing anything related to cannabis, but
-                                instead will be pictures of cute dogs, mostly my Corgi. 
+                                I would love to show off my work on this project… but I also realize that everyone is not that comfortable with cannabis - I also realize that maybe it is 
+                                not the most appropriate thing to mention when applying for a job… so perhaps a nice middle ground. 
+                                </p>
+                                <p className="text-gray-700 pt-10 -mt-4">
+                                    I have made a demo account that is filled with pictures of my Corgi instead of Cannabis plants! I am hoping this will be a more comfortable 
+                                    ( and appropriate way) to explore my project.
                                 </p>
                                 {/* Ector Grow Demo Info & Link */}
                                 <div className="flex flex-col md:flex-row justify-center py-6 gap-4">

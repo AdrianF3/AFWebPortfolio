@@ -4,7 +4,7 @@ import etgMini from '../../images/etgMini.png'
 
 export default function PortfolioDescriptions() {
   return (
-    <section className="flex justify-center pb-8 rounded-b-2xl bg-cyan-900 text-white">
+    <section className="flex justify-center pb-8 rounded-b-2xl bg-cyan-900 text-white w-screen">
   <div className="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div className="max-w-xl">
       <h2 className="text-3xl font-bold sm:text-4xl">Personal &amp; Portfolio Projects</h2>

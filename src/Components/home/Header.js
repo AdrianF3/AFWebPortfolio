@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <>
-    <section className="bg-white dark:bg-cyan-900">    
+    <section className="bg-white dark:bg-cyan-900 w-screen">    
     
 
     <div className="container px-6 py-16 mx-auto text-center">
