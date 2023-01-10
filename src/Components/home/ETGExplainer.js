@@ -59,13 +59,13 @@ export default function ETGExplainer() {
 
                             <div className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
                                 <p>This tool was built to mentally offload the details and record keeping for users who grow their own personal cannabis.  This includes the ability to… </p>
-                                <ul>
-                                    <li>Create a log of events that describe a plants growth from seed through harvest. Including three different phases of growth</li>
-                                    <li>Create custom nutrient schedules, based on different plants or growth goals</li>
-                                    <li>Upload images with custom captions, describing plant growth or concerns</li>
-                                    <li>Users can comment on each others plants and their progress</li>
-                                    <li>Helpful information to support users with their plants growth</li>
-                                    <li>Publicly share your progress with other individuals online (no user account required)</li>
+                                <ul className='list-disc text-xs px-6 pt-2 text-slate-900 tracking-wide'>
+                                    <li className='py-1'>Create a log of events that describe a plants growth from seed through harvest. Including three different phases of growth</li>
+                                    <li className='py-1'>Create custom nutrient schedules, based on different plants or growth goals</li>
+                                    <li className='py-1'>Upload images with custom captions, describing plant growth or concerns</li>
+                                    <li className='py-1'>Users can comment on each others plants and their progress</li>
+                                    <li className='py-1'>Helpful information to support users with their plants growth</li>
+                                    <li className='py-1'>Publicly share your progress with other individuals online (no user account required)</li>
                                 </ul>
                             </div>
 
@@ -98,13 +98,13 @@ export default function ETGExplainer() {
 
                             <div className="px-4 leading-relaxed text-gray-700 py-8 -mt-4 bg-gray-200 rounded-b-xl">
                                 <p>This project was started once I felt comfortable with some of the basics of React - so at this point there is a lot I plan on refactoring/improving in the codes structure.</p>
-                                <ul>
-                                    <li>Currently users are authenticated using Firebase Authentication through Google Cloud Platform</li>
-                                    <li>User Data is stored in one of several Firestore Collections as well as several Firebase Storage "buckets" to store a users uploaded Plant images or Profile Thumbnails</li>
-                                    <li>I am using two Firebase Extensions to help handle some user account interactions - When a user deletes their account, their data across the different Firestore 
+                                <ul className='list-disc text-xs px-6 pt-2 text-slate-900 tracking-wide'>
+                                    <li className='py-1'>Currently users are authenticated using Firebase Authentication through Google Cloud Platform</li>
+                                    <li className='py-1'>User Data is stored in one of several Firestore Collections as well as several Firebase Storage "buckets" to store a users uploaded Plant images or Profile Thumbnails</li>
+                                    <li className='py-1'>I am using two Firebase Extensions to help handle some user account interactions - When a user deletes their account, their data across the different Firestore 
                                         Collections and Storage "buckets" is also deleted. The other extension is called when a user registers an account, their information is shared with a Marketing Newsletter list</li>
-                                    <li>I have implemented Google Analytics for the obvious user metrics and analytical information</li>
-                                    <li>I have tried to avoid using a bunch of extra packages for most of the functionality - I am using React-Date-Picker & React-Image-File-Resizer, 
+                                    <li className='py-1'>I have implemented Google Analytics for the obvious user metrics and analytical information</li>
+                                    <li className='py-1'>I have tried to avoid using a bunch of extra packages for most of the functionality - I am using React-Date-Picker & React-Image-File-Resizer, 
                                         React-GA & React-Password-Checklist to help with some of the UI and Logic across the website</li>                                
                                 </ul>
                             </div>

@@ -6,11 +6,11 @@ export default function PortfolioDescriptions() {
   return (
     <section className="flex justify-center pb-8 rounded-b-2xl bg-cyan-900 text-white w-screen">
   <div className="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
-    <div className="max-w-xl">
-      <h2 className="text-3xl font-bold sm:text-4xl">Personal &amp; Portfolio Projects</h2>
+    <div className="">
+      <h2 className="text-3xl font-bold sm:text-4xl">Portfolio Projects</h2>
 
       <p className="mt-4 text-gray-300">
-        Recent projects and protfolio examples
+        Including a side project of mine, EctorGrow, which has open registration and a very small, but growing online community
       </p>
     </div>
 
@@ -25,7 +25,7 @@ export default function PortfolioDescriptions() {
           </span>
 
           <div className="ml-4">
-            <h2 className="text-lg font-bold">Ector Grow</h2>
+            <h2 className="text-lg font-bold">EctorGrow</h2>
             <p className='text-xs text-slate-200 pb-4'>EctorGrow.com</p>
             <p className="mt-1 text-sm text-gray-300">
               This website is currently a <span className='italic'>live</span> project I use to learn, practice and implement new concepts, practices & features. More Info below...

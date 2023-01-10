@@ -48,49 +48,49 @@ export default function Header() {
             <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5 text-white justify-evenly">
                 <div className=''>
                     <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={reactSVG} alt='React' />
-                    <p>React</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">React</p>
                     
                 </div>
                 <div>
                     <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={tailwindSVG} alt='React' />
-                    <p>Tailwind CSS</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">Tailwind CSS</p>
                 </div>
                 <div>
                     <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={firebaseSVG} alt='React' />
-                    <p>Firebase</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">Firebase</p>
                 </div>
                 <div>
                     <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={jsSVG} alt='React' />
-                    <p>JavaScript</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">JavaScript</p>
                 </div>
                 <div className='col-span-2 md:col-span-1 lg:col-span-1'>
                     <img className='object-cover object-center h-28 m-auto drop-shadow-xl' src={githubSVG} alt='React' />
-                    <p>GitHub</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">GitHub</p>
                 </div>                                                            
             </div>            
             {/* Second Row */}
             <div className="grid grid-cols-2 gap-4 md:grid-cols-5 lg:grid-cols-5 text-white justify-evenly pt-8">
                 <div className=''>
                     <img className='object-cover object-center h-10 m-auto' src={gcpSVG} alt='React' />
-                    <p>Google Cloud Platform</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">Google Cloud Platform</p>
                     
                 </div>
                 <div className=''>
                     <img className='object-cover object-center h-10 m-auto' src={htmlSVG} alt='React' />
-                    <p>HTML 5</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">HTML 5</p>
                     
                 </div>
                 <div>
                     <img className='object-cover object-center h-10 m-auto' src={cssSVG} alt='React' />
-                    <p>CSS 3</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">CSS 3</p>
                 </div>                
                 <div>
                     <img className='object-cover object-center h-10 m-auto' src={jsonSVG} alt='React' />
-                    <p>JSON</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">JSON</p>
                 </div>
                 <div>
                     <img className='object-cover object-center h-10 m-auto' src={gaSVG} alt='React' />
-                    <p>Google Analytics</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">Google Analytics</p>
                 </div>                                                                                                                                        
             </div>            
         </div>
@@ -98,25 +98,25 @@ export default function Header() {
         {/* Begin Learning Tech Stack */}
         <div className="max-w-screen-xl mx-auto pt-16 -mt-4 border-2 border-t-0 border-white/90 p-4 rounded-xl rounded-t-none">
             <div className='absolute -mt-14 -ml-8 bg-white rounded-xl drop-shadow-xl'>
-                <h2 className='text-xl font-bold sm:text-2xl text-cyan-800 p-2'>Tech I am Learning & Implementing</h2>
+                <h2 className='text-xl font-bold sm:text-2xl text-cyan-800 p-2 uppercase'>Current Learning Plan</h2>
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-5 lg:grid-cols-4 text-white justify-evenly pt-8">
                 <div>
                     <img className='object-cover object-center h-10 m-auto' src={nodeSVG} alt='React' />
-                    <p>Node.js</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">Node.js</p>
                 </div>   
                 <div className=''>
                     <img className='object-cover object-center h-10 m-auto' src={typescriptSVG} alt='React' />
-                    <p>TypeScript</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">TypeScript</p>
                     
                 </div>
                 <div>
                     <img className='object-cover object-center h-10 m-auto' src={framerMotionSVG} alt='React' />
-                    <p>Framer Motion</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">Framer Motion</p>
                 </div>                
                 <div>
                     <img className='object-cover object-center h-10 scale-150 m-auto' src={jestSVG} alt='React' />
-                    <p>JEST</p>
+                    <p className="tracking-widest md:tracking-wider uppercase p-1">JEST</p>
                 </div>
             </div>
             {/* explaing tech I am learning and development path */}

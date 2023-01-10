@@ -4,6 +4,11 @@ import Home from './pages/Home';
 import WeatherGame from './pages/WeatherGame';
 // import YouTubeController from './pages/YouTubeController'
 import RoommateBillSplit from './pages/RoommateBillSplit';
+import ReactGA from 'react-ga4'
+
+
+// Init Google Analytics
+ReactGA.initialize([{ trackingId: "G-D9S1539Y82" }])
 
 
 
