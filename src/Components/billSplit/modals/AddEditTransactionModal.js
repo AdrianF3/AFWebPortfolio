@@ -95,29 +95,28 @@ export default function AddEditTransactionModal(props) {
   }
   
 
-    // Check or Uncheck a roommate in the owedBy/paidTo checkbox input
-    const handleCheckedRoommate = ( roommateIndex, evenSplitChange = false ) => {     
-      let updateCheckedState = roommatesChecked.map(( check, index ) => {
-        return index === roommateIndex ? !check : check
-        
-      })
-      setRoommatesChecked(updateCheckedState)
-      let numberOfRoommatesSplit = 0
-      for (let index = 0; index < updateCheckedState.length; index++) {
-        if (updateCheckedState[index]) {          
-          numberOfRoommatesSplit = numberOfRoommatesSplit + 1
-        }        
-      }
-      // console.log('numberOfRoommatesSplit', numberOfRoommatesSplit)
-      setRoommateSplit(numberOfRoommatesSplit)
+  // Check or Uncheck a roommate in the owedBy/paidTo checkbox input
+  const handleCheckedRoommate = ( roommateIndex, evenSplitChange = false ) => {     
+    let updateCheckedState = roommatesChecked.map(( check, index ) => {
+      return index === roommateIndex ? !check : check
       
-      // if evenSplit is true, call function
-      
-      if (evenSplitChange) {
-        // console.log('evenSplitChange called')      
-        handleEvenlySplit(updateCheckedState)
-      }
+    })
+    setRoommatesChecked(updateCheckedState)
+    let numberOfRoommatesSplit = 0
+    for (let index = 0; index < updateCheckedState.length; index++) {
+      if (updateCheckedState[index]) {          
+        numberOfRoommatesSplit = numberOfRoommatesSplit + 1
+      }        
     }
+    // console.log('numberOfRoommatesSplit', numberOfRoommatesSplit)
+    setRoommateSplit(numberOfRoommatesSplit)
+    
+    // if evenSplit is true, call function
+    if (evenSplitChange) {
+      // console.log('evenSplitChange called')      
+      handleEvenlySplit(updateCheckedState)
+    }
+  }
     
 
     // using roommateCheckedOveride when callinng after updating roommatesChecked but state may not have updated yet
@@ -183,8 +182,8 @@ export default function AddEditTransactionModal(props) {
       
       let billTotal = 0
       let updatedRoommateAmounts = new Array(props.billSplitData.roommates.length).fill(0)
-      console.log('props.billSplitData.roommates', props.billSplitData.roommates)
-      console.log('updatedRoommateAmounts', updatedRoommateAmounts)      
+      // console.log('props.billSplitData.roommates', props.billSplitData.roommates)
+      // console.log('updatedRoommateAmounts', updatedRoommateAmounts)      
       updatedRoommateAmounts = roommateAmounts.map((prevAmount, index) => {        
         return index === indexOfRoommate ? amount : roommateAmounts[index]
       }) 
@@ -219,9 +218,6 @@ export default function AddEditTransactionModal(props) {
     } )
 
  
-
-
-
 
     return ( <>            
         <section className={`w-screen h-screen bg-slate-800/80 fixed flex flex-col justify-center items-center z-20`}>
@@ -352,15 +348,25 @@ export default function AddEditTransactionModal(props) {
                               } else {
                               return (<>                                
                                 <label htmlFor={roommate.name}>{roommate.name}</label>
-                                <input
+                                {/* <input
                                   type='checkbox'
                                   defaultChecked={roommatesChecked[index]}
-                                  name={roommate.name}
-                                  value={roommate.name}                                  
-                                  id={roommate.name}
+                                  // checked={roommatesChecked[index]}                                                              
                                   onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}
-                                  selected={roommatesChecked[index] ? true : false}                                  
+                                  name={roommate.name}
+                                  // value={roommate.name}                                  
+                                  id={roommate.name}
+                                  /> */}
+
+                                  <input
+                                    type="checkbox"
+                                    id={`custom-checkbox-`}
+                                    name={roommate.name}
+                                    value={roommate.name}
+                                    checked={roommatesChecked[index]}
+                                    onChange={() => handleCheckedRoommate(index, transactionObject.evenSplit)}
                                   />
+
                               </>)
                               }
 
@@ -467,7 +473,7 @@ export default function AddEditTransactionModal(props) {
                             {transactionObject.evenSplit ? <span>${roommateAmounts[index]}</span> :
                           <input 
                           // className="inline-block w-full py-2 rounded-md dark:text-gray-400 bg-gray-100 dark:bg-gray-900 border-transparent dark:border-gray-700 dark:hover:border-gray-700 dark:hover:focus:border-gray-700 focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 hover:focus:border-gray-300 focus:ring-0 text-sm mt-1"
-                          className="inline-block w-full py-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
+                          className="inline-block w-full p-2 rounded-md bg-gray-100 border-transparent focus:border-gray-300 hover:focus:border-gray-700 hover:border-gray-300 focus:ring-0 text-sm mt-1"
                           id=""
                           type="number" 
                           name=""                               

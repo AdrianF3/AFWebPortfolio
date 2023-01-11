@@ -7,6 +7,7 @@ import CityStatus from '../components/weatherGame/CityStatus'
 import LoadingDiv from '../components/weatherGame/LoadingDiv';
 import GameStatus from '../components/weatherGame/GameStatus';
 import { handleScrollToTop } from '../components/renderless/handleScrollToTop';
+import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom';
 
 export default function WeatherGame() {
   const [ weatherGuessOrder, setWeatherGuessOrder ] = useState([ 'default', 'modifiedA', 'modifiedB'])
@@ -219,7 +220,7 @@ export default function WeatherGame() {
   
 
   return (<>
-    <HeaderNavigation/>
+    <HeaderNavigation handleScrollToBottom={handleScrollToBottom}/>
     <section>
       {/* Page Title & Description */}      
       <div className=''>

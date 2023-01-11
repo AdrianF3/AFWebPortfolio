@@ -22,7 +22,7 @@ export default function BillSplitExplainer() {
         <div className='border-2 border-dashed border-slate-500 p-4 mt-6'>
         <h2 className='text-2xl uppercase underline underline-offset-2'>Instructions:</h2>
         <p className='text-lg py-2'>You can enter your own custom data, starting with roommmates (at least two) and then begin entering transactions...</p>
-        <p className='text-lg py-2'>Or click the 'Load Generic Data' button to have the application automatically enter Roommate & Transaction data.</p>
+        <p className='text-lg py-2'>Or click the 'Load Generic Data' button to have the application automatically enter Roommate & Transaction data.</p>        
         </div>
     </section>
     </>

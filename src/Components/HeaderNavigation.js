@@ -30,9 +30,11 @@ export default function HeaderNavigation(props) {
                             <NavLink to='/billsplit'>
                                 <p className=''>Bill Splitter</p>
                             </NavLink>                            
-                            <NavLink to='https://EctorGrow.com'>
+                            {/* <NavLink to='https://EctorGrow.com'>
+                            </NavLink> */}
+                            <a href='https://EctorGrow.com' target='_blank' rel='noreferrer'>
                                 <p>Ector Grow</p>
-                            </NavLink>
+                            </a>
                         </ul>
                     </div> </> : null}
             </div>
