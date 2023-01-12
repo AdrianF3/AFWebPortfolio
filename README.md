@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+## About My Portfolio - AFWebDev.com
+Hello, my name is Adrian Fregoso and this is my portfolio website. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Objective 
+Seeking a position as a Full Stack or Front End Software Developer role to utilize my current skills and to continue expand my development and growth as a Developer.
+
+### Portfolio Projects
+This page feautures two projects specifically created for my portfolio...
+
+1.  https://afwebdev.com/weather - A 'Weather Game' using the OpenWeatherAPI to load the current data for 10 U.S. cities. Users are shown two modified, and one unmodified version of the current weather - users can then guess which they think is the correct weather. I wanted to do more than the basic weather API project, so I included randomzied weahter modifications and more little *extras* to fill out some basic feautres. 
+2. https://afwebdev.com/billsplit - A 'Bill Splitting' application where users can add up to 4 roommates, then enter different shared bills and automatically calculate how much each roommate or friedn may owe the others. With this page I wanted to demonstrate using the **useReducer** hook, as part of a custom hook I created in order to manage the roommate and transaction state and logic for this page. I also use several other hooks, directly on the page itself. 
+3. http://ectorgrow.com - A side project I started that is also where I spend most of my development time - more info can be found on the website itself, or by viewing my portfolio homepage at http://afwebdev.com. 
+
+Thanks for taking a look, reach out or let me know what you think at AdrianF.webdev@gmail.com
+
+--- 
 
 ## Available Scripts
 
@@ -38,33 +51,3 @@ If you aren't satisfied with the build tool and configuration choices, you can `
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
