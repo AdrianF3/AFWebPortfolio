@@ -6,7 +6,7 @@ export default function ContactSection() {
 
 
     // V1 Resume Link - Added 1/13
-    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrIanFregoso_Resume.zip?alt=media&token=9d4a449c-144c-40ec-bc6e-42e5e52e472b'
+    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrianFregoso_Resume.zip?alt=media&token=6070e671-69e9-4759-9192-67a8940cc9fd'
 
 
 
@@ -50,7 +50,7 @@ export default function ContactSection() {
             {/* lower footer tags */}
             <div className='flex flex-col w-8/12 mx-auto justify-center text-center py-4'>
                 <p>
-                    Adrian Fregoso | 2022 | V0.88
+                    Adrian Fregoso | 2022 | V0.88B
                 </p>                                
                 <a 
                     className='font-medium ml-1'
