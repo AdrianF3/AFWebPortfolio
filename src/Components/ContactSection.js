@@ -3,8 +3,14 @@ import linkedInSVG from '../images/linkedIn.svg'
 import githubSVG from '../images/githubMinisvg.svg'
 
 export default function ContactSection() {
-    return (
-        // <section className="text-gray-600 body-font justify-items-center p-4">
+
+
+    // V1 Resume Link - Added 1/13
+    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrIanFregoso_Resume.zip?alt=media&token=9d4a449c-144c-40ec-bc6e-42e5e52e472b'
+
+
+
+    return (        
         <section className="text-gray-600 body-font bg-cyan-900/30 border-cyan-900 border-4 rounded-xl mx-4 my-10">
             <div
                 className="container mx-auto px-2 py-24 rounded-xl">
@@ -14,10 +20,9 @@ export default function ContactSection() {
                     <p className="leading-normal my-5">
                         <span className='tracking-wider text-2xl font-bold underline underline-offset-3'>Denver, Colorado</span>
                     </p>
-                    <div>
-                        <button className='p-3 bg-cyan-700 rounded-xl text-white text-xl text-wider'>
-                            Download My Resume &amp; Cover Letter (.zip)
-                        </button>
+                    {/* Link to download my resume */}
+                    <div className='p-3 bg-cyan-700 rounded-xl text-white text-xl text-wider mx-auto'>                        
+                        <a href={resumeURL} download>Download My Resumé</a>                        
                     </div>
                 </div>
 
@@ -45,7 +50,7 @@ export default function ContactSection() {
             {/* lower footer tags */}
             <div className='flex flex-col w-8/12 mx-auto justify-center text-center py-4'>
                 <p>
-                    Adrian Fregoso | 2022 | V1.5  
+                    Adrian Fregoso | 2022 | V0.88
                 </p>                                
                 <a 
                     className='font-medium ml-1'
