@@ -3,7 +3,7 @@ import React from 'react'
 export default function BillSplitExplainer() {
   return (
     <>
-    <section className='flex flex-col md:flex-row justify-evenly bg-slate-400 p-4'>
+    <section className='flex flex-col md:flex-row justify-evenly bg-gradient-to-b from-slate-200 to-slate-300 p-4'>
         <div className='w-full p-4'>
         <h2 className='text-2xl uppercase text-center underline underline-offset-2'>Bill Splitting Project</h2>
         <p className='py-2 text-lg'>

@@ -11,7 +11,7 @@ export default function ContactSection() {
 
 
     return (        
-        <section className="text-gray-600 body-font bg-cyan-900/30 border-cyan-900 border-4 rounded-xl mx-4 my-10">
+        <section className="text-gray-600 body-font bg-gradient-to-b from-cyan-700/30 to-cyan-900/50 border-cyan-900 border-4 rounded-xl mx-4 my-10">
             <div
                 className="container mx-auto px-2 py-24 rounded-xl">
 
@@ -50,7 +50,7 @@ export default function ContactSection() {
             {/* lower footer tags */}
             <div className='flex flex-col w-8/12 mx-auto justify-center text-center py-4'>
                 <p>
-                    Adrian Fregoso | 2022 | V0.88B
+                    Adrian Fregoso | 2022 | V0.90
                 </p>                                
                 <a 
                     className='font-medium ml-1'

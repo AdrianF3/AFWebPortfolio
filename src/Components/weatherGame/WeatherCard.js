@@ -176,12 +176,12 @@ export default function WeatherCard(props) {
     }
         
     // assign bgColor - if user has already guessed, update background colors to display correct answer
-    let bgColor = props.currentlySelectedGuess === props.guessType ? 'bg-emerald-400/50' : 'bg-sky-400/50'
+    let bgColor = props.currentlySelectedGuess === props.guessType ? 'bg-gradient-to-b from-emerald-400/50 to-green-600/60' : 'bg-gradient-to-b from-sky-200/50 via-sky-300/50 to-sky-500/50'
     if ( props.gameData.userGuesses[props.currentCityIndex].guessed === 'correct' || props.gameData.userGuesses[props.currentCityIndex].guessed === 'incorrect') {        
         if (props.guessType === 'default') {
-            bgColor = 'bg-emerald-400/80 border-2 border-emerald-800'
+            bgColor = 'bg-gradient-to-b from-emerald-200/80 to-emerald-600/80 border-2 border-emerald-800'
         } else {
-            bgColor = 'bg-rose-400/80 border-2 border-rose-800'
+            bgColor = 'bg-gradient-to-b from-rose-400/80 to-rose-600/80 border-2 border-rose-800'
         }
 
     }
@@ -197,7 +197,7 @@ export default function WeatherCard(props) {
     return (
     <section 
         className={`flex flex-col snap-center snap-always min-w-full md:min-w-min 12 border-2 border-sky-400 p-4 rounded-lg shadow-2xl m-10 ${ bgColor } 
-        md:hover:-skew-y-2 active:scale-90 active:bg-emerald-500 `}
+        md:hover:-skew-y-2 active:scale-90 active:bg-gradient-to-b active:from-emerald-500 active:to-emerald-600 `}
         onClick={() => props.handleUserSelectGuess(props.guessIndex)}
     >
         {/* title */}

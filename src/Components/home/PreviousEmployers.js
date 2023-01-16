@@ -7,7 +7,7 @@ import stratosphereSVG from '../../images/stratosphere.png'
 
 export default function PreviousEmployers() {
   return (
-  <section className="text-gray-600 body-font bg-cyan-900 rounded-xl mx-4">
+  <section className="text-gray-600 body-font bg-gradient-to-b from-cyan-700 to-cyan-900 shadow-xl rounded-xl mx-4">
     <div className="container px-5 py-20 mx-auto">
       <div className='mb-8'>
         <h2 className='text-white text-3xl text-center font-bold sm:text-4xl tracking-wide'>

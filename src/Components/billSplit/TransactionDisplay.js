@@ -10,7 +10,7 @@ export default function TransactionDisplay(props) {
   return (
     <>        
       {/* Payments & Transactions Display */}
-      <section className={`flex flex-col w-10/12 bg-emerald-600/20 my-10 rounded-xl p-4 mx-auto py-8 ${props.currentlyAddingRoommates ? 'hidden' : null}`}>
+      <section className={`flex flex-col w-10/12 bg-gradient-to-b from-emerald-300/20 to-emerald-600/40 shadow-xl my-10 rounded-xl p-4 mx-auto py-8 ${props.currentlyAddingRoommates ? 'hidden' : null}`}>
         <div className='-mt-8 -ml-6 bg-emerald-600 w-fit p-2 rounded-xl my-4'>
           <h4 className='texl-3xl font-bold uppercase text-white'>Payments &amp; Transactions</h4>
         </div>

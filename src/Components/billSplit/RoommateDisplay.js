@@ -9,7 +9,7 @@ export default function RoommateDisplay(props) {
 return (
     <>
     {/* Roommate Table Display */}
-    <section className='flex flex-col w-10/12 mx-auto bg-sky-600/20 p-4 pt-4 pb-10 rounded-xl'>
+    <section className='flex flex-col w-10/12 mx-auto bg-gradient-to-b from-sky-300/20 to-sky-600/40 shadow-xl p-4 pt-4 pb-10 rounded-xl'>
         <div className='-mt-8 -ml-6 bg-sky-600 w-fit p-2 rounded-xl my-4'>
           <h4 className='texl-3xl font-bold uppercase text-white'>Roommates</h4>
         </div>

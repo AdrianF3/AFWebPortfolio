@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <>
-    <section className="bg-white dark:bg-cyan-900 w-screen">    
+    <section className="bg-gradient-to-b from-cyan-800 via-cyan-700/90 to-cyan-900 w-screen">    
     
 
     <div className="container px-6 py-16 mx-auto text-center">

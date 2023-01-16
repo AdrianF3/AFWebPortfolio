@@ -225,7 +225,7 @@ export default function WeatherGame() {
       {/* Page Title & Description */}      
       <div className=''>
         {/* Upper Header Section */}
-        <div className='flex flex-col md:flex-row justify-evenly bg-slate-400 p-4'>
+        <div className='flex flex-col md:flex-row justify-evenly bg-gradient-to-b from-slate-200 to-slate-300 p-4'>
           <div className='md:w-10/12 p-4'>
             <h2 className='text-2xl underline underline-offset-2'>My Take on the Classic <span className='italic'>'Weather Project'</span></h2>
             <p className='py-2'>
