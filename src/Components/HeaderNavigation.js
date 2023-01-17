@@ -67,7 +67,7 @@ export default function HeaderNavigation(props) {
             <section className="relative mx-auto">
                 {/* <!-- navbar --> */}
                 <nav className="flex justify-between bg-gray-900 text-white w-screen">
-                    <div className="py-6 flex justify-center w-9/12">                    
+                    <div className="py-6 flex px-20 w-9/12">                    
                         <NavLink to='/'>
                             <h3
                                 className='text-2xl p-2 tracking-wider uppercase m-auto text-center'>

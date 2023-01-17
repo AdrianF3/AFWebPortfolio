@@ -10,15 +10,15 @@ export default function CityStatus(props) {
 
   switch (props.currentGuessStatus) {
     case 'correct':
-      borderColor = 'border-emerald-600 bg-emerald-200/30'
+      borderColor = 'border-emerald-600 bg-gradient-to-br from-emerald-200/30 to-emerald-300'
       guessedSymbol = <MdCheckCircle color='green' size={20} />
       break;
     case 'incorrect':
-      borderColor = 'border-red-600 bg-red-200/30'
+      borderColor = 'border-red-600 bg-gradient-to-br from-red-200/30 to-red-300'
       guessedSymbol = <MdCancel color='red' size={20} />
       break;
     default:
-      borderColor = 'border-slate-600 bg-sky-300/30'
+      borderColor = 'border-slate-600 bg-gradient-to-br from-sky-200 to-sky-400'
       guessedSymbol = <MdPanoramaFishEye size={20} />
       break;
   }
@@ -42,8 +42,8 @@ export default function CityStatus(props) {
       </div>
 
 
-        <div className='text-xl pb-1 '>
-          <p>{props.city.name}</p>
+        <div className='text-xl pb-1 text-wide uppercase'>
+          <p className=''>{props.city.name}</p>
         </div>        
     </section>
   </>)

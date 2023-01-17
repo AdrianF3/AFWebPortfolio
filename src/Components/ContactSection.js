@@ -11,44 +11,58 @@ export default function ContactSection() {
 
 
     return (        
-        <section className="text-gray-600 body-font bg-gradient-to-b from-cyan-700/30 to-cyan-900/50 border-cyan-900 border-4 rounded-xl mx-4 my-10">
+        <section className="text-gray-600 body-font bg-gradient-to-b from-green-100/80  to-teal-300/50 border-cyan-900 border-4 shadow-xl rounded-xl mx-4 my-8">
             <div
-                className="container mx-auto px-2 py-24 rounded-xl">
+                className="container mx-auto px-2 py-16 rounded-xl">
 
                 <div className="flex flex-col text-center w-full mb-8">
-                    <h2 className='tracking-widest text-4xl uppercase'>Adrian Fregoso</h2>
+                    <h2 className='tracking-widest font-medium text-4xl uppercase'>Adrian Fregoso</h2>
                     <p className="leading-normal my-5">
                         <span className='tracking-wider text-2xl font-bold underline underline-offset-3'>Denver, Colorado</span>
                     </p>
                     {/* Link to download my resume */}
-                    <div className='p-3 bg-cyan-700 rounded-xl text-white text-xl text-wider mx-auto'>                        
-                        <a href={resumeURL} download>Download My Resumé</a>                        
+                    <div className='flex  mx-auto'>
+                        <a href={resumeURL} download>
+                            <div className='p-4 uppercase bg-cyan-700 rounded-xl text-white text-xl tracking-wider transition-all mx-auto
+                                hover:bg-cyan-600 hover:italic active:scale-75 active:bg-cyan-900'>                        
+                                Download My Resumé
+                            </div>
+                        </a>                        
+
                     </div>
                 </div>
 
                 <div className="lg:w-1/2 md:w-2/3 mx-auto">
                     <div
-                        className="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center text-xl">
+                        className="p-2 w-full py-4 mt-8 border-t border-gray-700 text-center text-xl">
                         <div>
-                            <a href='mailto:AdrianF.WebDev@gmail.com' className="text-indigo-500">AdrianF.WebDev@gmail.com</a>
+                            <a href='mailto:AdrianF.WebDev@gmail.com'>
+                                <span className="text-amber-700 hover:tracking-widest transition-all hover:text-amber-900 font-medium text-2xl">
+                                    AdrianF.WebDev@gmail.com
+                                </span>
+                            </a>
                         </div>
                         <div>
-                            <a href='tel:3102921219' target='_blank' rel='noreferrer'>(310) 292-1219</a>
+                            <a href='tel:3102921219' target='_blank' rel='noreferrer'>
+                                <span className="text-amber-700 hover:tracking-widest transition-all hover:text-amber-900 font-medium text-xl">
+                                    (310) 292-1219
+                                </span>
+                            </a>
                         </div>
                     </div>
-                    <div className='flex flex-row justify-center gap-4'>                        
+                    <div className='flex flex-row justify-center gap-4 transition-all'>                        
                         <a href='http://www.linkedin.com/in/adrian-fregoso' target='_blank' rel='noreferrer'>
-                            <img className='h-10 m-auto' src={linkedInSVG} alt='LinkedIn'/>
+                            <img className='h-10 m-auto hover:scale-125 active:scale-75' src={linkedInSVG} alt='LinkedIn'/>
                         </a>                        
                         <a href='https://github.com/AdrianF3' target='_blank' rel='noreferrer'>
-                            <img className='h-10 m-auto' src={githubSVG} alt='GitHub'/>
+                            <img className='h-10 m-auto hover:scale-125 active:scale-75' src={githubSVG} alt='GitHub'/>
                         </a>
                     </div>
                 </div>
 
             </div>
             {/* lower footer tags */}
-            <div className='flex flex-col w-8/12 mx-auto justify-center text-center py-4'>
+            <div className='flex flex-col w-8/12 mx-auto justify-center text-center pb-4'>
                 <p>
                     Adrian Fregoso | 2022 | V0.90
                 </p>                                

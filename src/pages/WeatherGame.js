@@ -267,13 +267,13 @@ export default function WeatherGame() {
           <div className='p-4'>
             
             {/* grid layout for user options IF data loaded, otherwise display loading div */}                        
-            <div className='flex flex-col md:py-8 bg-slate-400/30 rounded-xl px-2'>
+            <div className='flex flex-col md:py-8 bg-gradient-to-b from-slate-400/50 via-slate-200/30 to-slate-400/50 rounded-xl px-2'>
               <div className='flex flex-row justify-evenly py-8'>             
                 <div className='flex justify-center w-1/2 m-auto'>
                   <h3 className='text-3xl text-center md:text-left tracking-wide'>Guess The Correct Weather</h3>
                 </div>
 
-                {gameData.userGuesses[currentCityIndex].guessed !== null ? <div className='flex justify-center w-1/2 m-auto'><p>Your guess was {gameData.userGuesses[currentCityIndex].guessed}</p></div> : 
+                {gameData.userGuesses[currentCityIndex].guessed !== null ? <div className='flex justify-center w-1/2 m-auto uppercase'><p>Your guess was <span className='font-medium underline underline-offset-2'>{gameData.userGuesses[currentCityIndex].guessed}</span></p></div> : 
                 <div className='flex justify-center w-1/2 m-auto' onClick={() => submitUserGuess()}>
                   <button className='rounded-lg px-4 py-2 border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-green-100 duration-300 active:scale-90 active:bg-green-900'>
                     Submit My Guess
@@ -298,7 +298,7 @@ export default function WeatherGame() {
 
 
               <div className='flex justify-center w-1/2 m-auto'>
-                  <h3 className='italic text-center md:text-left tracking-wide text-md md:text-xl pb-4'>click a card & submit your guess</h3>
+                  <h3 className='italic text-center md:text-left tracking-wide text-md md:text-xl pb-4 uppercase'>click a card & submit your guess above</h3>
                 </div>               
             </div>          
           </div>        
