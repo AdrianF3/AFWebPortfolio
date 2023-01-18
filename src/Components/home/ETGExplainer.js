@@ -142,14 +142,14 @@ export default function ETGExplainer() {
                                 </p>
                                 <p className="text-gray-700 pt-10 -mt-4">
                                     I have made a demo account that is filled with pictures of my Corgi instead of Cannabis plants! I am hoping this will be a more comfortable 
-                                    ( and appropriate way) to explore my project.
+                                    ( and work appropriate way) to explore my project.
                                 </p>
                                 {/* Ector Grow Demo Info & Link */}
                                 <div className="flex flex-col md:flex-row justify-center py-6 gap-4">
                                     <div className='border-2 border-emerald-800 p-2 rounded-xl mx-auto'>
                                         <p className='flex justify-center underline underline-offset-2'>Demo Account Info</p> 
-                                        <p><span className='font-bold'>Email:</span> email@email.com</p>
-                                        <p><span className='font-bold'>Password:</span> 123456</p>
+                                        <p><span className='font-bold'>Email:</span> bb8@EctorGrow.com</p>
+                                        <p><span className='font-bold'>Password:</span> 123A%6</p>
                                     </div>
                                     <div className='mx-auto'>
                                         <a href='http://EctorGrow.com' target='_blank' rel='noreferrer'>
@@ -158,6 +158,14 @@ export default function ETGExplainer() {
                                             </button>                    
                                         </a>
                                     </div>
+                                </div>
+                                <div className='m-auto p-4'>
+                                    <p className='text-sm text-slate-700 italic px-4 text-center'>
+                                        add, edit and delete any 'plants', images. comments etc - but,
+                                        <span className='uppercase font-medium text-slate-900'> please do not </span>
+                                         edit or delete anything from the 'plants' I added with images of BB-8, my dog... the account is live
+                                         and the data is not hard coded
+                                    </p>
                                 </div>
 
                             </div>
