@@ -64,7 +64,7 @@ export default function ContactSection() {
             {/* lower footer tags */}
             <div className='flex flex-col w-8/12 mx-auto justify-center text-center pb-4'>
                 <p>
-                    Adrian Fregoso | 2022 | V0.95
+                    Adrian Fregoso | 2022 | V0.96
                 </p>                                
                 <a 
                     className='font-medium ml-1'
