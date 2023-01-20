@@ -148,7 +148,7 @@ export default function ETGExplainer() {
                                 <div className="flex flex-col md:flex-row justify-center py-6 gap-4">
                                     <div className='border-2 border-emerald-800 p-2 rounded-xl mx-auto'>
                                         <p className='flex justify-center underline underline-offset-2'>Demo Account Info</p> 
-                                        <p><span className='font-bold'>Email:</span> bb8@EctorGrow.com</p>
+                                        <p><span className='font-bold'>Email:</span> bb8demo@EctorGrow.com</p>
                                         <p><span className='font-bold'>Password:</span> 123A%6</p>
                                     </div>
                                     <div className='mx-auto'>

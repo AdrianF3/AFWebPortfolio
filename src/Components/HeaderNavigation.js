@@ -29,9 +29,7 @@ export default function HeaderNavigation(props) {
                             </NavLink>
                             <NavLink to='/billsplit'>
                                 <p className=''>Bill Splitter</p>
-                            </NavLink>                            
-                            {/* <NavLink to='https://EctorGrow.com'>
-                            </NavLink> */}
+                            </NavLink>                                                        
                             <a href='https://EctorGrow.com' target='_blank' rel='noreferrer'>
                                 <p>Ector Grow</p>
                             </a>
@@ -42,10 +40,8 @@ export default function HeaderNavigation(props) {
     )
 
     const mobileMenu = (
-        <div className='flex flex-col justify-center text-center gap-2 py-2 mb-4 text-xs'>            
-            <NavLink to=''>
-                <p className=''>Get In Touch</p>
-            </NavLink>
+        <div className='flex flex-col justify-center text-center gap-2 py-2 mb-4 text-xs'>                        
+                <p onClick={props.handleScrollToBottom} className=''>Get In Touch</p>
             <p className='font-bold uppercase border-b-2 border-white'>Portfolio Projects</p>
             <NavLink to='/weather'>
                 <p className=''>Weather Project</p>

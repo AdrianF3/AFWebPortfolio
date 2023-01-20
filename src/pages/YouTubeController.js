@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import ContactSection from '../components/ContactSection'
 import HeaderNavigation from '../components/HeaderNavigation'
+import NavigationBar from '../components/NavigationBar'
+import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 import armchairHistorianLogo from '../images/armchairHistorianLogo.png'
 
 export default function YouTubeController() {  
@@ -48,7 +50,8 @@ export default function YouTubeController() {
 
   return (
     <>
-    <HeaderNavigation/>
+    {/* <HeaderNavigation/> handleScrollToBottom={handleScrollToBottom} */}
+    <NavigationBar handleScrollToBottom={handleScrollToBottom} />
     <section>
       {/* Page Title & Description */}      
       <div className=''>
