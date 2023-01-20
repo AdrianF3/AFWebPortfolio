@@ -34,7 +34,7 @@ export default function Header() {
             Building great user experiences and effective tools for the internet
             </p>
             <p className="mt-6 text-gray-500 dark:text-gray-200 italic"> 
-                I have focused my efforts & study plan, on the continued development of EctorGrow - a 
+                I have focused my efforts & studying on the continued development of EctorGrow - a 
                 SPA I built with Firebase/React to support and assist a growing online community of registered users, more info below...
             </p>
         </div>

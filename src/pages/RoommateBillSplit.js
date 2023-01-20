@@ -6,7 +6,7 @@ import DetailsModal from '../components/billSplit/modals/DetailsModal'
 import RoommateDisplay from '../components/billSplit/RoommateDisplay'
 import TransactionDisplay from '../components/billSplit/TransactionDisplay'
 import ContactSection from '../components/ContactSection'
-import HeaderNavigation from '../components/HeaderNavigation'
+import NavigationBar from '../components/NavigationBar'
 import { useBillSplitApp } from '../hooks/useBillSplitApp'
 import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 import { useKeyPress } from '../hooks/useKeyPress'
@@ -66,7 +66,7 @@ export default function RoommateBillSplit() {
       setTransactionModal={setTransactionModal}
     /> : null}
     
-    <HeaderNavigation handleScrollToBottom={handleScrollToBottom}/>
+    <NavigationBar handleScrollToBottom={handleScrollToBottom}/>
     <section>
       {/* Page Title and Description */}
       <div className=''>

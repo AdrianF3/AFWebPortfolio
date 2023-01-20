@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import ContactSection from '../components/ContactSection'
-import HeaderNavigation from '../components/HeaderNavigation'
+import NavigationBar from '../components/NavigationBar'
 import axios from 'axios';
 import WeatherCard from '../components/weatherGame/WeatherCard';
 import CityStatus from '../components/weatherGame/CityStatus'
@@ -220,7 +220,7 @@ export default function WeatherGame() {
   
 
   return (<>
-    <HeaderNavigation handleScrollToBottom={handleScrollToBottom}/>
+    <NavigationBar handleScrollToBottom={handleScrollToBottom}/>
     <section>
       {/* Page Title & Description */}      
       <div className=''>
@@ -310,9 +310,9 @@ export default function WeatherGame() {
         <h3 className='text-2xl text-center md:text-left md:pl-10 tracking-wide'>Cities & Guess Status</h3>
         <div className='grid grid-cols-2 md:grid-cols-5 justify-items-center gap-6 py-4'>
           { cityData.map((city, cityIndex) => <>
-          <div className='w-40'>                
+            <div className='w-40'>                
                 <CityStatus
-                  key={`${cityIndex}-cityStatus`}
+                  key={`cityIndex${cityIndex}`}
                   city={city}                
                   cityIndex={cityIndex}
                   gameData={gameData}                

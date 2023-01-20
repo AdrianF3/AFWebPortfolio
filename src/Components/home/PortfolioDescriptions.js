@@ -7,11 +7,7 @@ export default function PortfolioDescriptions() {
     <section id="portfolio-descriptions" className="flex justify-center pb-8 rounded-b-2xl bg-cyan-900 text-white w-screen">      
   <div className="max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
     <div className="">
-      <h2 className="text-3xl font-bold sm:text-4xl">Portfolio Projects</h2>
-
-      <p className="mt-4 text-gray-300">
-        Including a side project of mine, EctorGrow, which has open registration and a very small, but growing online community
-      </p>
+      <h2 className="text-3xl font-bold sm:text-4xl">Portfolio Projects</h2>      
     </div>
 
     <div

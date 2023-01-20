@@ -7,8 +7,8 @@ export default function NavigationBar(props) {
     const subLinkStyle = 'transition-all text-base md:text-lg m-auto tracking-wide hover:italic hover:text-slate-300 active:text-slate-600'
 
   return (
-    <nav className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-900 text-gray-200 
-        shadow-lg">
+    <nav className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 text-gray-200 
+        shadow-xl border-b-4 border-cyan-800">
         <div className="container-fluid w-full flex px-6">
             {/* <!-- Additional links --> */}
             <div className="flex flex-row w-full items-center justify-between">

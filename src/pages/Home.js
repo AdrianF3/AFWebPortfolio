@@ -3,10 +3,9 @@ import ContactSection from '../components/ContactSection'
 import ETGExplainer from '../components/home/ETGExplainer'
 import Header from '../components/home/Header'
 import PreviousEmployers from '../components/home/PreviousEmployers'
-import HeaderNavigation from '../components/HeaderNavigation'
 import PortfolioDescriptions from '../components/home/PortfolioDescriptions'
 import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
-
+import NavigationBar from '../components/NavigationBar'
 
 export default function Home() {
 
@@ -14,7 +13,8 @@ export default function Home() {
     <section>
         {/* Header / Welcome Area */}
           {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}                    
-          <HeaderNavigation handleScrollToBottom={handleScrollToBottom} />
+          {/* <HeaderNavigation handleScrollToBottom={handleScrollToBottom} /> */}
+          <NavigationBar handleScrollToBottom={handleScrollToBottom} />
           <Header />             
         {/* Skills Brief Description of expereince */}        
         {/* Developer Experience & Projects */}
