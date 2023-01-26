@@ -19,11 +19,13 @@ export default function Home() {
         {/* Skills Brief Description of expereince */}        
         {/* Developer Experience & Projects */}
           <PortfolioDescriptions />                    
-          <ETGExplainer />
-          <PreviousEmployers />
-        {/* Updated Resume & Cover & contact info */}
-          {/* Simple section, easy to download from */}
-          <ContactSection />                  
+          <section className=''>
+            <ETGExplainer />
+            <PreviousEmployers />
+          {/* Updated Resume & Cover & contact info */}
+            {/* Simple section, easy to download from */}
+            <ContactSection />                  
+          </section>
 
 
 

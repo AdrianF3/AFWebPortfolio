@@ -1,6 +1,6 @@
 {
   "name": "afwebportfolio",
-  "version": "0.96",
+  "version": "0.97",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
