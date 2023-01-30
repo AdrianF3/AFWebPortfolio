@@ -5,8 +5,10 @@ import githubSVG from '../images/githubMinisvg.svg'
 export default function ContactSection() {
 
 
-    // V1 Resume Link - Added 1/13
-    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrianFregoso_Resume.zip?alt=media&token=6070e671-69e9-4759-9192-67a8940cc9fd'
+    // V2 Resume Link - Added 1/13
+    // const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrianFregoso_Resume.zip?alt=media&token=6070e671-69e9-4759-9192-67a8940cc9fd'
+    // V3 Resume Link - Added 1/30
+    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/Adrian%20Fregoso_Resume.pages?alt=media&token=7adc231a-8fd9-458e-b090-6e51fff091da'
 
 return (                
     <section className="text-gray-600 body-font bg-cover bg-svgBG object-cover border-cyan-900 border-4 shadow-xl rounded-xl mx-4 my-8">
