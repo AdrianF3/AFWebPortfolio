@@ -141,22 +141,33 @@ export default function ETGExplainer() {
                                 not the most appropriate thing to mention when applying for a job… so perhaps a nice middle ground. 
                                 </p>
                                 <p className="text-gray-700 pt-10 -mt-4">
-                                    I have made a demo account that is filled with pictures of my Corgi instead of Cannabis plants! I am hoping this will be a more comfortable 
-                                    ( and work appropriate way) to explore my project.
+                                    I've made a demo account that is filled with pictures of my Corgi instead of Cannabis plants! I am hoping this will be a more comfortable 
+                                    (and work appropriate way) to explore my project. You can view the public facing version (without logging in) or log in to the demo account by using the buttons below.
                                 </p>
                                 {/* Ector Grow Demo Info & Link */}
                                 <div className="flex flex-col md:flex-row justify-center py-6 gap-4">
-                                    <div className='border-2 border-emerald-800 p-2 rounded-xl mx-auto'>
+                                    <div className='border-2 border-emerald-800 p-2 rounded-xl m-auto'>
                                         <p className='flex justify-center underline underline-offset-2'>Demo Account Info</p> 
                                         <p><span className='font-bold'>Email:</span> bb8demo@EctorGrow.com</p>
                                         <p><span className='font-bold'>Password:</span> 123A%6</p>
                                     </div>
-                                    <div className='mx-auto'>
-                                        <a href='http://EctorGrow.com' target='_blank' rel='noreferrer'>
-                                            <button className="text-white bg-emerald-400 p-2  focus:outline-none hover:bg-emerald-600 rounded-xl">
-                                                Visit Ector Grow
-                                            </button>                    
-                                        </a>
+                                    <div className='flex flex-col m-auto gap-2'>
+                                        <div className='flex flex-col'>
+                                            <a href='http://EctorGrow.com/grows/bb8demo' className='m-auto' target='_blank' rel='noreferrer'>
+                                                <button className="text-white bg-emerald-400 p-2  focus:outline-none hover:bg-emerald-600 rounded-xl">
+                                                    Visit Public Demo Account
+                                                </button>           
+                                            </a>
+                                                <span className='m-auto'>(no login)</span>         
+                                        </div>
+                                        <div className='flex flex-col mx-auto'>
+                                            <a href='http://EctorGrow.com' className='m-auto' target='_blank' rel='noreferrer'>
+                                                <button className="text-white bg-emerald-400 p-2  focus:outline-none hover:bg-emerald-600 rounded-xl">
+                                                    Visit Ector Grow
+                                                </button>                    
+                                            </a>
+                                            <span className='m-auto'>(home page &/or login)</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className='m-auto p-4'>
