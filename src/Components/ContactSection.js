@@ -62,7 +62,7 @@ return (
         </div>
         {/* Final Footer Tags */}
         <div className='flex flex-col w-8/12 mx-auto justify-center text-center text-slate-200 font-medium text-lg pb-4'>
-            <p>Adrian Fregoso | 2022 | V0.97</p>                                
+            <p>Adrian Fregoso | 2022-2023 | V1.0</p>                                
             <a 
                 className='font-medium ml-1'
                 href='https://github.com/AdrianF3/AFWebPortfolio' 

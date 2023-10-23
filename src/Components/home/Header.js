@@ -28,7 +28,7 @@ export default function Header() {
 
     <div className="container px-6 py-16 mx-auto text-center">
         <div className="max-w-2xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-wider md:text-4xl">Fullstack Software Developer</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-wider md:text-4xl">Frontend Software Developer</h1>
 
             <p className="mt-6 text-gray-500 dark:text-gray-200 tracking-wide">
             Building great user experiences and effective tools for the internet
@@ -125,9 +125,9 @@ export default function Header() {
                 </div>
             </div>
             {/* explaing tech I am learning and development path */}
-            <div className='pt-8 text-white w-8/12 mx-auto'>
+            {/* <div className='pt-8 text-white w-8/12 mx-auto'>
                 <p>My goal is to continue learning with the libraries/tools listed above and to focus specifically on the <span className='text-xl'>FERN</span> tech stack</p>
-            </div>
+            </div> */}
         </div>
     </div>
 </section>
