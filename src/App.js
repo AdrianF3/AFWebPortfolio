@@ -5,6 +5,7 @@ import WeatherGame from './pages/WeatherGame';
 import YouTubeController from './pages/YouTubeController'
 import RoommateBillSplit from './pages/RoommateBillSplit';
 import ReactGA from 'react-ga4'
+import Recipes from './pages/Recipes';
 
 
 // Init Google Analytics
@@ -20,6 +21,7 @@ function App() {
         <Route path='weather' element={<WeatherGame />}  />
         <Route path='ytcontroller' element={<YouTubeController />}  />      
         <Route path='billsplit' element={<RoommateBillSplit />}  />      
+        <Route path='recipes' element={<Recipes />}  />      
         <Route path='*' element={<div><p>Page Not Found</p></div>} />
 
       </Routes>      
