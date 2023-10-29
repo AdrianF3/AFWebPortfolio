@@ -10,7 +10,9 @@ export default function ContactSection() {
     // V3 Resume Link - Added 1/30
     // const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/Adrian%20Fregoso%20Resume.pdf?alt=media&token=dfe3df0d-db28-4ba2-a2eb-909d56767452'
     // V4 Resume Link - Added 4/6
-    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrianFregosoResume_23.pdf?alt=media&token=595b9b0b-eec4-44a8-9124-311d293972a2'
+    // const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrianFregosoResume_23.pdf?alt=media&token=595b9b0b-eec4-44a8-9124-311d293972a2'
+    // V5 Resume Link - Added Oct 23
+    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/Adrian_Fregoso%20Resume%202023.pdf?alt=media&token=bb3abd74-6a6a-4c6c-a80a-f5dd0f075e04&_gl=1*1at2860*_ga*MTAzNTU1MTQuMTY5MjIxMjg0NA..*_ga_CW55HF8NVT*MTY5ODYwMTkyOS44Ni4xLjE2OTg2MDE5OTIuNjAuMC4w'
 
 return (                
     <section className="text-gray-600 body-font bg-cover bg-svgBG object-cover border-cyan-900 border-4 shadow-xl rounded-xl mx-4 my-8">
