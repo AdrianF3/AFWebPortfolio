@@ -1,45 +1,37 @@
-import React from 'react'
-import ContactSection from '../components/ContactSection'
-import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
-import NavigationBar from '../components/NavigationBar'
-import AddRecipe from '../components/recipes/AddRecipe'
+import React, { useEffect, useState } from 'react';
+import ContactSection from '../components/ContactSection';
+import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom';
+import NavigationBar from '../components/NavigationBar';
+import AddRecipe from '../components/recipes/AddRecipe';
+import { projectFirestore } from '../firebase/config';
 
 export default function Recipes() {
-  const recipeCategpries = [ 'Untested', 'Breakfast', 'Main Course', 'Desserts', 'Drinks', 'Sides/Misc.', 'Soups', 'Salads', 'Snacks', 'Breads' ]
-  // state for selected category
-  const [category, setCategory] = React.useState('Untested');
-  const currentCategoryRecipes = [
-    {
-      name: "Stuffed Mushrooms",
-      category: "Untried",
-      description: "Delicious and savory stuffed mushrooms with a cheesy filling.",      
-      originalRecipeUrl: "https://example.com/stuffed-mushrooms.pdf",
-    },
-    {
-      name: "Caprese Skewers",
-      category: "Untried",
-      description: "Fresh Caprese salad on skewers with mozzarella, tomatoes, and basil.",      
-      originalRecipeUrl: "https://example.com/stuffed-mushrooms.pdf",
-    },
-    {
-      name: "Guacamole Dip",
-      category: "Untried",
-      description: "Classic guacamole dip with ripe avocados and fresh ingredients.",      
-      originalRecipeUrl: "https://example.com/stuffed-mushrooms.pdf",
-    },
-    {
-      name: "Spinach and Artichoke Dip",
-      category: "Untried",
-      description: "Creamy and cheesy spinach and artichoke dip served with tortilla chips.",      
-      originalRecipeUrl: "https://example.com/stuffed-mushrooms.pdf",
-    },
-    {
-      name: "Bruschetta",
-      category: "Untried",
-      description: "Italian bruschetta with diced tomatoes, garlic, basil, and balsamic glaze.",      
-      originalRecipeUrl: "https://example.com/stuffed-mushrooms.pdf",
-    },
-  ];
+  const recipeCategories = ['Untried', 'Breakfast', 'Main Course', 'Desserts', 'Drinks', 'Sides/Misc.', 'Soups', 'Salads', 'Snacks', 'Breads'];
+  const [category, setCategory] = useState('Untried');
+  const [recipeData, setRecipeData] = useState(null); // Initialize with null
+
+  useEffect(() => {
+    // Fetch the document from Firestore using the specified ID
+    const fetchRecipeData = async () => {
+      try {
+        const docRef = projectFirestore.collection('recipeData').doc('bgkIgbYG78vAPtCLDkUB');
+        const doc = await docRef.get();
+        if (doc.exists) {
+          // If the document exists, update the state with the data
+          setRecipeData(doc.data());
+        } else {
+          // Handle the case where the document does not exist
+          console.log('Document not found.');
+        }
+      } catch (error) {
+        // Handle any potential errors
+        console.error('Error fetching document:', error);
+      }
+    };
+
+    fetchRecipeData();
+  }, []); // Empty dependency array ensures this effect runs once on component mount
+  console.log('recipeData', recipeData)
 
   // Define a function to determine the background color of category buttons
   const getCategoryButtonColor = (categoryId) => {
@@ -49,26 +41,22 @@ export default function Recipes() {
     return 'bg-green-200/50';
   };
 
-
-
   return (
     <section>
-        {/* Header / Welcome Area */}
-          {/* anchor links to jump to certain parts of the page - also include button to toggle dark mode */}                    
-          {/* <HeaderNavigation handleScrollToBottom={handleScrollToBottom} /> */}
-          <NavigationBar handleScrollToBottom={handleScrollToBottom} />                       
-        
-          <section className='p-4 rounded-xl shadow-xl'>
-            <AddRecipe categories={currentCategoryRecipes} category={category} />
+      {/* Header / Welcome Area */}
+      <NavigationBar handleScrollToBottom={handleScrollToBottom} />
 
-            {/* Recipe Categories */}
-            {/* Recipe Categories */}
+      <section className="p-4 rounded-xl shadow-xl">
+        { recipeData && recipeData.recipes
+          ? <AddRecipe categories={recipeCategories} currentRecipes={recipeData.recipes} category={category} />
+          : null
+        }
+
+        {/* Recipe Categories */}
         <div>
-          <p className="text-center text-slate-700 text-lg">
-            Select a category to upload a recipe
-          </p>
+          <p className="text-center text-slate-700 text-lg">Select a category to upload a recipe</p>
           <div className="flex flex-wrap justify-center p-4">
-            {recipeCategpries.map((categoryId, index) => (
+            {recipeCategories.map((categoryId, index) => (
               <div key={index} className="flex flex-col items-center justify-center w-1/2 p-4">
                 <button
                   className={`w-full p-4 text-2xl font-bold text-center text-slate-700 ${getCategoryButtonColor(categoryId)} rounded-xl shadow-xl hover:bg-green-400/50 focus:outline-none`}
@@ -79,41 +67,31 @@ export default function Recipes() {
               </div>
             ))}
           </div>
-        </div>        
+        </div>
 
-
-            {/* Split into 2 columns */}
-              {/* Recipe List on left */}
-              {/* Recipe PDF Display - list of recipes on left, pdf display on right */}
+        {/* Split into 2 columns */}
         <section>
-            {/* Recipe List */}
+          {/* Recipe List */}
+          <div className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">
+            <h2 className="text-2xl font-bold text-center text-slate-700">{category} Recipes</h2>
             <div className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">
-                <h2 className="text-2xl font-bold text-center text-slate-700">{category} Recipes</h2>
-                <div className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">
-                    {currentCategoryRecipes.map((recipe, index) => (
-                        <div key={index} className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">
-                            <h3 className="text-2xl font-bold text-center text-slate-700">{recipe.name}</h3>
-                            <p className="text-lg font-bold text-center text-slate-700">{recipe.description}</p>
-                            <p className="text-sm italic font-bold text-center text-slate-700">{recipe.originalRecipeUrl}</p>                            
-                        </div>
-                    ))}
-                </div>
+              {recipeData && recipeData.recipes
+                ? recipeData.recipes.map((recipe, index) => (
+                    <div key={index} className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">
+                      <h3 className="text-2xl font-bold text-center text-slate-700">{recipe.name}</h3>
+                      <p className="text-lg font-bold text-center text-slate-700">{recipe.description}</p>
+                      <p className="text-sm italic font-bold text-center text-slate-700">{recipe.originalRecipeUrl}</p>
+                    </div>
+                  ))
+                : null}
             </div>
-                
-                {/* Recipe PDF Display */}
-                
-
-
+          </div>
         </section>
 
-              {/* Recipe PDF Display on right */}
-                {/* click to go full screen with pdf */}
-            
-          </section>
-
-          <ContactSection />                  
-
-
+        {/* Recipe PDF Display on right */}
       </section>
-  )
+
+      <ContactSection />
+    </section>
+  );
 }

@@ -1,54 +1,53 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { projectFirestore, projectStorage } from '../../firebase/config';
 
 export default function AddRecipe({ currentRecipes, category }) {
-  const [name, setName] = React.useState('');
-  const [note, setNote] = React.useState('');
+  const [name, setName] = useState('');
+  const [note, setNote] = useState('');
   const fileInputRef = useRef(null);
-
+  console.log('currentRecipes', currentRecipes)
   const handleFileUpload = () => {
     // Trigger a click event on the hidden file input element
     fileInputRef.current.click();
   };
 
-  const handleFileChange = () => {
-    
-  };
-
-  const saveRecipe = (e) => {
-    let urlToSave = null
+  const saveRecipe = async (e) => {
     const file = e.target.files[0];
+
+    if (!file) {
+      return; // No file selected
+    }
+
     const storageRef = projectStorage.ref(`Recipes/${file.name}`);
-    storageRef.put(file).then(() => {
-      // Get the download URL after the file is uploaded
-      storageRef.getDownloadURL().then((downloadUrl) => {        
-         urlToSave = downloadUrl;
-      });
-    });
-
-    const newRecipe = {
-      name,
-      description: note,
-      category,
-      originalRecipeUrl: urlToSave
-    };
-
-    // Save newRecipe to the database
-    // the collection where recipe data should be stored recipeData collection, id: bgkIgbYG78vAPtCLDkUB
-    projectFirestore
-      .collection('recipeData')
-      .doc('bgkIgbYG78vAPtCLDkUB')
-      .update({
-        recipes: [...currentRecipes, newRecipe],
-      })
-
     
+    try {
+      // Upload the file to storage
+      const uploadTask = storageRef.put(file);
+      const snapshot = await uploadTask;
+      const downloadUrl = await snapshot.ref.getDownloadURL();
 
+      const newRecipe = {
+        name,
+        description: note,
+        category,
+        originalRecipeUrl: downloadUrl,
+      };
 
+      // Update Firestore with the newRecipe
+      await projectFirestore
+        .collection('recipeData')
+        .doc('bgkIgbYG78vAPtCLDkUB')
+        .update({
+          recipes: [...currentRecipes, newRecipe],
+        });
+
+      // Clear the input fields
+      setName('');
+      setNote('');
+    } catch (error) {
+      console.error('Error uploading file and updating Firestore:', error);
+    }
   };
-
-
-
 
   return (
     <>
