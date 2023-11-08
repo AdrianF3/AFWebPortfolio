@@ -12,7 +12,9 @@ export default function ContactSection() {
     // V4 Resume Link - Added 4/6
     // const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/AdrianFregosoResume_23.pdf?alt=media&token=595b9b0b-eec4-44a8-9124-311d293972a2'
     // V5 Resume Link - Added Oct 23
-    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/Adrian_Fregoso%20Resume%202023.pdf?alt=media&token=bb3abd74-6a6a-4c6c-a80a-f5dd0f075e04&_gl=1*1at2860*_ga*MTAzNTU1MTQuMTY5MjIxMjg0NA..*_ga_CW55HF8NVT*MTY5ODYwMTkyOS44Ni4xLjE2OTg2MDE5OTIuNjAuMC4w'
+    // const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/Adrian_Fregoso%20Resume%202023.pdf?alt=media&token=bb3abd74-6a6a-4c6c-a80a-f5dd0f075e04&_gl=1*1at2860*_ga*MTAzNTU1MTQuMTY5MjIxMjg0NA..*_ga_CW55HF8NVT*MTY5ODYwMTkyOS44Ni4xLjE2OTg2MDE5OTIuNjAuMC4w'
+    // V6 Resume Link - Added Nov 23
+    const resumeURL = 'https://firebasestorage.googleapis.com/v0/b/afportfolio-20234.appspot.com/o/Adrian_Fregoso%20Resume%202023.pdf?alt=media&token=2e4a7fcf-3c97-4727-9813-4f8877a9a639'
 
 return (                
     <section className="text-gray-600 body-font bg-cover bg-svgBG object-cover border-cyan-900 border-4 shadow-xl rounded-xl mx-4 my-8">
@@ -64,7 +66,7 @@ return (
         </div>
         {/* Final Footer Tags */}
         <div className='flex flex-col w-8/12 mx-auto justify-center text-center text-slate-200 font-medium text-lg pb-4'>
-            <p>Adrian Fregoso | 2022-2023 | V1.0</p>                                
+            <p>Adrian Fregoso | 2022-2023 | V1.01</p>                                
             <a 
                 className='font-medium ml-1'
                 href='https://github.com/AdrianF3/AFWebPortfolio' 

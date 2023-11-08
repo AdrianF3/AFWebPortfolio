@@ -1,38 +1,47 @@
-import React, { useState, useRef } from 'react';
-import { projectFirestore, projectStorage } from '../../firebase/config';
+import React, { useState, useEffect } from 'react';
+import { projectFirestore } from '../../firebase/config';
 
-export default function AddRecipe({ currentRecipes, category, fetchRecipeData, setIsLoading }) {
+export default function EditRecipe({ currentRecipes, category, fetchRecipeData, setIsLoading, editingRecipe, setEditingRecipe, deleteRecipe }) {
   const [name, setName] = useState('');
   const [note, setNote] = useState('');
   const [recipeURL, setRecipeURL] = useState('');
-  const fileInputRef = useRef(null);  
-  const handleFileUpload = () => {
-    // Trigger a click event on the hidden file input element
-    fileInputRef.current.click();
-  };
 
-  const saveRecipe = async (e) => {
+
+
+    // useEffect that runs once, when the editingRecipe changes, update the state variables with the editingRecipe
+    useEffect(() => {
+        if (editingRecipe) {
+            setName(editingRecipe.name);
+            setNote(editingRecipe.description);
+            setRecipeURL(editingRecipe.recipeURL);
+        }
+    }, [editingRecipe]);
+
+
+
+  
+
+  const saveRecipe = async () => {    
     setIsLoading(true);
-    const file = e.target.files[0];
 
-    if (!file) {
-      return; // No file selected
-    }
+    
 
-    const storageRef = projectStorage.ref(`Recipes/${file.name}`);
+
     
     try {
-      // Upload the file to storage
-      const uploadTask = storageRef.put(file);
-      const snapshot = await uploadTask;
-      const downloadUrl = await snapshot.ref.getDownloadURL();
+        // first delet the old recipe
+        await deleteRecipe(editingRecipe);
+
+        // filter out the editing recipe from the current recipes
+        const filteredRecipes = currentRecipes.filter((recipe) => recipe.name !== editingRecipe.name);
+      
 
       const newRecipe = {
         name,
         recipeURL,
         description: note,
         category,
-        pdfRecipeUrl: downloadUrl,
+        pdfRecipeUrl: editingRecipe.pdfRecipeUrl,
       };
 
       // Update Firestore with the newRecipe
@@ -40,24 +49,28 @@ export default function AddRecipe({ currentRecipes, category, fetchRecipeData, s
         .collection('recipeData')
         .doc('bgkIgbYG78vAPtCLDkUB')
         .update({
-          recipes: [...currentRecipes, newRecipe],
+          recipes: [...filteredRecipes, newRecipe],
         });
 
       // Clear the input fields
       setName('');
       setNote('');
       setRecipeURL('');
+
       fetchRecipeData();
+      setEditingRecipe(false);
       setIsLoading(false);
     } catch (error) {
       console.error('Error uploading file and updating Firestore:', error);
     }
   };
 
+//   function to clear the editingRecipe state variable
+
   return (
     <>
       <div>
-        <h2 className="text-2xl font-bold text-center text-slate-700">Save A New Recipe</h2>
+        <h2 className="text-2xl font-bold text-center text-slate-700">Editing A Recipe</h2>
         <p className="text-center text-slate-700 text-lg">recipes will be saved to the current category that is selected</p>
         <div className="flex flex-col items-center justify-center p-4 gap-4 bg-gray-100 rounded-xl">
           <input
@@ -82,20 +95,23 @@ export default function AddRecipe({ currentRecipes, category, fetchRecipeData, s
             onChange={(e) => setNote(e.target.value)}
           />
 
-          <input
-            type="file"
-            id="file"
-            ref={fileInputRef}
-            className="hidden"
-            onChange={saveRecipe}
-          />
+          
 
           <button
             className="w-full p-4 text-2xl font-bold text-center text-slate-700 bg-sky-200/50 rounded-xl shadow-xl hover:bg-sky-400/50 focus:bg-sky-400/50 focus:outline-none"
-            onClick={handleFileUpload}
+            onClick={() => saveRecipe()}
           >
-            Select a PDF to upload
+            Save Changes To Recipe
           </button>
+
+          {/* Button to undo editing recipe */}
+            <button
+                className="w-full p-4 text-2xl font-bold text-center text-slate-700 bg-red-200/50 rounded-xl shadow-xl hover:bg-red-400/50 focus:bg-red-400/50 focus:outline-none"
+                onClick={() => setEditingRecipe(false)}
+            >
+                Cancel Editing Recipe
+            </button>
+            
         </div>
       </div>
     </>

@@ -4,6 +4,8 @@ import { handleScrollToBottom } from '../components/renderless/handleScrollToBot
 import NavigationBar from '../components/NavigationBar';
 import AddRecipe from '../components/recipes/AddRecipe';
 import { projectFirestore } from '../firebase/config';
+import RecipeView from '../components/recipes/RecipeView';
+import EditRecipe from '../components/recipes/EditRecipe';
 
 export default function Recipes() {
   const recipeCategories = ['Untried', 'Breakfast', 'Main Course', 'Desserts', 'Drinks', 'Sides/Misc.', 'Soups', 'Salads', 'Snacks', 'Breads'];
@@ -11,7 +13,8 @@ export default function Recipes() {
   const [recipeData, setRecipeData] = useState(null); // Initialize with null
   const [filteredRecipes, setFilteredRecipes] = useState(null);
   const [deleteBtnStatus, setDeleteBtnStatus] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [editingRecipe, setEditingRecipe] = useState(false);
 
   // Fetch the document from Firestore using the specified ID
   const fetchRecipeData = async () => {
@@ -29,6 +32,7 @@ export default function Recipes() {
       // Handle any potential errors
       console.error('Error fetching document:', error);
     }
+    setIsLoading(false);
   };
   useEffect(() => {
 
@@ -48,6 +52,11 @@ export default function Recipes() {
     }
   }, [category, recipeData]);
   console.log('filteredRecipes', filteredRecipes)
+
+  // Define a function to update a recipe - should load the recipe into the AddRecipe component 
+  // and state variables - then the user can edit the recipe and save it - should also pass to
+  //  Add Recipe whether it is saivng a new recipe or editing a recipe  
+  
 
 
   // Define a function to delete a recipe
@@ -83,26 +92,36 @@ export default function Recipes() {
   };
   console.log('category', category)
   console.log('recipeData', recipeData)
+  console.log('editingRecipe', editingRecipe)
   return (
     <section>
       {/* Header / Welcome Area */}
       <NavigationBar handleScrollToBottom={handleScrollToBottom} />
 
       <section className="p-4 rounded-xl shadow-xl">
-        { recipeData && recipeData.recipes
+        {  recipeData ? recipeData.recipes ? !isLoading ? !editingRecipe
           ? <AddRecipe 
               categories={recipeCategories} 
               currentRecipes={recipeData.recipes} 
               category={category} 
-              fetchRecipeData={fetchRecipeData}
+              fetchRecipeData={fetchRecipeData}              
               setIsLoading={setIsLoading}
             />
-          : null
+          : <EditRecipe
+              categories={recipeCategories} 
+              currentRecipes={recipeData.recipes} 
+              category={category} 
+              fetchRecipeData={fetchRecipeData}              
+              setIsLoading={setIsLoading}
+              editingRecipe={editingRecipe}
+              setEditingRecipe={setEditingRecipe}
+              deleteRecipe={deleteRecipe}            
+            />
+          : null : null : <p className='flex justify-center h-1/3 my-10 py-10 rounded-2xl shadow-xl bg-sky-400/50 first-letter text-4xl'>loading currently message</p>
         }
 
         {/* Recipe Categories */}
-        <div>
-          <p className="text-center text-slate-700 text-lg">new recipes will be saved to the current category that is selected</p>
+        <div>          
           <div className="flex flex-wrap justify-center p-4">
             {recipeCategories.map((categoryId, index) => (
               <div key={index} className="flex flex-col items-center justify-center w-1/2 p-4">
@@ -118,7 +137,7 @@ export default function Recipes() {
         </div>
 
         {/* Split into 2 columns */}
-        { isLoading ? <p className='m-auto text-2xl text-green-500'>loading...</p> : null }
+        { isLoading ? <p className='flex justify-center h-1/3 my-10 py-10 rounded-2xl shadow-xl bg-sky-400/50 first-letter text-4xl'>loading currently message</p> : null }
         <section>
           {/* Recipe List */}
           <div className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">
@@ -131,31 +150,16 @@ export default function Recipes() {
             <div className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 rounded-xl">            
               {filteredRecipes
                 ? filteredRecipes.recipes.map((recipe, index) => (
-                    <div key={index} className="flex flex-col items-center justify-center w-full p-4 gap-4 bg-gray-100 border-2 border-black border-dashed rounded-xl">
-                      <h3 className="text-2xl font-bold text-center text-slate-700">{recipe.name}</h3>                      
-                      <a href={recipe.recipeURL} target="_blank" rel='noreferrer' className="font-bold text-center text-blue-800 italic">
-                        {recipe.recipeURL}
-                      </a>
+                    <RecipeView
+                      key={index}
+                      index={index}
+                      recipe={recipe}
+                      deleteRecipe={deleteRecipe}
+                      deleteBtnStatus={deleteBtnStatus}
+                      setDeleteBtnStatus={setDeleteBtnStatus}
+                      setEditingRecipe={setEditingRecipe}
 
-                      <p className="text-lg font-bold text-center text-slate-700">{recipe.description}</p>
-                      <a href={recipe.pdfRecipeUrl} target="_blank" rel='noreferrer' className="text-sm italic font-bold text-center text-slate-700">
-                        Recipee PDF
-                      </a>
-
-                      { !deleteBtnStatus ? <>
-                      <button 
-                        className='w-full p-4 text-2xl font-bold text-center text-slate-700 bg-red-200/50 rounded-xl shadow-xl hover:bg-red-400/50 focus:bg-red-400/50 focus:outline-none'
-                        onClick={() => setDeleteBtnStatus(true)}
-                        >Delete Recipe
-                      </button>
-                        </> : <> 
-                      <button 
-                        className='w-full p-4 text-2xl font-bold text-center text-slate-700 bg-red-400/50 rounded-xl shadow-xl hover:bg-red-600/50 focus:bg-red-600/50 focus:outline-none'
-                        onClick={() => deleteRecipe(recipe)}
-                        >Confirm - permanently delete this recipe?
-                      </button>
-                        </>}
-                    </div>
+                    />                  
                   ))
                 : null}
             </div>
