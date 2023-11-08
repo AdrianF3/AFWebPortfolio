@@ -1,17 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { projectFirestore, projectStorage } from '../../firebase/config';
 
-export default function AddRecipe({ currentRecipes, category }) {
+export default function AddRecipe({ currentRecipes, category, fetchRecipeData, setIsLoading }) {
   const [name, setName] = useState('');
   const [note, setNote] = useState('');
-  const fileInputRef = useRef(null);
-  console.log('currentRecipes', currentRecipes)
+  const [recipeURL, setRecipeURL] = useState('');
+  const fileInputRef = useRef(null);  
   const handleFileUpload = () => {
     // Trigger a click event on the hidden file input element
     fileInputRef.current.click();
   };
 
   const saveRecipe = async (e) => {
+    setIsLoading(true);
     const file = e.target.files[0];
 
     if (!file) {
@@ -28,9 +29,10 @@ export default function AddRecipe({ currentRecipes, category }) {
 
       const newRecipe = {
         name,
+        recipeURL,
         description: note,
         category,
-        originalRecipeUrl: downloadUrl,
+        pdfRecipeUrl: downloadUrl,
       };
 
       // Update Firestore with the newRecipe
@@ -44,6 +46,9 @@ export default function AddRecipe({ currentRecipes, category }) {
       // Clear the input fields
       setName('');
       setNote('');
+      setRecipeURL('');
+      fetchRecipeData();
+      setIsLoading(false);
     } catch (error) {
       console.error('Error uploading file and updating Firestore:', error);
     }
@@ -61,10 +66,17 @@ export default function AddRecipe({ currentRecipes, category }) {
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          <input
+            className="w-full p-4 text-2xl font-bold text-center text-slate-700 bg-green-200/50 rounded-xl shadow-xl hover:bg-green-400/50 focus:bg-green-400/50 focus:outline-none"
+            type="text"
+            placeholder="Recipe URL"
+            value={recipeURL}
+            onChange={(e) => setRecipeURL(e.target.value)}
+          />
           <textarea
             className="w-full p-4 text-2xl font-bold text-center text-slate-700 bg-green-200/50 rounded-xl shadow-xl hover:bg-green-400/50 focus:bg-green-400/50 focus:outline-none"
             type="text"
-            placeholder="Recipe Note"
+            placeholder="My Personal Notes"
             value={note}
             onChange={(e) => setNote(e.target.value)}
           />
