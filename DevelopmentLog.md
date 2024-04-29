@@ -11,7 +11,7 @@ This is a log of updates made to the AFWebPortfolio project, log started on 11/8
 **Date:** 11/8/23 -> ###
 **Version:** 1.01 -> 1.02
 **Description:**
-- tesing
+- Begin update to include development of Dash.AFWebDev.com and minor updates to AFWebPortfolio
 
 
 

@@ -3,7 +3,8 @@ import ContactSection from '../components/ContactSection'
 import NavigationBar from '../components/NavigationBar'
 import axios from 'axios';
 import WeatherCard from '../components/weatherGame/WeatherCard';
-import CityStatus from '../components/weatherGame/CityStatus'
+// import CityStatus from '../components/weatherGame/CityStatus'
+import CityStatus from '../components/weatherGame/cityStatus'
 import LoadingDiv from '../components/weatherGame/LoadingDiv';
 import GameStatus from '../components/weatherGame/GameStatus';
 import { handleScrollToTop } from '../components/renderless/handleScrollToTop';

@@ -13,6 +13,24 @@ export default function PortfolioDescriptions() {
     <div
       className="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3"
     >
+      {/* Dash Section */}
+      <a href='http://dash.afwebdev.com' target='_blank' rel='noreferrer'>
+        <div className="flex items-start col-span-1 md:hover:scale-125 transition-all duration-150 md:hover:-translate-y-8">
+          <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
+            <img className='h-8 scale-150' src={etgMini} alt='Ector Grow logo'/>
+          </span>
+
+          <div className="ml-4">
+            <h2 className="text-lg font-bold">Dash</h2>
+            <p className='text-xs text-slate-200 pb-4'>dash.AFWebDev.com</p>
+            <p className="mt-1 text-sm text-gray-300">
+              This website is a side projcet I use to help me organize a few key parts of my life as well as being just a general dashboard for managing my day to day, I also 
+              use the website to learn, practice and implement new concepts, best practices & features. More Info below...
+            </p>
+          </div>
+        </div>      
+      </a>
+
       {/* EctorGrow Section */}
       <a href='https://EctorGrow.com' target='_blank' rel='noreferrer'>
         <div className="flex items-start col-span-1 md:hover:scale-125 transition-all duration-150 md:hover:-translate-y-8">

@@ -6,6 +6,7 @@ import PreviousEmployers from '../components/home/PreviousEmployers'
 import PortfolioDescriptions from '../components/home/PortfolioDescriptions'
 import { handleScrollToBottom } from '../components/renderless/handleScrollToBottom'
 import NavigationBar from '../components/NavigationBar'
+import DashExplainer from '../components/home/DashExplainer'
 
 export default function Home() {
 
@@ -20,6 +21,7 @@ export default function Home() {
         {/* Developer Experience & Projects */}
           <PortfolioDescriptions />                    
           <section className=''>
+            <DashExplainer />
             <ETGExplainer />
             <PreviousEmployers />
           {/* Updated Resume & Cover & contact info */}
