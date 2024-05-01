@@ -17,7 +17,7 @@ export default function PortfolioDescriptions() {
       <a href='http://dash.afwebdev.com' target='_blank' rel='noreferrer'>
         <div className="flex items-start col-span-1 md:hover:scale-125 transition-all duration-150 md:hover:-translate-y-8">
           <span className="flex-shrink-0 rounded-lg bg-gray-800 p-4">
-            <img className='h-8 scale-150' src={etgMini} alt='Ector Grow logo'/>
+            <p className='h-8 scale-150'>dash</p>
           </span>
 
           <div className="ml-4">
@@ -42,7 +42,7 @@ export default function PortfolioDescriptions() {
             <h2 className="text-lg font-bold">EctorGrow</h2>
             <p className='text-xs text-slate-200 pb-4'>EctorGrow.com</p>
             <p className="mt-1 text-sm text-gray-300">
-              This website is currently a <span className='italic'>live</span> project I use to learn, practice and implement new concepts, practices & features. More Info below...
+              This website is no longer in active development, but is still live for existing users to access. It is also my first major React project and the project I built to further my developing skills. More Info below...
             </p>
           </div>
         </div>      

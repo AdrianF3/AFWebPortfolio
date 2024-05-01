@@ -8,7 +8,6 @@ import gaSVG from '../../images/googleAnalytics.svg'
 import jsonSVG from '../../images/json.svg'
 import cssSVG from '../../images/css.svg'
 import htmlSVG from '../../images/html.svg'
-// import nextJSSVG from '../../images/next-js.svg'
 import jestSVG from '../../images/jest-2.svg'
 import typescriptSVG from '../../images/typescript.svg'
 import framerMotionSVG from '../../images/framer-motion.svg'
@@ -30,14 +29,14 @@ export default function Header() {
 
     <div className="container px-6 py-16 mx-auto text-center">
         <div className="max-w-2xl mx-auto">
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-wider md:text-4xl">Frontend Software Developer</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white tracking-wider md:text-4xl">Software Developer</h1>
 
             <p className="mt-6 text-gray-500 dark:text-gray-200 tracking-wide">
             Building great user experiences and effective tools for the internet
             </p>
             <p className="mt-6 text-gray-500 dark:text-gray-200 italic"> 
-                I have been working on a few projects to help me learn and grow as a developer. My main project has been building a
-                <span className='font-bold p-1 underline'>dash.AFWebDev.com</span>, a simple collection of random tools and widgets to help me manage small parts of my day to day.
+                I have been working on a few projects to help me learn and grow as a developer. My recent project has been
+                <span className='font-bold p-1 underline'>dash.AFWebDev.com</span>, a simple collection of tools and simple apps to help me manage my day to day.
             </p>
             <p className="mt-6 text-gray-500 dark:text-gray-200 italic"> 
                 The project is live with open registration for anyone interested but also allows anyone to sign in with a Demo Account to get a feel for how it works.
