@@ -22,7 +22,7 @@ COMPLETED DEVELOPMENT
 **Version:** 1.01 -> 1.02
 **Description:**
 - Begin update to include development of Dash.AFWebDev.com and minor updates to AFWebPortfolio
-- Completed initial version - will need to update with resume and other information soon
+- Completed initial version - will need to update with resume and other information soon.
 
 **Date:** 11/8/23
 **Version:** 1.0 -> 1.01
