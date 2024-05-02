@@ -11,7 +11,7 @@ This is a log of updates made to the AFWebPortfolio project, log started on 11/8
 **Date:** 5/1/24 -> ###
 **Version:** 1.02 -> 1.03
 **Description:**
-- 
+- Update to Date in ContactSection to reflect development continued through 2024
 
 
 
